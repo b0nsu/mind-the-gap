@@ -2,7 +2,7 @@
 # Derived from Anthropic's skill-creator skill (https://github.com/anthropics/skills,
 # skills/skill-creator/scripts/), Apache License 2.0; see LICENSE-skill-creator.txt in
 # this directory. Modified: one project dir per query, --setting-sources project,
-# claude -p errors and timeouts raise instead of counting as not triggered.
+# claude -p errors and timeouts raise instead of counting as not triggered; CLAUDE_BIN; --skill-name.
 """Run trigger evaluation for a skill description.
 
 Tests whether a skill's description causes Claude to trigger (read the skill)
@@ -74,7 +74,7 @@ def run_single_query(
         command_file.write_text(command_content)
 
         cmd = [
-            "claude",
+            os.environ.get("CLAUDE_BIN", "claude"),  # absolute path when PATH has another claude first
             "-p", query,
             "--output-format", "stream-json",
             "--verbose",
@@ -272,6 +272,7 @@ def main():
     parser.add_argument("--eval-set", required=True, help="Path to eval set JSON file")
     parser.add_argument("--skill-path", required=True, help="Path to skill directory")
     parser.add_argument("--description", default=None, help="Override description to test")
+    parser.add_argument("--skill-name", default=None, help="Override the skill name the model sees (control runs under a former name)")
     parser.add_argument("--num-workers", type=int, default=10, help="Number of parallel workers")
     parser.add_argument("--timeout", type=int, default=30, help="Timeout per query in seconds")
     parser.add_argument("--runs-per-query", type=int, default=3, help="Number of runs per query")
@@ -288,6 +289,7 @@ def main():
         sys.exit(1)
 
     name, original_description, content = parse_skill_md(skill_path)
+    name = args.skill_name or name
     description = args.description or original_description
     project_root = find_project_root()
 

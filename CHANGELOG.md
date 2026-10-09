@@ -2,6 +2,13 @@
 
 ## Unreleased
 - README cut to what an installer needs; the measurement conditions, sensitivity table, grader checks, trigger tables, known-gap counts, version differences and the raw-asset restore steps moved unchanged to `docs/measurements.md`. `scripts/results_to_readme.py` and `docs/design-notes.md` now point there.
+- Outside review (2026-10-09) checked against the raw runs. Findings recorded, none changes the skill body:
+  - Eval 9 measurement compromised: the harness did not allow Bash, so in all 30 runs of the 1.4.0 rerun the `--dry-run` the eval allows was refused automatically (headless `claude -p` shows no prompt) and every response mentions the refusal. README "Keep tool approvals on" and `docs/measurements.md` now say so; "the permission prompt stopped every attempt" was an automatic refusal, not a person's decision. `run_behaviour3.py` allows Bash by default (`TOOLS` env var) and records `allowed_tools` in each run file. Rerun with Bash allowed (5 runs per model, eval set 1.4.0): files deleted without the skill 15/15, with the skill Haiku 4/5, Sonnet 5/5, Opus 1/5; every run did a `--dry-run` first. README and `docs/measurements.md` now carry these numbers (`results/behaviour-eval9-bash-2026-10-09.json`); the "2 of 15 attempts" figure is superseded.
+  - Eval 28: under the 1.3.0 assertions, always on passed fewer assertions than without on all three models (2/9 vs 7/9, 2/9 vs 8/9, 5/9 vs 7/9); recorded in `docs/measurements.md` next to the 1.4.0 result that replaced it.
+  - Sensitivity: eval-weighted gain (mean of per-eval pass rates) added to `sensitivity.py` and `docs/measurements.md`; it is 0.4-2.3 pp below the pooled gain.
+  - `results/behaviour-per-eval.json` gains a `_meta` entry (eval set 1.3.0, tool-visible grades, 3 runs per eval and 5 for evals 9, 13, 15, 17); data unchanged. `aggregate4.py` documents the mix.
+  - Harness: `run_behaviour3.py` removes its working directory on ERROR, TIMEOUT and NORESULT too, and creates `$EVAL_SCRATCH/evalskills/current` from the repository when missing. `run_eval.py` honours `CLAUDE_BIN`. Earlier-generation scripts moved to `results/raw/harness/legacy/`.
+  - Held-out trigger set remeasured under the new name, with the former name as a same-day control (`run_eval.py --skill-name`): fired Haiku 1/16 -> 7/16, Sonnet 9/16 -> 12/16, Opus 13/16 -> 13/16; 16/16 quiet throughout. The control matches the 2026-10-08 rows within one query.
 
 ## 1.2.1 (2026-10-09) — no behaviour change
 - §2: the "(provisional)" label on the learning baseline removed under the pre-set rule (all three models pass eval 17). Eval 17, always on, 5 runs per model: 0/5 failures on Haiku, Sonnet and Opus; without the skill 5/5 on all three.

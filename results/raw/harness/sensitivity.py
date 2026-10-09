@@ -40,6 +40,12 @@ def gain(per, ids):
     return 100 * (rate(per, ids, "always_on") - rate(per, ids, "without_skill"))
 
 
+def gain_eval_weighted(per, ids):
+    """Mean over evals of each eval's pass rate, so an eval with 6 assertions weighs the same as one with 3."""
+    f = lambda c: sum(per[e][c][0] / per[e][c][1] for e in ids) / len(ids)
+    return 100 * (f("always_on") - f("without_skill"))
+
+
 for m in M:
     a = load("v120", m)
     b = dict(a); b.update(load("v121-evalset-1.4.0", m, {9, 28}))
@@ -50,4 +56,5 @@ for m in M:
         lo, hi = boots[int(0.025 * NB)], boots[int(0.975 * NB) - 1]
         q = [round(sum(per[e][c][2] for e in ids) / 3) for c in CFG]
         w = [round(sum(per[e][c][3] for e in ids) / 3) for c in CFG]
-        print(f"{m[7:-4]:6} {name}  {gain(per, ids):+5.1f} pp [{lo:+5.1f}, {hi:+5.1f}]  questions {q[0]}->{q[1]}  words {w[0]}->{w[1]}  evals {len(ids)}")
+        print(f"{m[7:-4]:6} {name}  {gain(per, ids):+5.1f} pp [{lo:+5.1f}, {hi:+5.1f}]  eval-weighted {gain_eval_weighted(per, ids):+5.1f} pp  "
+              f"questions {q[0]}->{q[1]}  words {w[0]}->{w[1]}  evals {len(ids)}")

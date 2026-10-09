@@ -10,10 +10,16 @@
   appends a system prompt telling the model to load that skill (used by eval 8).
 - Multi-turn evals ("turns") reuse one session via --session-id / --resume.
 - Records the final file snapshot and the full transcript of user/assistant turns.
+- Allowed tools come from $TOOLS (default includes Bash). Runs recorded before 2026-10-10 used
+  "Skill,Read,Glob,Grep,Write,Edit": every Bash call, including eval 9's --dry-run, was refused by
+  claude -p (no prompt is shown in headless mode), and every eval 9 response mentioned the refusal.
 
 Usage: run_behaviour3.py <models,comma> <runs> <eval ids,comma|all> <cfg,cfg> [skill_tag]
   cfg: without_skill | always_on | with_skill
-  skill_tag: name of a dir under SKILLS (default: current)
+  skill_tag: name of a dir under $EVAL_SCRATCH/evalskills (default: current). The tag "current" is
+  created from $REPO/skills/mind-the-gap when missing; other tags are snapshots you place there by hand
+  (<tag>/skill = a copy of the skill folder, <tag>/plugin = a plugin wrapper around the same files).
+Env: EVAL_SCRATCH, OUT, TOOLS, WORKERS, CLAUDE_BIN.
 """
 import json, os, shutil, subprocess, sys, uuid
 from concurrent.futures import ThreadPoolExecutor
@@ -33,13 +39,27 @@ CFGS = sys.argv[4].split(",")
 TAG = sys.argv[5] if len(sys.argv) > 5 else "current"
 SKILLDIR = SKILLS / TAG / "skill"          # .../skill/SKILL.md, references/
 PLUGDIR = SKILLS / TAG / "plugin"          # plugin wrapper around the same files
-TOOLS = "Skill,Read,Glob,Grep,Write,Edit"
+TOOLS = os.environ.get("TOOLS", "Skill,Read,Glob,Grep,Write,Edit,Bash")
 FORCE = ("The {name} skill is installed for this session. Before you respond, "
          "invoke it with the Skill tool and follow its instructions for this request.")
 
 evals = [e for e in ALL if e["id"] in IDS]
 env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}
 CLAUDE = os.environ.get("CLAUDE_BIN", "claude")  # absolute path when PATH has another claude first
+
+
+def ensure_current_skill():
+    """Create evalskills/current from the repository skill folder when it does not exist."""
+    if TAG != "current" or SKILLDIR.exists():
+        return
+    src = REPO / "skills" / "mind-the-gap"
+    shutil.copytree(src, SKILLDIR)
+    plug = PLUGDIR / "skills" / "mind-the-gap"
+    shutil.copytree(src, plug)
+    (PLUGDIR / ".claude-plugin").mkdir(parents=True, exist_ok=True)
+    (PLUGDIR / ".claude-plugin" / "plugin.json").write_text(json.dumps(
+        {"name": "mind-the-gap", "version": "eval", "description": "Skill under test (eval snapshot)."}))
+    print("created", SKILLDIR.parent, flush=True)
 
 
 def snapshot(d):
@@ -83,7 +103,7 @@ def one(job):
         try:
             p = subprocess.run(cmd, cwd=wd, env=env, capture_output=True, text=True, timeout=900)
         except subprocess.TimeoutExpired:
-            print("TIMEOUT", f, flush=True); return
+            print("TIMEOUT", f, flush=True); shutil.rmtree(wd, ignore_errors=True); return
         result = None
         for line in p.stdout.splitlines():
             try:
@@ -99,15 +119,15 @@ def one(job):
             elif e.get("type") == "result":
                 result = e.get("result")
                 if e.get("is_error") or str(result).startswith("You've hit your"):
-                    print("ERROR", f, str(result)[:120], flush=True); return
+                    print("ERROR", f, str(result)[:120], flush=True); shutil.rmtree(wd, ignore_errors=True); return
         if result is None:
-            print("NORESULT", f, p.stderr[-300:], flush=True); return
+            print("NORESULT", f, p.stderr[-300:], flush=True); shutil.rmtree(wd, ignore_errors=True); return
         transcript.append({"user": prompt, "assistant": result})
     after = snapshot(wd)
     changed = {k: v for k, v in after.items() if before.get(k) != v}
     removed = [k for k in before if k not in after]
     json.dump({"eval_id": ev["id"], "config": cfg, "run": run, "model": real_model, "skill_tag": TAG,
-               "prompt": ev["prompt"], "transcript": transcript, "tools": tools,
+               "prompt": ev["prompt"], "allowed_tools": TOOLS, "transcript": transcript, "tools": tools,
                "response": transcript[-1]["assistant"], "files_changed": changed, "files_removed": removed,
                "final_files": {k: v for k, v in after.items() if k in {*changed, *before}},
                "words": len(transcript[-1]["assistant"].split())},
@@ -116,6 +136,7 @@ def one(job):
     print("ok", f.relative_to(OUT), flush=True)
 
 
+ensure_current_skill()
 jobs = [(m, c, e, r) for m in MODELS for e in evals for c in CFGS for r in range(1, RUNS + 1)]
 with ThreadPoolExecutor(int(os.environ.get("WORKERS", 6))) as ex:
     list(ex.map(one, jobs))

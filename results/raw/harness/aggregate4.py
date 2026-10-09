@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Aggregate beh4 (harness v3 with in-project import) into results/. First 3 runs per eval for totals."""
+"""Aggregate beh4 (harness v3 with in-project import) into results/. First 3 runs per eval for totals.
+behaviour-per-eval.json: all graded runs per eval (3 for most evals; 5 for evals 9, 13, 15, 17, which were run
+x5 for the 1.2.1 candidates). Eval set 1.3.0 for every eval, so eval 9 there ran in an empty working directory
+and eval 28 used the old assertions; the 1.4.0 rerun of evals 9 and 28 is under v121-evalset-1.4.0 and is not
+in this file. Set AGG_SRC to the unpacked results-raw-1.2.1/results/raw/behaviour-1.2.1 directory."""
 import json, glob, collections, os
 from pathlib import Path
 S = Path(os.environ.get("AGG_SRC", str(Path(__file__).resolve().parents[1] / "behaviour-1.2.1")))
@@ -27,4 +31,9 @@ for m in M:
     json.dump(out, open(OUT / f"behaviour-{m}.json", "w"), indent=1)
     detail[m] = per
     print(m, {k: out[k]["pass_rate"] for k in V})
+detail = {"_meta": {"date": "2026-10-09", "eval_set": "1.3.0", "skill_version": "1.2.0 body (1.2.1 differs only in the provisional label)",
+                    "grades": "tool calls visible (regrade of 2026-10-09)", "runs_per_eval": "3; 5 for evals 9, 13, 15, 17",
+                    "source_tags": V, "note": "eval 9 ran in an empty working directory and eval 28 used the 1.3.0 assertions; "
+                    "the 1.4.0 rerun of evals 9 and 28 (v121-evalset-1.4.0) is not included. Written by results/raw/harness/aggregate4.py."},
+          **detail}
 json.dump(detail, open(OUT / "behaviour-per-eval.json", "w"), indent=1, ensure_ascii=False)

@@ -34,9 +34,9 @@ echo '@.claude/mind-the-gap/SKILL.md' >> your-project/CLAUDE.md
 
 Use a relative path inside the project: imports from outside it need approval and may not expand in `claude -p`. To check it is active, ask without tools: "Quote the first sentence of section 1 of your instructions." Expected: "Clear, low-risk, reversible, easily verified requests: just do them." Cost: about 3,000 tokens per conversation; `references/` load only when needed.
 
-**Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, 2 of 15 runs with the skill on still tried the deletion without asking, the same count as without it. The permission prompt stopped every attempt.
+**Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, run with Bash available and no approval prompt, the model deleted the files in 15/15 runs without the skill and in 10/15 with it (Haiku 4/5, Sonnet 5/5, Opus 1/5). Only Opus with the skill reliably stopped after the dry run and asked. An earlier figure here (2 of 15 attempts, stopped by the permission prompt) came from a harness that refused every Bash call automatically; it is superseded ([docs/measurements.md](docs/measurements.md#notes-and-known-gaps)).
 
-**As a model-invoked skill.** The model decides from the description whether to load it, and often does not (0/16 held-out cases on Haiku; see measurements). In Claude Code:
+**As a model-invoked skill.** The model decides from the name and description whether to load it, and often does not (held-out cases: Haiku 7/16, Sonnet 12/16, Opus 13/16; see measurements). In Claude Code:
 
 ```
 /plugin marketplace add b0nsu/mind-the-gap
@@ -55,7 +55,7 @@ With other agents that read the [Agent Skills](https://agentskills.io/specificat
 | Sonnet | 81% → 93%                 | 28 → 30   | −2%   |
 | Opus   | 77% → 97%                 | 28 → 33   | −6%   |
 
-Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without. A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (Sonnet, Haiku), a decision contradicted by the repository on a later turn (Haiku), and the irreversible deletion, where the skill does not measurably reduce failures. Model-invoked triggering is unreliable on every model and 0/16 on Haiku. No human has checked the grades.
+Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without. A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (Sonnet, Haiku), a decision contradicted by the repository on a later turn (Haiku), and the irreversible deletion, where with Bash available the skill stops Opus (1/5 runs deleted vs 5/5) but not Haiku or Sonnet (9/10 deleted). Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). No human has checked the grades.
 
 ## Why it exists
 

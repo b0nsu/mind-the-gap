@@ -129,7 +129,7 @@ scripts/results_to_readme.py              renders the behaviour and trigger_set 
 CHANGELOG.md
 ```
 
-Every run and grade (6,474 files, 16.5 MB, 3.5 MB compressed) is in the release asset [`results-raw-1.2.1.tar.gz`](https://github.com/b0nsu/mind-the-gap/releases/download/v1.2.1/results-raw-1.2.1.tar.gz), kept out of the repository so that installing the skill does not download it. Unpack it at the repository root to restore `results/raw/`. Paths inside the asset use the skill's former name, `ai-collaboration`; the paths cited in this README and the CHANGELOG then resolve, and the harness scripts run against it.
+Every run and grade (6,474 files, 16.5 MB, 3.0 MB compressed) is in the release asset [`results-raw-1.2.1.tar.gz`](https://github.com/b0nsu/mind-the-gap/releases/download/v1.2.1/results-raw-1.2.1.tar.gz), kept out of the repository so that installing the skill does not download it. Unpack it at the repository root to restore `results/raw/`. Paths inside the asset use the skill's former name, `ai-collaboration`; the paths cited in this README and the CHANGELOG then resolve, and the harness scripts run against it.
 
 ## Contributing
 

@@ -35,7 +35,7 @@ Behaviour (eval set 1.3.0, 2026-10-09; measured on the 1.2.0 body under the form
 
 Independent blind check by a second model (claude-fable-5-1) of the current grades: 15 samples, 63 assertions; 59/63 agree, 0 where the checker was stricter, 4 where the grader was stricter (`results/grader-spot-check-2026-10-09b-review.md`). Two earlier model checks of the text-only grades (one of them not blind) agree with this direction: across all three, 10 of 172 assertions disagree and every one has the grader stricter. The samples over-represent known gaps, so the pass rates above are likely conservative rather than proven so. No human check has been done.
 
-The grader is claude-opus-5-5, the same model that scores highest with the skill, and the `expected_output` it reads names the skill's modes (DIRECT, DISCOVER, CO-CREATE) in 8 of the 28 evals, which can steer it toward the skill's own framing. Both are open.
+The grader is claude-opus-5-5, the same model that scores highest with the skill, and the `expected_output` it reads names the skill's modes (DIRECT, DISCOVER, CO-CREATE) in 8 of the 28 evals, which can steer it toward the skill's own framing. Eval set 1.5.0 removes the mode names from those 8 fields without changing any prompt or assertion, so the recorded runs can be regraded against it (`EVALS_JSON` in `grade3.py`) without rerunning; that regrade has not been done, and the numbers here are still graded against 1.3.0/1.4.0. The same-model grader is open.
 
 ### Sensitivity
 

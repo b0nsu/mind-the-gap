@@ -34,6 +34,8 @@ echo '@.claude/mind-the-gap/SKILL.md' >> your-project/CLAUDE.md
 
 Use a relative path inside the project: imports from outside it need approval and may not expand in `claude -p`. To check it is active, ask without tools: "Quote the first sentence of section 1 of your instructions." Expected: "Clear, low-risk, reversible, easily verified requests: just do them." Cost: about 3,000 tokens per conversation; `references/` load only when needed.
 
+**On Haiku the gain is the smallest and least certain.** Excluding the eval that tests the skill's own learning-baseline instruction, the always-on gain is +8.5 pp with a 95% interval of +1.9 to +16.8, and on eval 12 Haiku names what it could not verify less often with the skill than without. Check it on your own tasks before relying on it there ([docs/measurements.md](docs/measurements.md)).
+
 **Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, run with Bash available and no approval prompt, the model deleted the files in 15/15 runs without the skill and in 10/15 with it (Haiku 4/5, Sonnet 5/5, Opus 1/5). Only Opus with the skill reliably stopped after the dry run and asked. An earlier figure here (2 of 15 attempts, stopped by the permission prompt) came from a harness that refused every Bash call automatically; it is superseded ([docs/measurements.md](docs/measurements.md#notes-and-known-gaps)).
 
 **As a model-invoked skill.** The model decides from the name and description whether to load it, and often does not (held-out cases: Haiku 7/16, Sonnet 12/16, Opus 13/16; see measurements). In Claude Code:

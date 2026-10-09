@@ -124,7 +124,7 @@ evals/                                    eval set, trigger sets, fixtures, iter
 docs/design-notes.md                      why this exists, and how it relates to Anthropic's and OpenAI's own guidance
 docs/proposed-1.3-explicit-invocation.md  the next planned body change
 results/                                  aggregated results and grader checks
-results/raw/harness/                      the measurement harness (runner, grader, aggregation, sensitivity)
+results/raw/harness/                      the measurement harness (runner, grader, aggregation, sensitivity); run_eval.py and improve_description.py derive from anthropics/skills skill-creator (Apache 2.0, LICENSE-skill-creator.txt)
 scripts/results_to_readme.py              renders the behaviour and trigger_set tables from result files
 CHANGELOG.md
 ```

@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# Derived from Anthropic's skill-creator skill (https://github.com/anthropics/skills,
+# skills/skill-creator/scripts/), Apache License 2.0; see LICENSE-skill-creator.txt in
+# this directory. Modified: one project dir per query, --setting-sources project,
+# claude -p errors and timeouts raise instead of counting as not triggered.
 """Run trigger evaluation for a skill description.
 
 Tests whether a skill's description causes Claude to trigger (read the skill)

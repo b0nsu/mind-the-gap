@@ -1,5 +1,8 @@
 # mind-the-gap — changelog
 
+## Unreleased
+- README cut to what an installer needs; the measurement conditions, sensitivity table, grader checks, trigger tables, known-gap counts, version differences and the raw-asset restore steps moved unchanged to `docs/measurements.md`. `scripts/results_to_readme.py` and `docs/design-notes.md` now point there.
+
 ## 1.2.1 (2026-10-09) — no behaviour change
 - §2: the "(provisional)" label on the learning baseline removed under the pre-set rule (all three models pass eval 17). Eval 17, always on, 5 runs per model: 0/5 failures on Haiku, Sonnet and Opus; without the skill 5/5 on all three.
 - Recommended install changed to always on: the skill folder under the project's `.claude/` and a relative `@` import in the project CLAUDE.md. README documents that imports pointing outside the project may not expand in non-interactive runs and how to check that the import is active.

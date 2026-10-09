@@ -67,7 +67,7 @@ and that descriptions tend to over-claim when a skill applies. This skill's
 description is long by that standard, because its activation condition is a
 conjunction with a counter-intuitive clause (clear is not the same as safe).
 Whether that length earns its place is exactly what `evals/trigger_set.json`
-measures; see the trigger table in the repository README.
+measures; see the trigger table in [measurements.md](measurements.md).
 
 [a1]: https://claude.com/blog/a-field-guide-to-claude-fable-finding-your-unknowns
 [a3]: https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models

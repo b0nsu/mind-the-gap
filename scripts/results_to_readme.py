@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Turn result files into the behaviour table and the trigger_set.json table in README.md.
+"""Turn result files into the behaviour table and the trigger_set.json table in docs/measurements.md.
 
 Usage (files in the order the README rows should appear):
   python scripts/results_to_readme.py \
@@ -16,7 +16,7 @@ other keys (e.g. always_on_cand_*) are not printed.
 trigger-<model>.json: the JSON that results/raw/harness/run_eval.py writes,
 plus top-level "model" and "date" keys added by hand.
 
-Prints markdown to stdout; paste over the two tables in README.md. The
+Prints markdown to stdout; paste over the two tables in docs/measurements.md. The
 sensitivity and held-out trigger tables are not generated.
 """
 import argparse, json

@@ -12,7 +12,17 @@ It stays out of requests that are clear **and** low-risk **and** reversible **an
 
 If a procedural skill is also active (one that fixes how or when to ask, or prescribes a review or report sequence), that skill's procedure wins.
 
+## Example
+
+Eval 12 asks "Check whether the numbers in this report are right." about a three-sentence Q3 report. With and without the skill, Opus finds the same problems: growth is 23.5%, not 18%; 3,390 is likely per quarter, not per year; nothing in the report produces the 4.6M projection. With the skill always on, Opus run 1 also ends with:
+
+> I checked only that the numbers agree with each other. I haven't checked them against any source data.
+
+Without the skill, Opus run 1 ends at the list of fixes. The grader checks for that statement ("lists what it could NOT verify"). Opus and Sonnet include it in 3/3 runs with the skill and 0/3 without. Haiku goes the other way: 2/3 without, 0/3 with. The runs are in the release asset under `results/raw/behaviour-1.2.1/v120/<model>/eval-12/`.
+
 ## Install
+
+The skill is Markdown instructions only (SKILL.md, `references/`, LICENSE.txt). It runs no code and sends or fetches nothing. The Python and shell files elsewhere in the repository are the measurement harness; installing does not run them.
 
 **Recommended: always on.** Copy the skill folder (SKILL.md, `references/`, LICENSE.txt) into the project's `.claude/` directory and import SKILL.md from the project `CLAUDE.md` with a relative path. This is the setup that was measured (there under the folder name `.claude/acs/`).
 

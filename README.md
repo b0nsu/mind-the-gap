@@ -24,6 +24,8 @@ echo '@.claude/mind-the-gap/SKILL.md' >> your-project/CLAUDE.md
 
 An import that points outside the project (an absolute path, or `~/...` from a project file) needs approval the first time and may not be expanded at all in non-interactive runs such as `claude -p`. When it is not expanded the model only sees the path, and whether it then reads the file itself varied from 25% (Haiku) to 87% (Opus) of runs in our measurements.
 
+SKILL.md names its reference files relative to its own folder (`references/asking-styles.md`), as the Agent Skills format specifies. After this install they are under `.claude/mind-the-gap/references/`; the measured setup had the same layout.
+
 To check that the import is active, ask without tools: "Quote the first sentence of section 1 of your instructions." It should answer "Clear, low-risk, reversible, easily verified requests: just do them."
 
 Cost: the import adds SKILL.md to every conversation, frontmatter included (about 1,900 words, roughly 2,500 tokens). The `references/` files are read only when their condition is met.
@@ -47,7 +49,7 @@ With other agents that read the [Agent Skills](https://agentskills.io/specificat
 
 <!-- Filled from evals runs. Model ids and dates required. -->
 
-Behaviour (skill 1.2.1, eval set 1.3.0, 2026-10-09): 28 evals, 3 runs each, graded blind by claude-opus-5-5 with every turn, the tool calls and the final workspace files (regraded 2026-10-09 once the grader could see tool calls; earlier grades in `results/raw/behaviour-1.2.1-grades-notools/`). Always on = the install above; the measurement used the folder name `.claude/acs/` instead of `.claude/mind-the-gap/`, and the name does not matter. The model can see SKILL.md and `references/` in the project. The table uses eval set 1.3.0, kept in `results/raw/harness/evals-1.3.0.json`; `evals/evals.json` is now 1.4.0, with different evals 9 and 28, so running the current file does not reproduce this table. Both files carry the later fix to eval 4's assertions. Each run uses a fresh working directory; without the skill it holds no skill files. Fixtures (evals 5-8, 22, 27, 28) are copied in, eval 8 also loads a procedural review skill. Questions and words are totals over the 28 evals, averaged across the 3 runs.
+Behaviour (eval set 1.3.0, 2026-10-09; measured on the 1.2.0 body under the former name `ai-collaboration`; 1.2.1 differs from it only in one removed "(provisional)" label and the title): 28 evals, 3 runs each, graded blind by claude-opus-5-5 with every turn, the tool calls and the final workspace files (regraded 2026-10-09 once the grader could see tool calls; earlier grades in `results/raw/behaviour-1.2.1-grades-notools/`). Always on = the install above; the measurement used the folder name `.claude/acs/` instead of `.claude/mind-the-gap/`, and the name does not matter. The model can see SKILL.md and `references/` in the project. The table uses eval set 1.3.0, kept in `results/raw/harness/evals-1.3.0.json`; `evals/evals.json` is now 1.4.0, with different evals 9 and 28, so running the current file does not reproduce this table. Both files carry the later fix to eval 4's assertions. Each run uses a fresh working directory; without the skill it holds no skill files. Fixtures (evals 5-8, 22, 27, 28) are copied in, eval 8 also loads a procedural review skill. Questions and words are totals over the 28 evals, averaged across the 3 runs.
 
 Independent blind check by a second model (claude-fable-5-1) of the current grades: 15 samples, 63 assertions; 59/63 agree, 0 where the checker was stricter, 4 where the grader was stricter (`results/grader-spot-check-2026-10-09b-review.md`). Two earlier model checks of the text-only grades (one of them not blind) agree with this direction: across all three, 10 of 172 assertions disagree and every one has the grader stricter. The samples over-represent known gaps, so the pass rates above are likely conservative rather than proven so. No human check has been done.
 
@@ -101,7 +103,7 @@ Held-out check, also under the former name: `trigger_set_heldout.json` (32 queri
 
 The 1.0.1 description generalizes beyond the set it was tuned on and adds no false triggers. Requests to check something hard to verify (a thesis's statistical test, a safety-notice translation, a tax calculation) and decisions handed over with materials ("which of these two candidates should we hire?") still rarely trigger on any model.
 
-Eval set, trigger sets, fixtures and iteration history: `evals/` at the repository root, outside the skill folder so that it is not installed with the skill. Failures are classified as underreach (acted when it should have asked), overreach (asked or explained when it should have acted) or misrouting (asked in the wrong form). A failure becomes an eval case first; the instruction text changes only when the failure repeats across runs.
+Eval set, trigger sets, fixtures and iteration history: `evals/` at the repository root, outside the skill folder so that it is not installed with the skill. The plugin install copies the whole repository into the plugin cache, as anthropics/skills does, but loads only `skills/mind-the-gap/`. Failures are classified as underreach (acted when it should have asked), overreach (asked or explained when it should have acted) or misrouting (asked in the wrong form). A failure becomes an eval case first; the instruction text changes only when the failure repeats across runs.
 
 ## Repository layout
 
@@ -113,7 +115,7 @@ docs/design-notes.md                      why this exists, and how it relates to
 docs/proposed-1.3-explicit-invocation.md  the next planned body change
 results/                                  aggregated results and grader checks
 results/raw/harness/                      the measurement harness (runner, grader, aggregation, sensitivity)
-scripts/results_to_readme.py              renders the README tables from result files
+scripts/results_to_readme.py              renders the behaviour and trigger_set tables from result files
 CHANGELOG.md
 ```
 

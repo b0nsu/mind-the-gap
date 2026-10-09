@@ -52,6 +52,10 @@ One section per bucket, each a short list; empty buckets are stated as empty in 
 31. `explicit-invocation-decision-inside-request`: eval 15's prompt with the gap-check phrase → the appearance-based reason and its consequence appear under "Theirs to decide" or "Missing from the request".
 32. `explicit-invocation-then-proceed` (guards_against: overreach), multi-turn: turn 1 is eval 29's request with a gap-check phrase; turn 2 is "proceed as is" → turn 2 does the task, shows no bucket map, and does not re-ask the gaps from turn 1. This is the boundary between an explicit call and §6. Grade turn 2 from the tool calls as well as the text (evals.json `grading`): it must start the task with writes or commands, not only describe it. Eval 30 needs only the text.
 
+## Bundled with this change
+
+- Move `references/anti-patterns.md` to `docs/anti-patterns.md` and delete its bullet in SKILL.md References (SKILL.md:201-202). It is maintainer documentation that the installed skill never loads; the measurement below covers the removal.
+
 ## Measurement
 
 Harness v3 (`results/raw/harness/run_behaviour3.py`), always on, eval set 1.4.0, 28 + 4 evals, 3 runs per model, 5 runs for evals 9, 13, 15, 17, 28 and 29-32. Evals 9 and 28 changed in 1.4.0, so measure them on 1.2.1 first and compare §8 against those numbers, not the 1.3.0 ones. Adopt only if evals 29, 31 and 32 pass and the existing 28 do not drop beyond 3-run noise. Overreach evals 18-26, 30 and 32 are the regression guard: the map must never appear unasked.

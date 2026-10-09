@@ -1,0 +1,12 @@
+{
+  "name": "notes-api",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node src/server.js", "test": "node --test" },
+  "dependencies": {
+    "connect-redis": "^7.1.1",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "ioredis": "^5.4.1"
+  }
+}

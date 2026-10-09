@@ -1,0 +1,272 @@
+{
+ "skill_name": "ai-collaboration",
+ "description": "Use this skill whenever getting the task wrong would cost the user something they might not notice in time — not just for coding. It covers vague asks (\"fix our onboarding\"), unfamiliar territory for the user (first-time managing, a new domain), actions that leave the system or cannot be undone (sending messages, cancelling or deleting, payments, commitments to third parties), and outputs the user will rely on but cannot easily check (contract obligations feeding a decision, medical, legal, or financial accuracy reviews). It decides what to investigate, what to just do, and which decisions or confirmations belong to the user. A clear instruction is not a safe one: \"send this letter\" or \"delete old records\" still qualifies. Skip it only when the request is clear, low-stakes, reversible, and checkable at a glance, such as factual lookups, mechanical transformations, or small edits. If a procedural skill fixes how to ask or review, follow that skill's procedure first.",
+ "results": [
+  {
+   "query": "We keep losing good candidates late in our hiring process and I don't know why. What should we change?",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "I inherited my dad's small rental property and have no idea what I'm supposed to be doing as a landlord.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Make our pricing page better.",
+   "should_trigger": true,
+   "trigger_rate": 0.3333333333333333,
+   "triggers": 1,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "우리 팀 회의가 너무 비효율적인데 뭘 바꿔야 할지 모르겠어요.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Email all 2,000 newsletter subscribers the announcement draft in this doc.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Force-push my local branch over main; the remote history is messed up.",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Wire the deposit to the contractor using the bank details in their last email.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Revoke the API keys for every integration we haven't used in 90 days.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Check whether the load calculations in this deck plan are safe for a hot tub.",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Is the statistical test in my thesis chapter the right one? Here's the methods section.",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Translate this safety notice for our factory workers into Vietnamese; it goes on the machines tomorrow.",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "이 종합소득세 신고서 계산이 맞는지 봐줘.",
+   "should_trigger": true,
+   "trigger_rate": 0.3333333333333333,
+   "triggers": 1,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Which of these two candidates should we hire? Here are their interview notes.",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Decide whether we should raise prices 15% for existing customers.",
+   "should_trigger": true,
+   "trigger_rate": 0.6666666666666666,
+   "triggers": 2,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Write the apology statement we'll post publicly about yesterday's outage.",
+   "should_trigger": true,
+   "trigger_rate": 0.6666666666666666,
+   "triggers": 2,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Pick a name for our new product line and register the domain.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "What's the capital of Australia?",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Convert this markdown table to CSV.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Generate a UUID.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Explain what a foreign key is in one paragraph.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Split the full_name column into first and last name in pandas.",
+   "should_trigger": false,
+   "trigger_rate": 0.3333333333333333,
+   "triggers": 1,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "이 문장을 존댓말로 바꿔줘: 내일 회의 몇 시야?",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Count the words in this paragraph.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Make this paragraph more concise without changing its meaning.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Delete the unused import statements in utils.py.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Add a unit test for parse_date that covers leap years.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Draft three subject lines for our product launch email; I'll pick one.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Bump lodash to the latest patch version and run the tests.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "What does 'force majeure' mean in a contract?",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Summarize this article about interest rates in three bullets.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Create a git branch called feature/export-csv.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "회의록 파일들을 날짜순으로 정리해줘.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  }
+ ],
+ "summary": {
+  "total": 32,
+  "passed": 25,
+  "failed": 7
+ },
+ "model": "claude-sonnet-5-5",
+ "date": "2026-10-08",
+ "description_version": "1.0.1",
+ "eval_set": "trigger_set_heldout.json",
+ "runs_per_query": 3
+}

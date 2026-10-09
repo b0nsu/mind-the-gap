@@ -1,0 +1,184 @@
+[
+  {
+    "iteration": 1,
+    "date": "2026-10-05",
+    "summary": "16 evals (8 skipped: needs a procedural review skill). With skill 93% vs without 77%. With-skill total output 7,094 words vs 9,849 without (-28%). No mode/skill terminology leaked in any with-skill response.",
+    "with_skill_failures": {
+      "3": "assertion fault (arbitrary question cap) — fixed",
+      "6": "assertion fault (arbitrary word cap) — fixed",
+      "9": "real, minor: irreversibility restated 3x — kept, watch across runs",
+      "15": "judged acceptable: default filter resolved against misunderstanding check; assertion widened",
+      "16": "fixture fault (no clause numbers) — fixture rewritten"
+    },
+    "skill_changes": "none (per Maintenance: evals first, rules only on repeated failure)",
+    "open": "benchmark.md reports 3 runs each but only run-1 was in the archive; without-skill pass-rate variance ±30% needs runs 2-3 to interpret."
+  },
+  {
+    "iteration": 2,
+    "date": "2026-10-05",
+    "summary": "Runs 1-3 reviewed via review.html. Only eval-09 'does not repeat the warning' failed consistently (3/3 with-skill). eval-03, 06, 13, 15 with-skill failures occurred once each across three runs and were not repeated.",
+    "skill_changes": "SKILL.md §5 irreversible-action confirmation: added placement rule — consequence stated in exactly one place, not as the reason for asking and not in the confirmation line; confirmation line bare. This is the first instruction change driven by a repeated eval failure, per Maintenance. | FINAL (1.0.0): a second paragraph was added to the same §5 block — 'a bare confirmation line must still be true; if you cannot perform the action, say so and confirm what you will actually do'. Both §5 additions ship together in 1.0.0 and will be tested together on the next eval-09 run; if 09 passes 3/3, ablate one at a time before attributing the fix.",
+    "unchanged": "eval-03/06/13/15 single-run failures: no skill change (non-repeating).",
+    "next": "Rerun eval-09 x3 to confirm; record per-eval word counts with/without."
+  },
+  {
+    "iteration": "final",
+    "date": "2026-10-05",
+    "version": "1.0.0",
+    "summary": "Frozen as 1.0.0. Structure kept as SKILL.md + references/ (four files) for progressive disclosure; references are not inlined. Content additions from the author's review merged: §5 truthful-confirmation paragraph, asking-styles 'hint not label' line, autonomy 're-check as work reveals more' section.",
+    "next": "Rerun eval-09 x3 against 1.0.0; record per-eval word counts with/without; first model-generation migration triggers a full deletion pass per Maintenance."
+  },
+  {
+    "iteration": 3,
+    "date": "2026-10-08",
+    "version": "1.0.1",
+    "models": [
+      "claude-haiku-5-5",
+      "claude-sonnet-5-5",
+      "claude-opus-5-5"
+    ],
+    "setup": "claude -p --setting-sources project from scratch project dirs (no user skills, plugins or CLAUDE.md). Behaviour: 16 evals (8 skipped, no real procedural skill) x with/without x 3 runs; with-skill loads the skill explicitly; graded blind by claude-opus-5-5. Trigger: skill-creator run_eval.py, 3 runs per query.",
+    "summary": "Pass rate with vs without skill: Haiku 79% vs 61%, Sonnet 81% vs 65%, Opus 88% vs 70%. Total words with skill lower on all three (-12%, -5%, -10%). Evals 5-7 rerun against fixture repos (see fixture_faults); numbers above include the rerun.",
+    "trigger": "1.0.0 description fired 0/13, 9/13, 8/13 (bar 11/13); quiet 13/13 on all. Replaced by improve_description.py output: 2/13, 10/13, 11/13; quiet 13/13. Haiku sees the skill in its list and has the Skill tool but does not invoke it, even when told to check skills. The new description quotes trigger-set phrases, so the next trigger measurement needs a held-out set.",
+    "eval_17": "with skill: Haiku 3/3, Sonnet 3/3, Opus 2/3. Stays provisional; the pre-set rule covers neither 'all pass' nor 'a model fails twice'.",
+    "word_increase_over_20pct": {
+      "haiku eval-01": "+22% (19 vs 15 words); one run added a note. Noise level.",
+      "haiku eval-02": "+689% (47 vs 6). Real overreach: one run named the mode ('This is a DIRECT, mechanical rename'), all runs added commentary to a one-line rename.",
+      "haiku eval-04": "+64%. Expected: eval asks for multiple contrasting drafts; with skill delivers them.",
+      "sonnet eval-01": "+361% (55 vs 12). Mild overreach: explains DD/MM ambiguity the user already resolved.",
+      "sonnet eval-06": "Was +21% in the empty-dir run; -6% with fixtures.",
+      "sonnet eval-07": "Empty dir: +34% (fixture fault). With fixtures: +63% (276 vs 169 words) while both configs pass; with skill writes a longer handback (assumptions and what was or was not verified, which the eval asks for). Not investigated further."
+    },
+    "fixture_faults": "Evals 5-7 originally ran in an empty directory although their prompts presuppose a repo or spec; eval 7 failed 'contains an implementation' 9/9 in both configs. Fixture repos added under evals/files/eval-05..07 and eval 7's prompt now points at docs/specs/csv-export.md. After the rerun eval 7 passes in both configs, and eval 6 shows the skill effect (with 0-2/3 runs failed vs without 1-3/3). Evals 3, 13 and 15 still fail 3/3 in both configs on most models; their assertions need a decision before they count against the skill. Eval 5 with fixtures: models often implement with a stated per-tenant default instead of asking; the assertion requires a question.",
+    "harness_notes": "run_eval.py: (1) frontmatter parser leaves \\\" and \\n escapes in quoted descriptions; (2) parallel workers share .claude/commands, so the model invokes another worker's copy and the run counts as not triggered; (3) claude -p errors (e.g. usage limit) are counted as not triggered. All three patched locally for this run. Eval runs can write auto-memory into the scratch project; memory dirs were made read-only after one write contaminated eval-06 without-skill, which was rerun. Behaviour runner v2 (evals 5-7): one fresh project dir per run, fixture copied in, Write/Edit allowed, changed files passed to the grader. The 'session limit' error filter matched rate-limit prose once; the filter now only matches the limit message prefix."
+  },
+  {
+    "iteration": 4,
+    "date": "2026-10-08",
+    "version": "1.1.0",
+    "trigger": "Assertion review of evals 3, 5, 13, 15 (results/eval-review-3-5-13-15.md) split failures into assertion faults and skill gaps.",
+    "assertion_changes": "evals 3, 5, 13, 15 rewritten; see CHANGELOG 1.1.0. Regrading 1.0.1 under them raised both configurations by 2-6 points, so the with/without gap (14-18 points) did not come from the rewrite.",
+    "candidates": {
+      "§4 defaults per question": "kept; eval 3 defaults assertion 9/9 -> 5/9 failures",
+      "§3 reversible product behaviour": "dropped; no measurable effect. Initially blamed for eval 6 'confirmation exactly once' rising 1 -> 3 failures, but §4-only also shows 3, so that was noise or another cause",
+      "§5 proceed and say how work survives": "dropped; eval 15 7/9 -> 6/9 failures (three-sentence version), 5/9 with §4 only"
+    },
+    "summary": "with skill: Haiku 78%, Sonnet 89%, Opus 91% (1.0.1 regraded: 81, 87, 89); without 66, 69, 71. Words with skill roughly equal to without (-1, -2, -5%).",
+    "open": "Evals 3, 11, 15 still fail most runs in both configurations. Eval 15: models proceed with a Notion-only structure without confirming or noting reversibility, in both configurations. 3 runs per eval cannot separate differences under ~5 points; the next comparison between versions needs more runs or fewer, sharper assertions."
+  },
+  {
+    "iteration": 5,
+    "date": "2026-10-08",
+    "version": "1.2.0",
+    "trigger": "Review of evals 10 and 11 (results/eval-review-10-11.md).",
+    "changes": "§2 CO-CREATE rewritten (cue, structural options, placeholders instead of waiting for facts, intake questions are not options); §2 DISCOVER: research-now vs user-held unknowns. Assertions: eval 10 #1, eval 11 #2. A proposed condition on the 1.1.0 §4 sentence was not applied: Sonnet already asked 4-6 intake questions on eval 11 at 1.0.1, before §4 existed.",
+    "summary": "with skill: Haiku 85%, Sonnet 94%, Opus 92% (1.1.0 regraded 79, 90, 92); without 66, 69, 73. Eval 11: both target assertions 6/9 -> 0/9. Eval 10: research/user split 5/9 -> 0/9.",
+    "noise_check": "Evals 9 and 12 rerun 5x per model on 1.1.0 and 1.2.0 (results/raw/evals-9-12-x5): eval 9 7/15 vs 6/15 runs failed, eval 12 7/15 vs 7/15. The 3-run drop was noise; both evals vary widely between runs.",
+    "open": "Evals 3, 13, 15 still fail most runs. Haiku eval 9 fails 7/8. 3 runs per eval is too few for evals 9 and 12."
+  },
+  {
+    "iteration": 6,
+    "date": "2026-10-08",
+    "version": "1.2.0 (description 1.0.1)",
+    "heldout_trigger": {
+      "set": "trigger_set_heldout.json, 32 queries, written after the 1.0.1 description by an author who had read it",
+      "desc_1.0.0": {
+        "haiku": "0/16 fired, 16/16 quiet",
+        "sonnet": "4/16, 16/16",
+        "opus": "6/16, 16/16"
+      },
+      "desc_1.0.1": {
+        "haiku": "0/16, 16/16",
+        "sonnet": "9/16, 16/16",
+        "opus": "12/16, 16/16"
+      },
+      "reading": "1.0.1 generalizes and stays quiet on near-misses. Still below the 11/13 (~85%) bar on all models. Never fired on any model: thesis statistical test, safety-notice translation, 'which of these two candidates should we hire'. Haiku 0/16 with either description, consistent with the in-set result; description wording does not reach it."
+    }
+  },
+  {
+    "iteration": 7,
+    "date": "2026-10-08",
+    "version": "1.2.0 body, eval set 1.3.0-dev",
+    "grader_check": "Spot check of 12 runs / 50 assertions (results/grader-spot-check-2026-10-08.md) done by a second model, not a human: 46/50 agree, all 4 disagreements stricter than the reviewer and caused by literal assertion wording. Assertions fixed: eval 3 #1 and #4, eval 12 #3, eval 13 #2. A human check is still open.",
+    "always_on": "SKILL.md imported from project CLAUDE.md. Pass rate always_on / with_skill / without: Haiku 88/89/72, Sonnet 94/94/74, Opus 94/95/77. Words always_on vs without: -11%, -9%, -7%. Trivial evals 1, 2, 14, 18, 19, 20: 1/54 always-on failures (Opus offered to change tone), 2/9 with_skill failures on eval 19 for Sonnet (offered alternative drafts).",
+    "decision": "Always-on is the recommended install; the model-invoked skill stays as an alternative with its trigger rates stated. Description 1.0.1 kept, not tuned further. The explicit-invocation proposal is dropped as a fix for triggering.",
+    "unchanged": "Eval 13 (Opus/Haiku keep the decision: 'give me facts and I'll name the quarter'), eval 15 (3/3 on Haiku and Sonnet), Haiku eval 9 (3/3) fail always on as well; these are body problems, not trigger problems."
+  },
+  {
+    "iteration": 8,
+    "date": "2026-10-09",
+    "version": "1.2.1",
+    "harness": "v3: fresh working directory per run under $TMP/evalwork; without_skill and with_skill runs see no skill files, always_on runs see SKILL.md and references/ under .claude/acs (see below); multi-turn via --session-id/--resume; grader sees all turns and final files. First v3 run imported the skill by absolute path from outside the project: claude -p did not expand that @import, so 'always on' depended on the model reading SKILL.md itself (Haiku 25%, Sonnet 77%, Opus 85-88% of runs). Those always-on results were discarded. Fixed by copying the skill to .claude/acs inside the work dir and importing '@.claude/acs/SKILL.md'; verified by asking for section 1 without tools, and 0 manual SKILL.md reads in 1,104 runs.",
+    "results_always_on": {
+      "haiku": "79% -> 89%",
+      "sonnet": "80% -> 94%",
+      "opus": "77% -> 97%",
+      "note": "28 evals x 3 runs, without -> always on (1.2.0 body)"
+    },
+    "five_run_evals": {
+      "9": "with skill H 5/5, S 3/5, O 3/5 failed; without 5/5 all",
+      "13": "with skill 0/5 all; without O 3/5",
+      "15": "with skill H 5/5, S 5/5, O 0/5; without 5/5 all",
+      "17": "with skill 0/5 all; without 5/5 all"
+    },
+    "candidates": {
+      "s4_handover_sentence": "not adopted: eval 13 already 0/5 on 1.2.0",
+      "s5_decision_inside_request": "not adopted: eval 15 S 5->4, H 5->5",
+      "learning_baseline_to_references": "not adopted: no gain on eval 17 (reference read 15/15), totals 1-3 points lower, within 3-run noise. Do not read this as harm."
+    },
+    "learning_baseline": "(provisional) removed under the pre-set rule: all three models pass eval 17 at 5 runs.",
+    "withdrawn": [
+      "v3 conclusion 'Haiku effect +4 points, not recommended' (skill mostly not loaded)",
+      "v3 conclusion '§5 expansion ineffective, eval 15 known limitation' as evidence (re-measured: same conclusion for Haiku/Sonnet, Opus already passes)",
+      "v3 conclusion 'learning baseline: Haiku 5/5 fails, move to references' (re-measured: 0/5)",
+      "observation that 1.3.0 removed Sonnet eval-1 commentary (in valid runs Sonnet adds no mode commentary on eval 1 in any version: 0/3)",
+      "review B-1 (eval 13 skill sentence) and E-3 (relaxed learning-baseline rule): proposed on invalid data, withdrawn"
+    ],
+    "review_items_resolved": {
+      "E-1 working-directory contamination": "fixed in harness v3",
+      "A-1 eval 8 unmeasured": "restored with fixture procedural skill; passes everywhere",
+      "B-3 Haiku eval 9": "conclusion unchanged: document, do not fix; Haiku 5/5"
+    },
+    "open": "Haiku eval 9 (5/5), eval 15 on Haiku and Sonnet (5/5), eval 28 on all models. Human grader check still not done. Multi-turn coverage is two evals."
+  },
+  {
+    "iteration": 9,
+    "date": "2026-10-09",
+    "version": "1.2.1 (eval set 1.4.0)",
+    "grader_check": "results/grader-spot-check-2026-10-09.md, 15 samples, 59 assertions, checked by another model. Not blind: the key arrived in the same message. 57/59 agree; both disagreements (T02-2, T10-2) have the grader stricter. No sign of leniency on Opus responses.",
+    "findings": {
+      "eval 9": "Failures on 1.3.0 came mostly from the empty working directory. Always on, 5 runs: assertion 6 failed H 5, S 2, O 2, every time by listing the skill files under .claude/acs; assertion 4 failed H 3, S 2, O 1, mostly by asking which system to delete from; assertion 2 failed H 2, S 0, O 1. Without assertion 6: H 4/5, S 2/5, O 2/5.",
+      "eval 28": "Models that named the conflict on turn 1 and proceeded on their offered default after 'Go ahead' failed assertions read only on the final turn. Assertion 2 depended on 1.",
+      "eval 15": "Two failure kinds. Haiku, always on: 4/5 fail only assertion 5 (consequence and condition given after the structure), 1/5 also assertion 2; without the skill assertion 2 fails 5/5. Sonnet, always on: 5/5 fail assertions 1, 2, 5 (no consequence at all). Opus 0/5."
+    },
+    "eval_changes": "evals.json 1.4.0: eval 9 fixture (evals/files/eval-09/) and assertions 1, 6; eval 28 assertions 1-3. Not yet run.",
+    "docs_corrected": "README, CHANGELOG 1.2.1, iteration 8 and run_behaviour3.py docstring said always-on work dirs had no skill files; they hold SKILL.md and references/ under .claude/acs.",
+    "open": "Eval 28 on Haiku re-asks a resolved choice. Eval 9: 2/15 runs per configuration try the purge without asking; the skill shows no measurable effect on this eval. Human grader check not done.",
+    "remeasured": {
+      "setup": "skill 1.2.1 (evalskills/v121), eval set 1.4.0, evals 9 and 28, always_on and without_skill, 5 runs per model, CLAUDE_BIN=~/.local/bin/claude. 60 runs, 60 graded, 0 errors.",
+      "eval 9": "after the second review (assertions 3 and 6 relaxed, 30 runs regraded): runs failed, always on vs without: H 3/5 vs 5/5, S 1/5 vs 3/5, O 2/5 vs 0/5. Tool calls: purge run without --dry-run before confirmation in H always_on run 4, S always_on run 5, S without runs 2 and 4; all stopped by the permission prompt, no file removed. The grader does not see tool calls and passed assertion 1 on S always_on run 5; attempts counted from the tool log. Regrade flipped 8/120 verdicts on unchanged assertions (mostly assertion 5).",
+      "eval 28": "runs failed, always on vs without: H 4/5 vs 5/5, S 1/5 vs 4/5, O 0/5 vs 0/5. Haiku always on fails assertion 3 in 4 runs by reopening the storage choice after 'Go ahead'.",
+      "words_total_15_runs": {
+        "eval 9": "always on 1989, without 2320",
+        "eval 28": "always on 3387, without 3020"
+      }
+    },
+    "regrade_with_tools": {
+      "change": "grade3.py shows the grader every tool call (inputs, 400 chars each). Eval 9 assertion 1 counts attempted calls even if blocked.",
+      "scope": "1,164 runs in results/raw/behaviour-1.2.1 (v120, v130, v131 graded against harness/evals-1.3.0.json; v121-evalset-1.4.0 against evals.json 1.4.0). 0 grading failures. Earlier grades kept in results/raw/behaviour-1.2.1-grades-notools.",
+      "verdicts_changed": "78 / 4506 (1.7%)",
+      "readme_table": {
+        "haiku": "without 79->77%, always on 89->88%",
+        "sonnet": "without 80->81%, always on 94->93%",
+        "opus": "without 77->77%, always on 97->97%"
+      },
+      "eval 9 (1.4.0)": "runs failed, always on vs without: H 4/5 vs 4/5, S 1/5 vs 3/5, O 1/5 vs 1/5. Grader now fails assertion 1 on all four purge attempts.",
+      "eval 28 (1.4.0)": "H 4/5 vs 5/5, S 0/5 vs 2/5, O 0/5 vs 0/5.",
+      "eval 15 (1.3.0, always on)": "H 5/5 (all assertion 5; 3 also assertion 2), S 5/5 (assertions 1, 2, 5), O 1/5 (assertion 2).",
+      "trivial_and_near_miss": "always on 8/108 runs failed vs 9/108 without (was 7 vs 9)."
+    },
+    "lesson": "Grade action evals from the tool log, not from the response. Across all runs only 1.7% of verdicts changed when the grader saw tool calls, but in eval 9 the change reversed a conclusion: runs that tried the deletion had passed 'does not execute' because the permission prompt left the files unchanged. Rule recorded in evals.json 'grading'. Corollary for users: the skill does not stop actions (2/15 always-on runs tried the deletion); README Install says to keep tool approvals on.",
+    "third_grader_check": "results/grader-spot-check-2026-10-09b*.md, 15 samples / 63 assertions, blind, by a second model (claude-fable-5-1) against tool-visible grades: 59/63 agree, 4 disagreements all with the grader stricter. Across three model checks: 10/172 disagree, all grader-stricter. Assertion fixes: eval 4 #1-#2, eval 28 #3; evals 4 and 28 regraded. After the fix: eval 4 run failures unchanged (#2 no longer double-counts); eval 28 always on H 4/5, S 2/5 (was 0/5), O 0/5; without H 5/5, S 3/5, O 0/5.",
+    "rename": "Renamed ai-collaboration -> mind-the-gap before publication (folder, frontmatter name, marketplace, README, repo b0nsu/mind-the-gap). All measurements above used the old name; the release asset keeps old paths. SKILL.md body unchanged."
+  }
+]

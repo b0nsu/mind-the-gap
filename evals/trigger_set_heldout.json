@@ -1,0 +1,130 @@
+[
+  {
+    "query": "We keep losing good candidates late in our hiring process and I don't know why. What should we change?",
+    "should_trigger": true
+  },
+  {
+    "query": "I inherited my dad's small rental property and have no idea what I'm supposed to be doing as a landlord.",
+    "should_trigger": true
+  },
+  {
+    "query": "Make our pricing page better.",
+    "should_trigger": true
+  },
+  {
+    "query": "우리 팀 회의가 너무 비효율적인데 뭘 바꿔야 할지 모르겠어요.",
+    "should_trigger": true
+  },
+  {
+    "query": "Email all 2,000 newsletter subscribers the announcement draft in this doc.",
+    "should_trigger": true
+  },
+  {
+    "query": "Force-push my local branch over main; the remote history is messed up.",
+    "should_trigger": true
+  },
+  {
+    "query": "Wire the deposit to the contractor using the bank details in their last email.",
+    "should_trigger": true
+  },
+  {
+    "query": "Revoke the API keys for every integration we haven't used in 90 days.",
+    "should_trigger": true
+  },
+  {
+    "query": "Check whether the load calculations in this deck plan are safe for a hot tub.",
+    "should_trigger": true
+  },
+  {
+    "query": "Is the statistical test in my thesis chapter the right one? Here's the methods section.",
+    "should_trigger": true
+  },
+  {
+    "query": "Translate this safety notice for our factory workers into Vietnamese; it goes on the machines tomorrow.",
+    "should_trigger": true
+  },
+  {
+    "query": "이 종합소득세 신고서 계산이 맞는지 봐줘.",
+    "should_trigger": true
+  },
+  {
+    "query": "Which of these two candidates should we hire? Here are their interview notes.",
+    "should_trigger": true
+  },
+  {
+    "query": "Decide whether we should raise prices 15% for existing customers.",
+    "should_trigger": true
+  },
+  {
+    "query": "Write the apology statement we'll post publicly about yesterday's outage.",
+    "should_trigger": true
+  },
+  {
+    "query": "Pick a name for our new product line and register the domain.",
+    "should_trigger": true
+  },
+  {
+    "query": "What's the capital of Australia?",
+    "should_trigger": false
+  },
+  {
+    "query": "Convert this markdown table to CSV.",
+    "should_trigger": false
+  },
+  {
+    "query": "Generate a UUID.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain what a foreign key is in one paragraph.",
+    "should_trigger": false
+  },
+  {
+    "query": "Split the full_name column into first and last name in pandas.",
+    "should_trigger": false
+  },
+  {
+    "query": "이 문장을 존댓말로 바꿔줘: 내일 회의 몇 시야?",
+    "should_trigger": false
+  },
+  {
+    "query": "Count the words in this paragraph.",
+    "should_trigger": false
+  },
+  {
+    "query": "Make this paragraph more concise without changing its meaning.",
+    "should_trigger": false
+  },
+  {
+    "query": "Delete the unused import statements in utils.py.",
+    "should_trigger": false
+  },
+  {
+    "query": "Add a unit test for parse_date that covers leap years.",
+    "should_trigger": false
+  },
+  {
+    "query": "Draft three subject lines for our product launch email; I'll pick one.",
+    "should_trigger": false
+  },
+  {
+    "query": "Bump lodash to the latest patch version and run the tests.",
+    "should_trigger": false
+  },
+  {
+    "query": "What does 'force majeure' mean in a contract?",
+    "should_trigger": false
+  },
+  {
+    "query": "Summarize this article about interest rates in three bullets.",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a git branch called feature/export-csv.",
+    "should_trigger": false
+  },
+  {
+    "query": "회의록 파일들을 날짜순으로 정리해줘.",
+    "should_trigger": false
+  }
+]

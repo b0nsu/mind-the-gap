@@ -1,0 +1,222 @@
+{
+ "skill_name": "ai-collaboration",
+ "description": "Use this skill whenever getting the task wrong would cost the user something they might not notice in time — not just for coding. It covers vague asks (\"fix our onboarding\"), unfamiliar territory for the user (first-time managing, a new domain), actions that leave the system or cannot be undone (sending messages, cancelling or deleting, payments, commitments to third parties), and outputs the user will rely on but cannot easily check (contract obligations feeding a decision, medical, legal, or financial accuracy reviews). It decides what to investigate, what to just do, and which decisions or confirmations belong to the user. A clear instruction is not a safe one: \"send this letter\" or \"delete old records\" still qualifies. Skip it only when the request is clear, low-stakes, reversible, and checkable at a glance, such as factual lookups, mechanical transformations, or small edits. If a procedural skill fixes how to ask or review, follow that skill's procedure first.",
+ "results": [
+  {
+   "query": "I want to set up some kind of monitoring for our app but I'm not sure what we actually need.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Help me figure out how to structure the data for a side project that tracks my reading habits.",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Our onboarding feels off. Can you fix it?",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "I've never written a grant application before. We need to submit one for a community garden by next month.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "First time managing a team. My report missed a deadline and I need to talk to them tomorrow.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Drop the staging database and recreate it from the production snapshot.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Send the attached termination letter to the three vendors listed in the spreadsheet.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Cancel our annual SaaS subscription before the renewal date; the account details are in the file.",
+   "should_trigger": true,
+   "trigger_rate": 0.6666666666666666,
+   "triggers": 2,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Run the migration that merges duplicate customer records into one.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Summarize the legal obligations in these two contracts so I can decide which to sign.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Tell me whether this medication dosage table is correct.",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Write our hiring policy for remote contractors. I don't have strong views, just make it good.",
+   "should_trigger": true,
+   "trigger_rate": 1.0,
+   "triggers": 3,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "You pick: should we sunset the free plan or keep it another year?",
+   "should_trigger": true,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": false
+  },
+  {
+   "query": "Convert 72°F to Celsius.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Sort these names alphabetically: Lee, Park, Kim, Choi.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Fix the typo in this sentence: 'Teh meeting is at 3pm.'",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Add a docstring to this function explaining its parameters.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Reformat this JSON so it's indented with two spaces.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "What's the difference between a list and a tuple in Python?",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Translate 'thank you for your patience' into Japanese.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Write a regex that matches a US zip code.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Rename the column 'usr_nm' to 'user_name' in this SQL query.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Give me three synonyms for 'robust'.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Change the button color in this CSS from blue to green.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Compute the average of 14, 22, 9, and 31.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  },
+  {
+   "query": "Plan a 3-day trip to Lisbon for me, mid-October, I like food and walking, moderate budget. Just plan the whole thing.",
+   "should_trigger": false,
+   "trigger_rate": 0.0,
+   "triggers": 0,
+   "runs": 3,
+   "pass": true
+  }
+ ],
+ "summary": {
+  "total": 26,
+  "passed": 23,
+  "failed": 3
+ },
+ "model": "claude-sonnet-5-5",
+ "date": "2026-10-08",
+ "runs_per_query": 3
+}

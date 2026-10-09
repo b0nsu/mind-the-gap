@@ -3,14 +3,14 @@
 ## 1.2.1 (2026-10-09) — no behaviour change
 - §2: the "(provisional)" label on the learning baseline removed under the pre-set rule (all three models pass eval 17). Eval 17, always on, 5 runs per model: 0/5 failures on Haiku, Sonnet and Opus; without the skill 5/5 on all three.
 - Recommended install changed to always on: the skill folder under the project's `.claude/` and a relative `@` import in the project CLAUDE.md. README documents that imports pointing outside the project may not expand in non-interactive runs and how to check that the import is active.
-- Measured always on (28 evals x 3 runs, graded blind): Haiku 79% -> 89%, Sonnet 80% -> 94%, Opus 77% -> 97% with the first, text-only grades; 77% -> 88%, 81% -> 93%, 77% -> 97% after the regrade with tool calls visible (below). Words with the skill 2-10% below without, mostly from eval 17 (see the sensitivity entry below). Trivial and near-miss requests: 7 failures in 108 runs with the skill vs 9 without.
+- Measured always on (28 evals x 3 runs, graded blind): Haiku 79% -> 89%, Sonnet 80% -> 94%, Opus 77% -> 97% with the first, text-only grades; 77% -> 88%, 81% -> 93%, 77% -> 97% after the regrade with tool calls visible (below). Words with the skill 2-10% below without, mostly from eval 17 (see the sensitivity entry below). Trivial and near-miss requests: 7 failures in 108 runs with the skill vs 9 without (text-only grades).
 - Two 1.3.0 candidates measured and not adopted, because neither moved its target eval:
   - §4 "when the user hands you a decision, recommend now with the flip conditions" for eval 13. Eval 13 already passes on 1.2.0 always on (0/5 failures on all three models); the earlier Sonnet failures came from the measurement environment.
   - §5 "Resolved but uninformed also covers decisions made inside the request" for eval 15. Sonnet 5/5 -> 4/5 failures, Haiku 5/5 -> 5/5. Totals with both candidates were 1-2 points higher than 1.2.0, within 3-run noise.
   - Moving the learning baseline to `references/` was also measured: eval 17 unchanged (the reference was read in 15/15 runs), totals 1-3 points lower, within noise. No gain, so it stays in §2.
 - evals.json 1.3.0 (28 evals):
   - eval 8 restored with a fixture procedural skill (`evals/files/plugins/review-walkthrough`) and six nodes; passes on all models in every configuration.
-  - Overreach evals 18-26 (arithmetic, a birthday message, a list, a dosage unit, "delete the unused imports", "don't ask, just do it", a one-word follow-up turn, "one title", a factual question).
+  - Overreach evals 18-26 (arithmetic, a birthday message, a list, a dosage unit, "delete the unused imports", "don't ask, just do it", a three-word follow-up turn, "one title", a factual question).
   - Multi-turn evals 27 (an irreversible request on the third turn) and 28 (a user decision contradicted by the repository).
   - Assertions rewritten after review where they forced a form instead of a behaviour: eval 3 #1, #4, #5; eval 12 #3; eval 13 #2, #3; eval 15 #2.
 - evals/trigger_set_heldout.json: 32 new trigger queries (16/16, 4 in Korean, 8 near-miss negatives). With the 1.0.1 description: Haiku 0/16, Sonnet 9/16, Opus 12/16 fired; 16/16 quiet on all. The 1.0.0 description fired 0/16, 4/16, 6/16 on the same set.

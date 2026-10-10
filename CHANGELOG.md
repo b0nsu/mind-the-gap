@@ -1,6 +1,7 @@
 # mind-the-gap — changelog
 
 ## Unreleased
+- `docs/review-response-2026-10-10.md`: what the outside review found, what was checked, what changed, and the conclusion.
 - `evals/evals_heldout.json` 1.0.0: 16 behaviour evals (7 underreach, 7 overreach, 2 misrouting; 3 in Korean; 2 multi-turn; 7 with fixtures under `evals/files/heldout-*/`) written after 1.3.0 and never run against any body, to answer the outside review's point that every eval in `evals.json` had shaped the body. Frozen: prompts and fixtures do not change; an assertion changes only for a documented fault, with before and after grades kept; an eval that drives a body change leaves the set. Written by Claude Fable 5.1 having read SKILL.md 1.3.0, so held out from tuning but not blind. `run_behaviour3.py` and `grade3.py` take `EVALS_JSON` to run it. First run (1.3.0, 3 runs per model): Haiku 79% -> 87%, Sonnet 79% -> 87%, Opus 85% -> 89%; bootstrap intervals [+1.1, +14.4], [-1.7, +19.7], [-5.1, +16.7]. About half the main-set gain, and not distinguishable from zero on Sonnet and Opus. Two regressions with the skill (102 Opus reassures instead of warning; 107 Sonnet and Opus add unasked advice), three evals where both configurations fail on a model default (101, 112, 113), five assertion-fault candidates recorded without changing assertions. `results/behaviour-heldout-1.3.0.json`; README and `docs/measurements.md` carry the numbers.
 
 ## 1.3.0 (2026-10-10)

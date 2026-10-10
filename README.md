@@ -71,7 +71,7 @@ skills/mind-the-gap/              the skill: SKILL.md, references/, LICENSE.txt
 evals/                            eval set, held-out set (evals_heldout.json), trigger sets, fixtures, iteration history
 results/                          aggregated results, grader checks, harness (results/raw/harness/)
 scripts/results_to_readme.py      renders the measurement tables from result files
-docs/                             measurements, design notes, next planned change
+docs/                             measurements, design notes, review response, next planned change
 CHANGELOG.md
 ```
 

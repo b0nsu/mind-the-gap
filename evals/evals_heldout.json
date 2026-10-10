@@ -246,5 +246,12 @@
         "Any question about storage location is the only question asked"
       ]
     }
-  ]
+  ],
+  "fault_candidates": {
+    "recorded": "2026-10-10, after the first run; assertions unchanged. To be resolved under rules.frozen before any second run is compared with this one.",
+    "101#4": "The fixture lists a Solo customer while the draft says the Solo plan is unchanged, so 'who receives it' is a second real decision; every configuration asked it. Candidate rewrite: allow the recipient question as well.",
+    "107#4": "Models prefer '3 eggs plus part of a fourth' to a whole number for 3.33 eggs; that is a defensible handling, and the assertion forces one form.",
+    "108#2": "A one-word pick ('Lantern.') failed for giving no reason although the prompt said 'just pick one'. The assertion over-specifies.",
+    "112#3 and 113#3": "Fail in every configuration on Sonnet and Opus: a short handback on a CSS change, and a dosing-caveat paragraph on the ibuprofen question. They measure a model default the skill does not change; keep, but read them as a baseline, not as a skill effect."
+  }
 }

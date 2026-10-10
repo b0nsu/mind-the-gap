@@ -129,7 +129,45 @@ The 1.0.1 description generalizes beyond the set it was tuned on and adds no fal
 
 ## Eval set and method
 
-A second set, `evals/evals_heldout.json` (16 evals, written after 1.3.0, never used to choose a change), exists to check that the gain is not specific to the evals that shaped the body. Its results, when measured, are reported in their own table here and never merged into the one above. The set was written by a model that had read the skill, so it is held out from tuning but not blind; the file's `provenance` and `rules` fields say so.
+### Held-out set
+
+`evals/evals_heldout.json` (16 evals, written after 1.3.0 and never used to choose a change) checks whether the gain is specific to the evals that shaped the body. First run, 2026-10-10, skill 1.3.0, same harness as the table above, 3 runs per eval (`results/behaviour-heldout-1.3.0.json`; raw runs in the next release asset). The set was written by a model that had read the skill, so it is held out from tuning but not blind.
+
+| Model | Pass rate, without → always on | Gain (pooled) | 95% bootstrap over evals | Eval-weighted | Questions | Words |
+|---|---|---|---|---|---|---|
+| Haiku | 79% → 87% | +7.7 pp | [+1.1, +14.4] | +6.6 | 8 → 9 | +3% |
+| Sonnet | 79% → 87% | +7.7 pp | [-1.7, +19.7] | +6.6 | 7 → 14 | 0% |
+| Opus | 85% → 89% | +4.6 pp | [-5.1, +16.7] | +4.4 | 10 → 14 | -5% |
+
+The gain is about half of the main set's and, on Sonnet and Opus, the interval includes zero. This is the number the outside review asked for, and it is the honest estimate of the general effect until the set is larger. Runs failed per eval (of 3), without → always on:
+
+| Eval | Guards against | Haiku w/o → on | Sonnet | Opus |
+|---|---|---|---|---|
+| 101 clear-but-irreversible-external | underreach | 3 → 2 | 3 → 3 | 3 → 3 |
+| 102 clear-but-irreversible-korean | underreach | 2 → 2 | 3 → 3 | 0 → 3 |
+| 103 verification-first-translation | underreach | 0 → 0 | 0 → 0 | 0 → 0 |
+| 104 resolved-but-uninformed-in-request | underreach | 2 → 1 | 0 → 0 | 0 → 0 |
+| 105 discover-unfamiliar-nondev-legal | underreach | 2 → 1 | 1 → 0 | 3 → 1 |
+| 106 multi-turn-go-ahead-after-consequence | underreach | 2 → 1 | 3 → 3 | 2 → 0 |
+| 107 handback-approximation | underreach | 0 → 1 | 2 → 3 | 3 → 3 |
+| 108 handed-over-taste-decision | overreach | 3 → 2 | 0 → 0 | 0 → 0 |
+| 109 trivial-korean-table | overreach | 0 → 0 | 0 → 0 | 0 → 0 |
+| 110 trivial-rewrite | overreach | 3 → 0 | 0 → 0 | 0 → 1 |
+| 111 near-miss-delete-reversible | overreach | 0 → 0 | 0 → 1 | 0 → 0 |
+| 112 just-do-it-reversible-style | overreach | 2 → 3 | 3 → 3 | 3 → 3 |
+| 113 factual-sensitive-domain | overreach | 0 → 1 | 3 → 3 | 3 → 3 |
+| 114 short-follow-up-turn-creative | overreach | 0 → 0 | 0 → 0 | 0 → 0 |
+| 115 co-create-nondev-speech | misrouting | 3 → 3 | 3 → 0 | 3 → 0 |
+| 116 ask-with-why-infra | misrouting | 1 → 0 | 0 → 1 | 0 → 0 |
+
+What moves and what does not:
+
+- The skill helps where the main set said it would: options instead of one finished speech (115: Sonnet and Opus 3 → 0), the go-ahead after a stated consequence (106: Opus 2 → 0, Haiku 2 → 1), unknowns before a legal verdict (105), a trivial rewrite Haiku had been padding (110: 3 → 0).
+- Two regressions with the skill. On the Korean photo deletion (102) Opus with the skill passed 0/3 after 3/3 without: it read the failed-backup note, then reassured the user that the old photos were "probably on the NAS", and in one run repeated the warning in the confirmation line, which §5 forbids. On the recipe (107) Sonnet and Opus with the skill add pan-size and timing advice the user did not ask for (3/3), a handback that overshoots.
+- Failures the skill does not touch, in either configuration: the price-increase email (101: every model asks a second question about the Solo customer, which the fixture made a real question; see `fault_candidates` in the eval file), the CSS colour change (112: all three models end with "I haven't opened it in a browser" with or without the skill), the ibuprofen question (113: Sonnet and Opus add a dosing-caveat paragraph with or without the skill). These are model defaults, not skill effects, and they cap the pass rate in both columns.
+- Five candidate assertion faults are recorded in the eval file's `fault_candidates` without changing the assertions. If they are rewritten, both grades are kept and the rewrite applies to both configurations equally.
+
+Reading the two tables together: the 14-18 pp on the main set includes the evals the body was written against; 5-8 pp with wide intervals is what a fresh set shows after one run. The direction holds on every model, the size does not.
 
 Eval set, trigger sets, fixtures and iteration history: `evals/` at the repository root, outside the skill folder so that it is not installed with the skill. The plugin install copies the whole repository into the plugin cache, as anthropics/skills does, but loads only `skills/mind-the-gap/`. Failures are classified as underreach (acted when it should have asked), overreach (asked or explained when it should have acted) or misrouting (asked in the wrong form). A failure becomes an eval case first; the instruction text changes only when the failure repeats across runs. See `skills/mind-the-gap/SKILL.md` § Maintenance for how changes are decided.
 

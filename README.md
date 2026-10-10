@@ -2,7 +2,7 @@
 
 A skill that reads a request, finds where it needs the person's judgment, and puts its questions there. Everything else it does itself.
 
-Measured against the same model without it, it asks more questions on the tuning set (46-47% more, excluding the eval that tests its own learning-baseline instruction) and on the first held-out set (Haiku 8 → 8, Sonnet 7 → 14, Opus 10 → 14), and fewer on the second held-out set on every model, though that set's overreach evals almost never fail in either condition, so it does not measure unneeded questions (see [docs/measurements.md](docs/measurements.md)). What changes is where the questions go. It investigates before asking, takes cheap reversible defaults without permission, and keeps the person's attention for decisions that are irreversible, unverifiable, or a matter of taste or business meaning. When it asks, it says what it already established and what changes with the answer.
+Measured against the same model without it, it asks more questions on the tuning set (46-47% more, excluding the eval that tests its own learning-baseline instruction) and for Sonnet and Opus on the first held-out set (7 → 14 and 10 → 14; Haiku unchanged at 8 → 8), and fewer on the second held-out set on every model, though that set's overreach evals almost never fail in either condition, so it does not measure unneeded questions (see [docs/measurements.md](docs/measurements.md)). What changes is where the questions go. It investigates before asking, takes cheap reversible defaults without permission, and keeps the person's attention for decisions that are irreversible, unverifiable, or a matter of taste or business meaning. When it asks, it says what it already established and what changes with the answer.
 
 ## What it looks like
 

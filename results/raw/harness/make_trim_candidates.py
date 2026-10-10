@@ -16,7 +16,7 @@ REPO = Path(__file__).resolve().parents[3]
 SRC = REPO / "skills/mind-the-gap"
 OUT = Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval")) / "evalskills"
 BODY = subprocess.run(["git", "-C", str(REPO), "show", "v1.2.1:skills/mind-the-gap/SKILL.md"],
-                      check=True, capture_output=True, text=True).stdout
+                      check=True, stdout=subprocess.PIPE, text=True).stdout  # stderr passes through, so a missing tag is visible
 
 
 def cut_from(text, marker):

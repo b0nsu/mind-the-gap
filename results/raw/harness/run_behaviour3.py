@@ -41,7 +41,7 @@ TAG = sys.argv[5] if len(sys.argv) > 5 else "current"
 SKILLDIR = SKILLS / TAG / "skill"          # .../skill/SKILL.md, references/
 PLUGDIR = SKILLS / TAG / "plugin"          # plugin wrapper around the same files
 TOOLS = os.environ.get("TOOLS", "Skill,Read,Glob,Grep,Write,Edit,Bash")
-if "Bash" in TOOLS.split(","):
+if "Bash" in [t.strip() for t in TOOLS.split(",")]:
     print("run_behaviour3: Bash is auto-approved for the model under test; run in a container or throwaway VM.", file=sys.stderr)
 FORCE = ("The {name} skill is installed for this session. Before you respond, "
          "invoke it with the Skill tool and follow its instructions for this request.")

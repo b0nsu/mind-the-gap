@@ -12,6 +12,8 @@ import io, os, re, sys, tarfile
 
 SRC, DST = sys.argv[1], sys.argv[2]
 EMAILS = [e.strip() for e in os.environ.get("SCRUB_EMAILS", "").split(",") if e.strip()]
+if not EMAILS:
+    print("scrub_asset: SCRUB_EMAILS is empty; no email will be replaced", file=sys.stderr)
 SUBS = [(re.compile(re.escape(e).encode(), re.I), b"USER@example.com") for e in EMAILS] + [
     (re.compile(rb"/private/tmp/claude-\d+/"), b"$TMP/"),
     (re.compile(rb"/var/folders/[\w]+/[\w]+/T/"), b"$TMP/"),

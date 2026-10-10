@@ -31,11 +31,11 @@ where you wanted it to continue. Both pieces hand the reader a question
 rather than a rule: is this actually a decision you need to make? That
 question, asked of the developer, is the ownership filter in §3, asked of
 every turn. It also means a skill about collaboration cannot be a procedure.
-What is here is a small set of criteria (four filters, two confirmation
-mechanisms, three failure classes) and an explicit obligation to shrink: the
+What is here is a small set of criteria (four filters, a misunderstanding check
+and an irreversible-action confirmation, three failure classes) and an explicit obligation to shrink: the
 Maintenance section expects sections to be removed as models absorb them. The
-CHANGELOG records which candidate sentences were tried and rejected; a
-first three single-section ablations were measured on 2026-10-10 and none was adopted (`docs/proposed-trim-ablations.md`); a full per-section pass is planned for the next model generation.
+CHANGELOG records which candidate sentences were tried and rejected; three
+single-section ablations were measured on 2026-10-10 and none was adopted (`docs/proposed-trim-ablations.md`); a full per-section pass is planned for the next model generation.
 
 **Capability is not permission.** The Astra guidance argues the model has
 better judgment about what is safe; the Fable guide says you still fail in

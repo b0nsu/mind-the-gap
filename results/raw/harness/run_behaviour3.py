@@ -3,7 +3,7 @@
 
 - Work dirs live under $EVAL_SCRATCH/evalwork/<random>; the path carries no skill or repo name.
 - The skill under test lives outside the work dir. always_on copies SKILL.md and references/ into
-  .claude/acs and imports them from CLAUDE.md with '@.claude/acs/SKILL.md' (claude -p does not expand
+  .claude/acs and imports them from CLAUDE.md with '@.claude/acs/SKILL.md' (in these runs claude -p did not expand
   imports that point outside the project), so always_on runs can see those files.
   with_skill loads it as a plugin via --plugin-dir. without_skill and with_skill work dirs hold no skill files.
 - Fixtures (eval "files") are copied in; eval "plugins" are passed with --plugin-dir; eval "force_skill"
@@ -83,7 +83,7 @@ def one(job):
         shutil.copytree(REPO / src, wd, dirs_exist_ok=True)
     (wd / ".claude").mkdir(exist_ok=True)  # created before always_on copy
     if cfg == "always_on":
-        # In-project import: -p does not expand @imports that point outside the project.
+        # In-project import: in these runs -p did not expand @imports that point outside the project.
         shutil.copytree(SKILLDIR, wd / ".claude/acs")
         (wd / "CLAUDE.md").write_text("@.claude/acs/SKILL.md\n")
     before = snapshot(wd)

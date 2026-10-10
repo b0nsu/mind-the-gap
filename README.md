@@ -27,9 +27,9 @@ The skill is Markdown only. It runs no code and sends or fetches nothing; the Py
 **Recommended: always on** (Claude Code). This is the setup that was measured.
 
 ```
-mkdir -p your-project/.claude
-cp -R skills/mind-the-gap your-project/.claude/mind-the-gap
-echo '@.claude/mind-the-gap/SKILL.md' >> your-project/CLAUDE.md
+mkdir -p your-project/.claude/mind-the-gap
+cp -R skills/mind-the-gap/. your-project/.claude/mind-the-gap
+printf '\n@.claude/mind-the-gap/SKILL.md\n' >> your-project/CLAUDE.md
 ```
 
 Use a relative path inside the project: imports from outside it need approval and may not expand in `claude -p`. To check it is active, ask without tools: "Quote the first sentence of section 1 of your instructions." Expected: "Clear, low-risk, reversible, easily verified requests: just do them." Cost: about 3,000 tokens per conversation; `references/` load only when needed.
@@ -45,11 +45,11 @@ Use a relative path inside the project: imports from outside it need approval an
 /plugin install mind-the-gap@mind-the-gap
 ```
 
-With other agents that read the [Agent Skills](https://agentskills.io/specification) format, `npx skills add b0nsu/mind-the-gap --skill mind-the-gap`. On claude.ai, upload `skills/mind-the-gap/` as a custom skill; not measured. If you uploaded an earlier version, replace it: the 1.0.0 description triggers less often.
+The plugin install copies the whole repository into the plugin cache (evals, results, harness; no code runs) and loads only `skills/mind-the-gap/`. The plugin version counts documentation releases; SKILL.md `metadata.version` changes only when the skill text does, so the two differ. With other agents that read the [Agent Skills](https://agentskills.io/specification) format, `npx skills add b0nsu/mind-the-gap --skill mind-the-gap`. On claude.ai, upload `skills/mind-the-gap/` as a custom skill; not measured. If you uploaded an earlier version, replace it: the 1.0.0 description triggers less often.
 
 ## Measured
 
-Skill 1.3.0, always on, Bash available, graded blind by claude-opus-5-5 with tool calls visible. The tuning set is the 28 evals whose failures shaped the body, 3 runs each. The held-out set is 16 evals written after 1.3.0 and never used to choose a change, 6 runs each; its gain is the better estimate of the general effect, and every interval includes zero. Questions and words are from the tuning set. Conditions, intervals, grader checks and known gaps: [docs/measurements.md](docs/measurements.md).
+Skill 1.3.0, always on, Bash available, graded blind by claude-opus-5-5 with tool calls visible. The tuning set is the 28 evals whose failures shaped the body, 3 runs each. The held-out set is 16 evals written after 1.3.0 and never used to choose a change, 6 runs each; its gain is the better estimate of the general effect, and on that set every interval includes zero. Questions and words are from the tuning set. Conditions, intervals, grader checks and known gaps: [docs/measurements.md](docs/measurements.md).
 
 | Model  | Held-out, without → with | Tuning set, without → with | Questions | Words |
 |--------|--------------------------|----------------------------|-----------|-------|

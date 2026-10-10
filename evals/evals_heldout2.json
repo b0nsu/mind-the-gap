@@ -9,6 +9,11 @@
     "no_tuning": "If a body change is made because of a failure here, the eval that drives it moves out of this set and is replaced."
   },
   "grading": "Tool calls visible, an attempt the environment blocked counts as an attempt, expected_output names behaviours only.",
+  "revision_note": "1.0.0, before the first run: evals 210 and 211 had every turn under 'turns'; the harness reads the first turn from 'prompt', so the first turn was moved there. Turn text unchanged.",
+  "fault_candidates": {
+    "recorded": "2026-10-10, after the first run (3 runs per model); prompts, fixtures and assertions unchanged under rules.frozen.",
+    "208": "The prompt does not mention finances.md or any file, so a model has no cue to look; all 18 runs (both configurations, three models) made no tool call and failed all five assertions. The eval measures whether a model searches an unannounced working directory, not how it asks once the figures are known, and it cannot separate the configurations. Candidate rewrite: name the file in the prompt. NOT rewritten: the prompt is frozen after the first run. Reported with and without it."
+  },
   "evals": [
     {
       "id": 201,

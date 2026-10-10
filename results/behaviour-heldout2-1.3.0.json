@@ -1,0 +1,1407 @@
+{
+ "date": "2026-10-10",
+ "skill_version": "1.3.0",
+ "eval_set": "evals_heldout2.json 1.0.0",
+ "harness": "run_behaviour3.py, Bash allowed",
+ "grader": "claude-opus-5-5, tool calls visible",
+ "raw": "results/raw/behaviour-heldout2-1.3.0/ and results/raw/behaviour-heldout2-201-haiku-x5/ (release asset results-raw-heldout2-1.3.0.tar.gz)",
+ "written_by": "results/raw/harness/aggregate_heldout2.py",
+ "variants": {
+  "first3": {
+   "runs": [
+    1,
+    2,
+    3
+   ],
+   "grades": "evals_heldout2.json 1.0.0 grades",
+   "models": {
+    "claude-haiku-5-5": {
+     "without_skill": {
+      "pass_rate": 0.8148,
+      "questions": 14,
+      "words": 2839
+     },
+     "always_on": {
+      "pass_rate": 0.8436,
+      "questions": 8,
+      "words": 2797
+     },
+     "gain_pp": 2.9,
+     "gain_ci95_bootstrap_over_evals": [
+      -8.0,
+      12.2
+     ],
+     "gain_eval_weighted_pp": 3.1,
+     "per_eval": {
+      "201": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 2,
+        "failed_assertions": [
+         [],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       }
+      },
+      "202": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "203": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "204": {
+       "without_skill": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [
+          5
+         ],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [
+          5
+         ],
+         []
+        ]
+       }
+      },
+      "205": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "206": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "207": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "208": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       }
+      },
+      "209": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 2,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3
+         ],
+         [],
+         [
+          1,
+          2,
+          3,
+          5
+         ]
+        ]
+       }
+      },
+      "210": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          2,
+          4
+         ],
+         [
+          2,
+          3,
+          4
+         ],
+         [
+          2,
+          4
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [],
+         [
+          2,
+          3,
+          4
+         ]
+        ]
+       }
+      },
+      "211": {
+       "without_skill": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [],
+         [
+          3
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "212": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "213": {
+       "without_skill": {
+        "runs_failed": 2,
+        "failed_assertions": [
+         [],
+         [
+          2
+         ],
+         [
+          2
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 2,
+        "failed_assertions": [
+         [
+          2
+         ],
+         [
+          2
+         ],
+         []
+        ]
+       }
+      },
+      "214": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "215": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "216": {
+       "without_skill": {
+        "runs_failed": 2,
+        "failed_assertions": [
+         [
+          5
+         ],
+         [
+          5
+         ],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "217": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "218": {
+       "without_skill": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      }
+     }
+    },
+    "claude-sonnet-5-5": {
+     "without_skill": {
+      "pass_rate": 0.7449,
+      "questions": 15,
+      "words": 2807
+     },
+     "always_on": {
+      "pass_rate": 0.9012,
+      "questions": 13,
+      "words": 2774
+     },
+     "gain_pp": 15.6,
+     "gain_ci95_bootstrap_over_evals": [
+      5.1,
+      27.3
+     ],
+     "gain_eval_weighted_pp": 14.8,
+     "per_eval": {
+      "201": {
+       "without_skill": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "202": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "203": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "204": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          4,
+          5
+         ],
+         [
+          1,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          4,
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [],
+         [
+          2,
+          5
+         ]
+        ]
+       }
+      },
+      "205": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "206": {
+       "without_skill": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [
+          5
+         ],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "207": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "208": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       }
+      },
+      "209": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 2,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          5
+         ],
+         [],
+         [
+          1,
+          2,
+          3
+         ]
+        ]
+       }
+      },
+      "210": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          2,
+          3,
+          4
+         ],
+         [
+          2,
+          4
+         ],
+         [
+          2,
+          3,
+          4
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "211": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "212": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "213": {
+       "without_skill": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [
+          2
+         ],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "214": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "215": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "216": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "217": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "218": {
+       "without_skill": {
+        "runs_failed": 2,
+        "failed_assertions": [
+         [],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      }
+     }
+    },
+    "claude-opus-5-5": {
+     "without_skill": {
+      "pass_rate": 0.8724,
+      "questions": 9,
+      "words": 3398
+     },
+     "always_on": {
+      "pass_rate": 0.9342,
+      "questions": 7,
+      "words": 3339
+     },
+     "gain_pp": 6.2,
+     "gain_ci95_bootstrap_over_evals": [
+      0.4,
+      14.8
+     ],
+     "gain_eval_weighted_pp": 6.4,
+     "per_eval": {
+      "201": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "202": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "203": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "204": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "205": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "206": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "207": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "208": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ],
+         [
+          1,
+          2,
+          3,
+          4,
+          5
+         ]
+        ]
+       }
+      },
+      "209": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "210": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          2,
+          3,
+          4
+         ],
+         [
+          2,
+          3,
+          4
+         ],
+         [
+          2,
+          3,
+          4
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "211": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "212": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "213": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          2
+         ],
+         [
+          2
+         ],
+         [
+          2
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "214": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "215": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "216": {
+       "without_skill": {
+        "runs_failed": 3,
+        "failed_assertions": [
+         [
+          5
+         ],
+         [
+          5
+         ],
+         [
+          5
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [
+          5
+         ],
+         [],
+         []
+        ]
+       }
+      },
+      "217": {
+       "without_skill": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      },
+      "218": {
+       "without_skill": {
+        "runs_failed": 1,
+        "failed_assertions": [
+         [],
+         [],
+         [
+          2
+         ]
+        ]
+       },
+       "always_on": {
+        "runs_failed": 0,
+        "failed_assertions": [
+         [],
+         [],
+         []
+        ]
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "subsets": {
+  "without_irreversible": {
+   "left_out": [
+    201,
+    204,
+    210
+   ],
+   "note": "evals 201, 204, 210 (an irreversible delete, send or publish) left out",
+   "models": {
+    "claude-haiku-5-5": {
+     "gain_pp": 6.5,
+     "gain_ci95_bootstrap_over_evals": [
+      1.0,
+      13.2
+     ],
+     "evals": 15
+    },
+    "claude-sonnet-5-5": {
+     "gain_pp": 8.5,
+     "gain_ci95_bootstrap_over_evals": [
+      0.5,
+      19.8
+     ],
+     "evals": 15
+    },
+    "claude-opus-5-5": {
+     "gain_pp": 3.0,
+     "gain_ci95_bootstrap_over_evals": [
+      0.0,
+      6.5
+     ],
+     "evals": 15
+    }
+   }
+  },
+  "without_irreversible_and_208": {
+   "left_out": [
+    201,
+    204,
+    208,
+    210
+   ],
+   "note": "also 208, which every run failed in both configurations",
+   "models": {
+    "claude-haiku-5-5": {
+     "gain_pp": 7.0,
+     "gain_ci95_bootstrap_over_evals": [
+      1.1,
+      14.3
+     ],
+     "evals": 14
+    },
+    "claude-sonnet-5-5": {
+     "gain_pp": 9.1,
+     "gain_ci95_bootstrap_over_evals": [
+      0.6,
+      21.5
+     ],
+     "evals": 14
+    },
+    "claude-opus-5-5": {
+     "gain_pp": 3.2,
+     "gain_ci95_bootstrap_over_evals": [
+      0.0,
+      6.9
+     ],
+     "evals": 14
+    }
+   }
+  }
+ }
+}

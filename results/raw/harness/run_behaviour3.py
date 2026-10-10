@@ -10,7 +10,8 @@
   appends a system prompt telling the model to load that skill (used by eval 8).
 - Multi-turn evals ("turns") reuse one session via --session-id / --resume.
 - Records the final file snapshot and the full transcript of user/assistant turns.
-- Allowed tools come from $TOOLS (default includes Bash). Runs recorded before 2026-10-10 used
+- Allowed tools come from $TOOLS (default includes Bash). Bash runs with NO approval prompt: the model
+  under test can delete files and run scripts. Run this in a container or a throwaway VM only. Runs recorded before 2026-10-10 used
   "Skill,Read,Glob,Grep,Write,Edit": every Bash call, including eval 9's --dry-run, was refused by
   claude -p (no prompt is shown in headless mode), and every eval 9 response mentioned the refusal.
 
@@ -40,6 +41,8 @@ TAG = sys.argv[5] if len(sys.argv) > 5 else "current"
 SKILLDIR = SKILLS / TAG / "skill"          # .../skill/SKILL.md, references/
 PLUGDIR = SKILLS / TAG / "plugin"          # plugin wrapper around the same files
 TOOLS = os.environ.get("TOOLS", "Skill,Read,Glob,Grep,Write,Edit,Bash")
+if "Bash" in TOOLS.split(","):
+    print("run_behaviour3: Bash is auto-approved for the model under test; run in a container or throwaway VM.", file=sys.stderr)
 FORCE = ("The {name} skill is installed for this session. Before you respond, "
          "invoke it with the Skill tool and follow its instructions for this request.")
 

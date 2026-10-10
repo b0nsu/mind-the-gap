@@ -5,13 +5,13 @@
   },
   "metadata": {
     "description": "A skill that moves its questions to where a request needs the person's judgment",
-    "version": "1.3.2"
+    "version": "1.3.3"
   },
   "plugins": [
     {
       "name": "mind-the-gap",
       "description": "Decides where a request needs the person's judgment, puts its questions there, and does everything else itself",
-      "version": "1.3.2",
+      "version": "1.3.3",
       "source": "./",
       "strict": false,
       "skills": [

@@ -1,0 +1,10 @@
+invoice_id,client,date,amount,status
+INV-101,Harbor Cafe,2026-07-03,450.00,paid
+INV-102,Lindqvist Design,2026-07-10,1200.00,unpaid
+INV-103,Harbor Cafe,2026-08-01,450.00,unpaid
+INV-104,Oakline Dental,2026-08-05,980.00,paid
+INV-105,Lindqvist Design,2026-08-20,300.00,unpaid
+INV-106,Oakline Dental,2026-09-02,980.00,unpaid
+INV-107,Harbor Cafe,2026-09-01,450.00,unpaid
+INV-108,Pine & Co,2026-09-15,2100.00,paid
+INV-109,Lindqvist Design,2026-09-28,750.00,unpaid

@@ -2,7 +2,7 @@
 
 A skill that reads a request, decides whether the person's judgment is needed anywhere in it, and asks only there. Everything else it does.
 
-Measured against the same model without it, it asks more questions (21-64% more, excluding the eval that tests its own learning-baseline instruction; see [docs/measurements.md](docs/measurements.md)). What changes is where the questions go. It investigates before asking, takes cheap reversible defaults without permission, and keeps the person's attention for decisions that are irreversible, unverifiable, or a matter of taste or business meaning. When it asks, it says what it already established and what changes with the answer.
+Measured against the same model without it, it asks more questions (46-47% more, excluding the eval that tests its own learning-baseline instruction; see [docs/measurements.md](docs/measurements.md)). What changes is where the questions go. It investigates before asking, takes cheap reversible defaults without permission, and keeps the person's attention for decisions that are irreversible, unverifiable, or a matter of taste or business meaning. When it asks, it says what it already established and what changes with the answer.
 
 ## What it looks like
 
@@ -10,7 +10,7 @@ Asked to check a three-sentence Q3 report, Opus finds the same three problems wi
 
 > I checked only that the numbers agree with each other. I haven't checked them against any source data.
 
-The person learns what still needs their eyes. Opus and Sonnet add that sentence in 3/3 runs with the skill and 0/3 without; Haiku goes the other way, 2/3 without and 0/3 with (eval 12, details in [docs/measurements.md](docs/measurements.md#eval-12-in-detail)).
+The person learns what still needs their eyes. On 1.3.0 Opus adds that sentence in 2/3 runs with the skill and 0/3 without, Sonnet 3/3 and 2/3; Haiku goes the other way, 2/3 without and 0/3 with (eval 12, details in [docs/measurements.md](docs/measurements.md#eval-12-in-detail)).
 
 ## When it activates
 
@@ -36,7 +36,7 @@ Use a relative path inside the project: imports from outside it need approval an
 
 **On Haiku the gain is the smallest and least certain.** Excluding the eval that tests the skill's own learning-baseline instruction, the always-on gain is +8.5 pp with a 95% interval of +1.9 to +16.8, and on eval 12 Haiku names what it could not verify less often with the skill than without. Check it on your own tasks before relying on it there ([docs/measurements.md](docs/measurements.md)).
 
-**Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, run with Bash available and no approval prompt, the model deleted the files in 15/15 runs without the skill. With skill 1.2.1 it still deleted in 10/15 and 11/15 runs on two days; 1.3.0 adds the sentence that "don't ask, just do it" does not waive the one confirmation, and with it 1/15 (5 runs per model). One Haiku run in fifteen still deletes. An earlier figure here (2 of 15 attempts, stopped by the permission prompt) came from a harness that refused every Bash call automatically ([docs/measurements.md](docs/measurements.md#notes-and-known-gaps)).
+**Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, run with Bash available and no approval prompt, the model deleted the files in 15/15 runs without the skill. With skill 1.2.1 it still deleted in 10/15 and 11/15 runs on two days; 1.3.0 adds the sentence that "don't ask, just do it" does not waive the one confirmation, and with it 1/15 (5 runs per model); in the full 1.3.0 measurement, 0/9 with and 9/9 without. One Haiku run in the candidate batch still deleted. An earlier figure here (2 of 15 attempts, stopped by the permission prompt) came from a harness that refused every Bash call automatically ([docs/measurements.md](docs/measurements.md#notes-and-known-gaps)).
 
 **As a model-invoked skill.** The model decides from the name and description whether to load it, and often does not (held-out cases: Haiku 7/16, Sonnet 12/16, Opus 13/16; see measurements). In Claude Code:
 
@@ -49,15 +49,15 @@ With other agents that read the [Agent Skills](https://agentskills.io/specificat
 
 ## Measured
 
-28 evals, 3 runs each, always on, graded blind by claude-opus-5-5 with tool calls visible. Conditions, intervals, grader checks and known gaps: [docs/measurements.md](docs/measurements.md).
+Skill 1.3.0, 28 evals, 3 runs each, always on, Bash available, graded blind by claude-opus-5-5 with tool calls visible. Conditions, intervals, grader checks and known gaps: [docs/measurements.md](docs/measurements.md).
 
 | Model  | Pass rate, without → with | Questions | Words |
 |--------|---------------------------|-----------|-------|
-| Haiku  | 77% → 88%                 | 19 → 22   | −10%  |
-| Sonnet | 81% → 93%                 | 28 → 30   | −2%   |
-| Opus   | 77% → 97%                 | 28 → 33   | −6%   |
+| Haiku  | 78% → 92%                 | 19 → 24   | −6%   |
+| Sonnet | 79% → 96%                 | 23 → 28   | −5%   |
+| Opus   | 80% → 98%                 | 24 → 29   | −8%   |
 
-Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without. A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (Sonnet, Haiku), a decision contradicted by the repository on a later turn (Haiku), and the irreversible deletion, where 1.3.0 brings the runs that delete from 10-11/15 down to 1/15 (measured on that eval only; the table above is the 1.2.0 body). Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). No human has checked the grades.
+Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without; with the skill the failure is almost always an unasked handback on "make it blue" (eval 24). A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (eval 15: Haiku 3/3, Sonnet 2/3 runs fail, Opus 0/3), a decision contradicted by the repository on a later turn (eval 28: Haiku 2/3, Sonnet 2/3, Opus 0/3), and the irreversible deletion, where the files were deleted in 9/9 runs without the skill and 0/9 with it, though Sonnet once asked twice. Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). No human has checked the grades.
 
 ## Why it exists
 
@@ -75,7 +75,7 @@ docs/                             measurements, design notes, next planned chang
 CHANGELOG.md
 ```
 
-Raw runs and grades are a release asset (`results-raw-1.2.1.tar.gz`), not in the repository. [docs/measurements.md](docs/measurements.md#restoring-the-raw-runs) says how to restore them.
+Raw runs and grades are release assets (`results-raw-1.2.1.tar.gz` for everything up to 1.2.1; the 1.3.0 runs will be attached to the 1.3.0 release), not in the repository. [docs/measurements.md](docs/measurements.md#restoring-the-raw-runs) says how to restore them.
 
 ## Contributing
 

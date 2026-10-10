@@ -6,7 +6,8 @@ Usage: SCRUB_EMAILS=a@x,b@y scrub_asset.py <in.tar.gz> <out.tar.gz>
                 account email, and models write it into answers (held-out 106, 216), so pass
                 the account email of whoever ran the harness.
 Paths: /Users/<name> -> ~, /private/tmp/claude-<uid>/ and /var/folders/../T/ -> $TMP/.
-Member order, names, modes and mtimes are kept; only file contents change."""
+AppleDouble members (`._*`, macOS xattr sidecars that bsdtar adds) are dropped.
+Member order, names, modes and mtimes are kept otherwise; only file contents change."""
 import io, os, re, sys, tarfile
 
 SRC, DST = sys.argv[1], sys.argv[2]
@@ -18,9 +19,12 @@ SUBS = [(re.compile(re.escape(e).encode(), re.I), b"USER@example.com") for e in 
 ]
 EMAIL = re.compile(rb"[\w.%+-]+@[\w-]+(?:\.[\w-]+)+")
 
-changed, left = 0, {}
+changed, dropped, left = 0, 0, {}
 with tarfile.open(SRC) as tin, tarfile.open(DST, "w:gz") as tout:
     for m in tin:
+        if m.name.rsplit("/", 1)[-1].startswith("._"):
+            dropped += 1
+            continue
         if not m.isfile():
             tout.addfile(m)
             continue
@@ -35,7 +39,7 @@ with tarfile.open(SRC) as tin, tarfile.open(DST, "w:gz") as tout:
         m.size = len(nb)
         tout.addfile(m, io.BytesIO(nb))
 
-print(f"{changed} files changed")
+print(f"{changed} files changed, {dropped} AppleDouble members dropped")
 print("emails left (check each is public or synthetic):")
 for e, n in sorted(left.items(), key=lambda x: -x[1]):
     print(f"  {n:5d}  {e.decode(errors='replace')}")

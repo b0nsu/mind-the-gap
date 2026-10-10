@@ -14,7 +14,7 @@ NB = int(sys.argv[1]) if len(sys.argv) > 1 else 10000
 SEED = int(sys.argv[2]) if len(sys.argv) > 2 else 0
 
 if not RAW.is_dir():
-    sys.exit(f"{RAW} not found. Unpack results-raw-1.2.1.tar.gz at the repository root (see README).")
+    sys.exit(f"{RAW} not found. Unpack results-raw-1.2.1.tar.gz at the repository root (docs/measurements.md, Restoring the raw runs).")
 
 
 def load(tag, model, evals=None):

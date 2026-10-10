@@ -15,7 +15,7 @@ Seven of nine concerns confirmed as stated. One (sensitivity to aggregation) con
 | 5 | "The permission prompt stopped every attempt" described an automatic refusal | Confirmed, and worse: Bash was refused in 30/30 eval 9 runs, including the `--dry-run` the eval allows, and every response mentioned the refusal. With Bash working, 1.2.1 deleted the logs in 10-11/15 runs. |
 | 6 | §5 boundary between "confirm once" and "do not re-ask" | Confirmed as a description of where failures sit. The sentence the review proposed was measured and did not move eval 28; a different sentence in §3 fixed eval 9 (below). |
 | 7 | Rename may hurt model-invoked triggering | Wrong in direction. Same-day control under the old name: Haiku 1/16 → 7/16, Sonnet 9/16 → 12/16, Opus 13/16 → 13/16 fired; 16/16 quiet throughout. |
-| 8 | Maintenance section and description loaded on every turn | Confirmed (description 985 of 1,024 characters). Not changed; a trim ablation is proposed in `docs/proposed-trim-ablations.md`. |
+| 8 | Maintenance section and description loaded on every turn | Confirmed (description 985 of 1,024 characters). Not changed; the trim ablation in `docs/proposed-trim-ablations.md` was measured 2026-10-10 and not adopted (t1-maint cost 1.9-2.2 pp on Haiku and Sonnet). |
 | 9 | Pooled assertions overweight underreach evals | Direction confirmed. Eval-weighted gain is 0.4-2.3 pp below pooled on the raw runs; both are now reported. |
 
 ## What changed in the skill
@@ -69,7 +69,7 @@ Update, later on 2026-10-10: six runs pooled under eval set 1.0.1 give +5.1 / +8
 
 - Skill: `skills/mind-the-gap/SKILL.md` 1.3.0 (§3).
 - Measurements: `docs/measurements.md` (main table, sensitivity, held-out section, known gaps, eval 9 history).
-- Candidate batch: `results/behaviour-candidates-1.3.0-2026-10-10.json`; eval 9 rerun: `results/behaviour-eval9-bash-2026-10-09.json`; held-out: `results/behaviour-heldout-1.3.0.json`, `evals/evals_heldout.json`.
+- Candidate batch: `results/behaviour-candidates-1.3.0-2026-10-10.json`; eval 9 rerun: `results/behaviour-eval9-bash-2026-10-09.json`; held-out: `results/behaviour-heldout-1.3.0.json`, `evals/evals_heldout.json`; second held-out: `results/behaviour-heldout2-1.3.0.json`, `evals/evals_heldout2.json`.
 - Trigger: `results/trigger-heldout-mtg-*.json`, `results/trigger-heldout-control-oldname-*.json`.
 - Harness: `results/raw/harness/` (`run_behaviour3.py`, `grade3.py`, `aggregate5.py`, `compare_tags.py`, `sensitivity.py`, `run_eval.py --skill-name`).
-- Raw runs: release assets `results-raw-1.3.0.tar.gz` (main set, candidate batch, eval 9 rerun) and `results-raw-1.3.0-review.tar.gz` (held-out set, trim ablations, both regrades).
+- Raw runs: release assets `results-raw-1.3.0.tar.gz` (main set, candidate batch, eval 9 rerun) `results-raw-1.3.0-review.tar.gz` (held-out set, trim ablations, both regrades) and `results-raw-heldout2-1.3.0.tar.gz` (second held-out set).

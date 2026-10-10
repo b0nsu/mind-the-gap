@@ -3,7 +3,7 @@
 behaviour-per-eval.json: all graded runs per eval (3 for most evals; 5 for evals 9, 13, 15, 17, which were run
 x5 for the 1.2.1 candidates). Eval set 1.3.0 for every eval, so eval 9 there ran in an empty working directory
 and eval 28 used the old assertions; the 1.4.0 rerun of evals 9 and 28 is under v121-evalset-1.4.0 and is not
-in this file. Set AGG_SRC to the unpacked results-raw-1.2.1/results/raw/behaviour-1.2.1 directory."""
+in this file. Set AGG_SRC to results/raw/behaviour-1.2.1 as unpacked from results-raw-1.2.1.tar.gz at the repository root."""
 import json, glob, collections, os
 from pathlib import Path
 S = Path(os.environ.get("AGG_SRC", str(Path(__file__).resolve().parents[1] / "behaviour-1.2.1")))

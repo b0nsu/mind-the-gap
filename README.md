@@ -75,7 +75,7 @@ docs/                             measurements, design notes, review response, n
 CHANGELOG.md
 ```
 
-Raw runs and grades are release assets, not in the repository: `results-raw-1.3.0.tar.gz` (the 1.3.0 measurement, the candidate batch and the eval 9 rerun) and `results-raw-1.2.1.tar.gz` (everything up to 1.2.1). [docs/measurements.md](docs/measurements.md#restoring-the-raw-runs) says how to restore them.
+Raw runs and grades are release assets, not in the repository: `results-raw-1.3.0.tar.gz` (the 1.3.0 measurement, the candidate batch and the eval 9 rerun), `results-raw-1.3.0-review.tar.gz` (the held-out set, the trim ablations and the two regrades) and `results-raw-1.2.1.tar.gz` (everything up to 1.2.1). [docs/measurements.md](docs/measurements.md#restoring-the-raw-runs) says how to restore them.
 
 ## Contributing
 

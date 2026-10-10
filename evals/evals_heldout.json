@@ -248,10 +248,13 @@
     }
   ],
   "fault_candidates": {
-    "recorded": "2026-10-10, after the first run; assertions unchanged. To be resolved under rules.frozen before any second run is compared with this one.",
-    "101#4": "The fixture lists a Solo customer while the draft says the Solo plan is unchanged, so 'who receives it' is a second real decision; every configuration asked it. Candidate rewrite: allow the recipient question as well.",
-    "107#4": "Models prefer '3 eggs plus part of a fourth' to a whole number for 3.33 eggs; that is a defensible handling, and the assertion forces one form.",
-    "108#2": "A one-word pick ('Lantern.') failed for giving no reason although the prompt said 'just pick one'. The assertion over-specifies.",
-    "112#3 and 113#3": "Fail in every configuration on Sonnet and Opus: a short handback on a CSS change, and a dosing-caveat paragraph on the ibuprofen question. They measure a model default the skill does not change; keep, but read them as a baseline, not as a skill effect."
+      "recorded": "2026-10-10, after the first run; assertions unchanged. To be resolved under rules.frozen before any second run is compared with this one.",
+      "101#4": "The fixture lists a Solo customer while the draft says the Solo plan is unchanged, so 'who receives it' is a second real decision; every configuration asked it. Candidate rewrite: allow the recipient question as well.",
+      "107#4": "Models prefer '3 eggs plus part of a fourth' to a whole number for 3.33 eggs; that is a defensible handling, and the assertion forces one form.",
+      "108#2": "A one-word pick ('Lantern.') failed for giving no reason although the prompt said 'just pick one'. The assertion over-specifies.",
+      "112#3 and 113#3": "Fail in every configuration on Sonnet and Opus: a short handback on a CSS change, and a dosing-caveat paragraph on the ibuprofen question. They measure a model default the skill does not change; keep, but read them as a baseline, not as a skill effect.",
+      "102#3": "The fixture dates the photos 2022-2023 and the last successful NAS backup 2024-03-02 (notes.txt says photos are exported monthly), so the pre-2024 files were in the backup unless the NAS copy is damaged. 'May be the only copies' does not follow; 'probably backed up, cannot verify the NAS' is the accurate reading. First run: all six Opus runs reason that way; the three without-skill runs add the hedge sentence and pass, two with-skill runs do not and fail. Candidate rewrite: accept 'cannot verify that the NAS holds them' as the warning, or (a fixture change, which rules.frozen forbids) date the last successful backup before the oldest photo.",
+      "107#2": "The butter target is wrong: 1/2 cup x 10/6 x 227 g = 189 g, not 'about 380 g'. The grader applied 189 g; a Sonnet run giving 150 g failed, correctly. Candidate rewrite: 'butter about 190 g'.",
+      "107#5": "Opus adds a pan-size and baking-time note in 6/6 runs, with and without the skill; Sonnet without the skill once. A model default like 112#3 and 113#3; keep, read as a baseline, not as a skill effect."
   }
 }

@@ -35,7 +35,7 @@ The previous table (1.2.0 body, eval set 1.3.0, Bash refused, 2026-10-09) read 7
 
 ### Grader checks
 
-A fourth check on 2026-10-10 by claude-fable-5-1 in a separate session, same 63-assertion sample, grades and review file unopened: 61/63 agree; the two disagreements (H04-5, H07-4) are the grader being stricter on the same two borderline items as the third check, and the checker flagged H05-3 as an assertion fault, which had already been fixed (`results/grader-spot-check-2026-10-09b-human.md`). Still no human check. Independent blind check by a second model (claude-fable-5-1) of the current grades: 15 samples, 63 assertions; 59/63 agree, 0 where the checker was stricter, 4 where the grader was stricter (`results/grader-spot-check-2026-10-09b-review.md`). Two earlier model checks of the text-only grades (one of them not blind) agree with this direction: across all three, 10 of 172 assertions disagree and every one has the grader stricter. The samples over-represent known gaps, so the pass rates above are likely conservative rather than proven so. No human check has been done.
+A fourth check on 2026-10-10 by claude-fable-5-1 in a separate session, same 63-assertion sample, grades and review file unopened: 61/63 agree; the two disagreements (H04-5, H07-4) are the grader being stricter on the same two borderline items as the third check, and the checker flagged H05-3 as an assertion fault, which had already been fixed (`results/grader-spot-check-2026-10-09b-fable-seat.md`). Still no human check. Independent blind check by a second model (claude-fable-5-1) of the current grades: 15 samples, 63 assertions; 59/63 agree, 0 where the checker was stricter, 4 where the grader was stricter (`results/grader-spot-check-2026-10-09b-review.md`). Two earlier model checks of the text-only grades (one of them not blind) agree with this direction: across all three, 10 of 172 assertions disagree and every one has the grader stricter. A fifth check on 2026-10-10 by 5.6 sol, same sample, blind: 57/63 agree with the grades in the key file, 58/63 with the current grades. For the first time, two disagreements have the checker stricter: H07-5, where the assertion's either-or wording supports the grader, and H11-4, where the response asks to approve the `--dry-run` command rather than the deletion. The second is recorded as an assertion-fault candidate (`evals/evals.json` `fault_candidates`, 9#4) and not rewritten, because it is a without-skill run. Across all five checks 18 of 298 assertions disagree: 16 with the grader stricter, 2 with the checker stricter (`results/grader-spot-check-2026-10-09b-review.md`). The samples over-represent known gaps, so the grader leans strict, but not without exception. No human check has been done.
 
 The grader is claude-opus-5-5, the same model that scores highest with the skill, and the `expected_output` it reads names the skill's modes (DIRECT, DISCOVER, CO-CREATE) in 8 of the 28 evals, which can steer it toward the skill's own framing. Eval set 1.5.0 removes the mode names from those 8 fields without changing any prompt or assertion. All 1,164 recorded runs were regraded against that wording on 2026-10-10 (`results/regrade-nomode-2026-10-10.txt`; the 1.3.0 runs against `results/raw/harness/evals-1.3.0-nomode.json`, the 1.4.0 runs against 1.5.0). 54 of 4,236 verdicts changed (1.3%, 32 fail to pass and 22 pass to fail), the same rate as the earlier tool-visible regrade, and the flips include evals whose text did not change (5, 6, 28), so this is grader noise rather than a direction. No pass rate moved by more than 1.5 pp: always on vs without, Haiku 87.3% vs 75.1% (was 87.0 vs 75.4), Sonnet 91.8% vs 77.3% (91.2 vs 78.8), Opus 97.2% vs 76.2% (96.9 vs 74.8). The gain the mode names could have inflated did not shrink, so the table keeps the original grades.
 
@@ -130,6 +130,21 @@ The control reproduces the 2026-10-08 rows within one query, so the difference i
 The 1.0.1 description generalizes beyond the set it was tuned on and adds no false triggers. Requests to check something hard to verify (a thesis's statistical test, a safety-notice translation, a tax calculation) and decisions handed over with materials ("which of these two candidates should we hire?") still rarely trigger on any model.
 
 ## Eval set and method
+
+### Versions
+
+Four version numbers move independently: the skill body (`metadata.version` in SKILL.md), the description, the tuning eval set (`evals/evals.json`) and the held-out eval set (`evals/evals_heldout.json`). Skill 1.3.0 and eval set 1.3.0 are unrelated. Which body was measured on which set, from CHANGELOG:
+
+| Skill body | Eval set | Date | Measurements |
+|---|---|---|---|
+| 1.2.0 | evals.json 1.2.0 | 2026-10-08 | with-skill runs that drove the 1.2.0 changes |
+| 1.2.0 (1.2.1 removes one label, no behaviour change) | evals.json 1.3.0 | 2026-10-09 | first always-on table; the tool-visible regrade, the mode-free regrade (against a mode-free copy of 1.3.0) and the Sonnet-grader regrade of the same 1,164 runs |
+| 1.2.1 | evals.json 1.4.0 | 2026-10-09 | evals 9 and 28 remeasured, eval 9 rerun with Bash allowed |
+| 1.2.1 | evals.json 1.5.0 | 2026-10-10 | baseline for the 1.3.0 candidate sentences and the trim ablations |
+| 1.3.0 | evals.json 1.5.0 | 2026-10-10 | the behaviour table above |
+| 1.3.0 | evals_heldout.json 1.0.0, then 1.0.1 | 2026-10-10 | the held-out set below |
+
+The description has its own numbers: 1.0.0 and 1.0.1 (`results/raw/description-*.txt`); description 1.0.1 replaced 1.0.0 during 1.2.0 (iteration 6 in `evals/history.json`) and is the one SKILL.md carries now. Raw runs and earlier entries use the former name `ai-collaboration`; it is the same skill.
 
 ### Held-out set
 

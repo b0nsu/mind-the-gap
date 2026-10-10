@@ -4,13 +4,13 @@
     "name": "b0nsu"
   },
   "metadata": {
-    "description": "A skill that asks for the person's judgment only where a request needs it",
+    "description": "A skill that moves its questions to where a request needs the person's judgment",
     "version": "1.3.0"
   },
   "plugins": [
     {
       "name": "mind-the-gap",
-      "description": "Decides whether a request needs the person's judgment anywhere and asks only there; everything else it does",
+      "description": "Decides where a request needs the person's judgment and puts its questions there; it asks more often than the model alone, not less, and does everything else",
       "version": "1.3.0",
       "source": "./",
       "strict": false,

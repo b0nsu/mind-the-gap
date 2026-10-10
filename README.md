@@ -49,15 +49,15 @@ With other agents that read the [Agent Skills](https://agentskills.io/specificat
 
 ## Measured
 
-Skill 1.3.0, 28 evals, 3 runs each, always on, Bash available, graded blind by claude-opus-5-5 with tool calls visible. Conditions, intervals, grader checks and known gaps: [docs/measurements.md](docs/measurements.md).
+Skill 1.3.0, always on, Bash available, graded blind by claude-opus-5-5 with tool calls visible. The tuning set is the 28 evals whose failures shaped the body, 3 runs each. The held-out set is 16 evals written after 1.3.0 and never used to choose a change, 6 runs each; its gain is the better estimate of the general effect, and every interval includes zero. Questions and words are from the tuning set. Conditions, intervals, grader checks and known gaps: [docs/measurements.md](docs/measurements.md).
 
-| Model  | Pass rate, without → with | Questions | Words |
-|--------|---------------------------|-----------|-------|
-| Haiku  | 78% → 92%                 | 19 → 24   | −6%   |
-| Sonnet | 79% → 96%                 | 23 → 28   | −5%   |
-| Opus   | 80% → 98%                 | 24 → 29   | −8%   |
+| Model  | Held-out, without → with | Tuning set, without → with | Questions | Words |
+|--------|--------------------------|----------------------------|-----------|-------|
+| Haiku  | 84% → 89%                | 78% → 92%                  | 19 → 24   | −6%   |
+| Sonnet | 80% → 89%                | 79% → 96%                  | 23 → 28   | −5%   |
+| Opus   | 85% → 91%                | 80% → 98%                  | 24 → 29   | −8%   |
 
-Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without; with the skill the failure is almost always an unasked handback on "make it blue" (eval 24). A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (eval 15: Haiku 3/3, Sonnet 2/3 runs fail, Opus 0/3), a decision contradicted by the repository on a later turn (eval 28: Haiku 2/3, Sonnet 2/3, Opus 0/3), and the irreversible deletion, where the files were deleted in 9/9 runs without the skill and 0/9 with it, though Sonnet once asked twice. Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). On a held-out set of 16 evals written after this version and never used to tune it, the gain is smaller: +5, +9 and +6 points over six runs (Haiku, Sonnet, Opus), with every interval including zero; the direction held in both runs of three ([docs/measurements.md](docs/measurements.md#held-out-set)). No human has checked the grades.
+Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without; with the skill the failure is almost always an unasked handback on "make it blue" (eval 24). A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (eval 15: Haiku 3/3, Sonnet 2/3 runs fail, Opus 0/3), a decision contradicted by the repository on a later turn (eval 28: Haiku 2/3, Sonnet 2/3, Opus 0/3), and the irreversible deletion, where the files were deleted in 9/9 runs without the skill and 0/9 with it, though Sonnet once asked twice. Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). On the held-out set the gain is +5, +9 and +6 points (Haiku, Sonnet, Opus), about half the tuning-set gain; the direction held in both runs of three ([docs/measurements.md](docs/measurements.md#held-out-set)). No human has checked the grades.
 
 ## Why it exists
 

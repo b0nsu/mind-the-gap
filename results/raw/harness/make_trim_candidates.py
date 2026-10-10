@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 """Build the always-on candidates for docs/proposed-trim-ablations.md.
 
-Each tag differs from the current skill by exactly one change, so a difference in
+Each tag differs from the 1.2.1 body (git tag v1.2.1) by exactly one change, so a difference in
 an eval can be attributed to that change. Writes $EVAL_SCRATCH/evalskills/<tag>/skill/
 (SKILL.md, references/, LICENSE.txt), the layout run_behaviour3.py reads for always_on.
 No plugin/ wrapper is built, so these tags cannot run the with_skill config.
+references/ and LICENSE.txt are copied from the working tree; only SKILL.md changed between 1.2.1 and 1.3.0.
 
 Usage: make_trim_candidates.py
 """
-import os, shutil
+import os, shutil, subprocess
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
 SRC = REPO / "skills/mind-the-gap"
 OUT = Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval")) / "evalskills"
-BODY = (SRC / "SKILL.md").read_text()
+BODY = subprocess.run(["git", "-C", str(REPO), "show", "v1.2.1:skills/mind-the-gap/SKILL.md"],
+                      check=True, capture_output=True, text=True).stdout
 
 
 def cut_from(text, marker):

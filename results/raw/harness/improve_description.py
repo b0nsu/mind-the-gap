@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Derived from Anthropic's skill-creator skill (https://github.com/anthropics/skills,
 # skills/skill-creator/scripts/), Apache License 2.0; see LICENSE-skill-creator.txt in
-# this directory. Modified: claude -p runs with project settings only, no MCP, no tools.
+# this directory. Modified: sys.path entry for python3 -I, claude -p runs with project settings only, no MCP, no tools.
 """Improve a skill description based on eval results.
 
 Takes eval results (from run_eval.py) and generates an improved description
@@ -17,6 +17,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # so python3 -I finds scripts/
 from scripts.utils import parse_skill_md
 
 

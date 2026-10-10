@@ -1,15 +1,18 @@
-import json, glob, collections
+#!/usr/bin/env python3
+"""Summarise the trim ablations (docs/proposed-trim-ablations.md) from $EVAL_SCRATCH/beh-trim, as in
+results/trim-ablations-2026-10-10.txt."""
+import json, glob, os
 from pathlib import Path
-OUT=Path("/tmp/mind-the-gap-eval/beh-trim"); TAGS=["v121","t1-maint","t2-s7","t3-s5conf"]
+OUT=Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval"))/"beh-trim"; TAGS=["v121","t1-maint","t2-s7","t3-s5conf"]
 M=["claude-haiku-5-5","claude-sonnet-5-5","claude-opus-5-5"]; TARGET=[9,12,14,24,27]
 print("pass rate, first 3 runs, all 28 evals (assertions passed/total)")
 for m in M:
     row=[]
     for t in TAGS:
-        p=n=0; missing=0
+        p=n=0
         for g in glob.glob(str(OUT/t/m/"eval-*"/"always_on"/"run-[123].grade.json")):
             gr=json.load(open(g)); p+=sum(x["passed"] for x in gr["expectations"]); n+=len(gr["expectations"])
-        row.append(f"{t}: {p/n:.3f} ({p}/{n})")
+        row.append(f"{t}: {p/n:.3f} ({p}/{n})" if n else f"{t}: no runs")
     print(f"  {m:18s} "+"  ".join(row))
 print("\nfailed runs on target evals, 5 runs (runs failed / runs; failed assertion numbers)")
 for e in TARGET:

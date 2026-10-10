@@ -12,8 +12,9 @@ for g in sorted(new.rglob("run-?.grade.json")):
     rel = g.relative_to(new); o = old / rel
     if not o.exists(): continue
     a = json.load(open(o))["expectations"]; b = json.load(open(g))["expectations"]
-    tag, model, ev, cfg = rel.parts[-5], rel.parts[-4], int(rel.parts[-3][5:]), rel.parts[-2]
-    if tag not in ("v120", "v130", "v131", "v121-evalset-1.4.0"): tag, model, ev, cfg = rel.parts[-4], rel.parts[-3], int(rel.parts[-2][5:]), rel.parts[-1]
+    p = rel.parts  # [<tag>/]<model>/eval-NN/<cfg>/run-N.grade.json
+    tag = p[-5] if len(p) >= 5 and p[-5] in ("v120", "v130", "v131", "v121-evalset-1.4.0") else "-"
+    model, ev, cfg = p[-4], int(p[-3][5:]), p[-2]
     for i, (x, y) in enumerate(zip(a, b)):
         tot += 1
         r = rate[(tag, model, cfg)]; r[0] += x["passed"]; r[1] += y["passed"]; r[2] += 1

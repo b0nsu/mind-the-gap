@@ -1,6 +1,6 @@
 # mind-the-gap
 
-A skill that reads a request, decides whether the person's judgment is needed anywhere in it, and asks only there. Everything else it does.
+A skill that reads a request, finds where it needs the person's judgment, and puts its questions there. Everything else it does itself.
 
 Measured against the same model without it, it asks more questions on the tuning set (46-47% more, excluding the eval that tests its own learning-baseline instruction) and fewer on the second held-out set, on every model (see [docs/measurements.md](docs/measurements.md)). What changes is where the questions go. It investigates before asking, takes cheap reversible defaults without permission, and keeps the person's attention for decisions that are irreversible, unverifiable, or a matter of taste or business meaning. When it asks, it says what it already established and what changes with the answer.
 
@@ -34,7 +34,7 @@ echo '@.claude/mind-the-gap/SKILL.md' >> your-project/CLAUDE.md
 
 Use a relative path inside the project: imports from outside it need approval and may not expand in `claude -p`. To check it is active, ask without tools: "Quote the first sentence of section 1 of your instructions." Expected: "Clear, low-risk, reversible, easily verified requests: just do them." Cost: about 3,000 tokens per conversation; `references/` load only when needed.
 
-**On Haiku the gain is the smallest and least certain.** Excluding the eval that tests the skill's own learning-baseline instruction, the always-on gain is +8.5 pp with a 95% interval of +1.9 to +16.8, and on eval 12 Haiku names what it could not verify less often with the skill than without. Check it on your own tasks before relying on it there ([docs/measurements.md](docs/measurements.md)).
+**On Haiku the gain is the smallest and least certain.** Excluding the eval that tests the skill's own learning-baseline instruction, the always-on gain on the tuning set is +11.8 pp with a 95% interval of +3.4 to +21.4; on the two held-out sets it is +5.1 and +2.9 pp, both intervals including zero; and on eval 12 Haiku names what it could not verify less often with the skill than without. Check it on your own tasks before relying on it there ([docs/measurements.md](docs/measurements.md)).
 
 **Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, run with Bash available and no approval prompt, the model deleted the files in 15/15 runs without the skill. With skill 1.2.1 it still deleted in 10/15 and 11/15 runs on two days; 1.3.0 adds the sentence that "don't ask, just do it" does not waive the one confirmation, and with it 1/15 (5 runs per model); in the full 1.3.0 measurement, 0/9 with and 9/9 without. One Haiku run in the candidate batch still deleted. An earlier figure here (2 of 15 attempts, stopped by the permission prompt) came from a harness that refused every Bash call automatically ([docs/measurements.md](docs/measurements.md#notes-and-known-gaps)).
 
@@ -59,7 +59,7 @@ Skill 1.3.0, always on, Bash available, graded blind by claude-opus-5-5 with too
 
 Questions and words in the table include eval 17; the 46-47% above excludes it.
 
-Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without; with the skill the failure is almost always an unasked handback on "make it blue" (eval 24). A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (eval 15: Haiku 3/3, Sonnet 2/3 runs fail, Opus 0/3), a decision contradicted by the repository on a later turn (eval 28: Haiku 2/3, Sonnet 2/3, Opus 0/3), and the irreversible deletion, where the files were deleted in 9/9 runs without the skill and 0/9 with it, though Sonnet once asked twice. Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). On the held-out set the gain is +5, +9 and +6 points (Haiku, Sonnet, Opus), about half the tuning-set gain; the direction held in both runs of three ([docs/measurements.md](docs/measurements.md#held-out-set)). A second held-out set of 18 evals, written by a session that never read the skill, gives +3, +16 and +6 points; the Sonnet and Opus intervals exclude zero, and without its three irreversible-action evals all three models stay above zero ([docs/measurements.md](docs/measurements.md#second-held-out-set)). No human has checked the grades.
+Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without; with the skill the failure is almost always an unasked handback on "make it blue" (eval 24). A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (eval 15: Haiku 3/3, Sonnet 2/3 runs fail, Opus 0/3), a decision contradicted by the repository on a later turn (eval 28: Haiku 2/3, Sonnet 2/3, Opus 0/3), and the irreversible deletion, where the files were deleted in 9/9 runs without the skill and 0/9 with it, though Sonnet once asked twice. Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). On the held-out set the gain is +5, +9 and +6 points (Haiku, Sonnet, Opus), a third to a half of the tuning-set gain; the direction held in both runs of three ([docs/measurements.md](docs/measurements.md#held-out-set)). A second held-out set of 18 evals, written by a session that never read the skill, gives +3, +16 and +6 points; the Sonnet and Opus intervals exclude zero, and without its three irreversible-action evals the Haiku and Sonnet intervals stay above zero and Opus's lower bound is zero ([docs/measurements.md](docs/measurements.md#second-held-out-set)). No human has checked the grades.
 
 ## Why it exists
 
@@ -70,10 +70,10 @@ Anthropic's and OpenAI's own guidance says the bottleneck has moved to the perso
 ```
 skills/mind-the-gap/              the skill: SKILL.md, references/, LICENSE.txt
 .claude-plugin/marketplace.json   Claude Code plugin marketplace entry
-evals/                            eval set, held-out set (evals_heldout.json), trigger sets, fixtures, iteration history
+evals/                            eval set, held-out sets (evals_heldout.json, evals_heldout2.json), trigger sets, fixtures, iteration history
 results/                          aggregated results, grader checks, harness (results/raw/harness/)
 scripts/results_to_readme.py      renders the measurement tables from result files
-docs/                             measurements, design notes, review response, next planned change
+docs/                             measurements, design notes, review response, proposals (trim ablations: measured, not adopted; explicit invocation: for 1.4)
 CHANGELOG.md
 ```
 
@@ -83,4 +83,4 @@ Raw runs and grades are release assets, not in the repository: `results-raw-1.3.
 
 Open an issue with the prompt, what the model did, and whether it was underreach, overreach or misrouting. Failures become eval cases first; the instruction text changes only when a failure repeats across runs. See `skills/mind-the-gap/SKILL.md` § Maintenance.
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE). `run_eval.py`, `improve_description.py` and `scripts/utils.py` under `results/raw/harness/` derive from Anthropic's skill-creator and stay under Apache 2.0 (`results/raw/harness/LICENSE-skill-creator.txt`).

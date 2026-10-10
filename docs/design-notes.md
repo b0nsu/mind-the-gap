@@ -35,7 +35,7 @@ What is here is a small set of criteria (four filters, two confirmation
 mechanisms, three failure classes) and an explicit obligation to shrink: the
 Maintenance section expects sections to be removed as models absorb them. The
 CHANGELOG records which candidate sentences were tried and rejected; a
-per-section ablation is planned for the next model generation.
+first three single-section ablations were measured on 2026-10-10 and none was adopted (`docs/proposed-trim-ablations.md`); a full per-section pass is planned for the next model generation.
 
 **Capability is not permission.** The Astra guidance argues the model has
 better judgment about what is safe; the Fable guide says you still fail in

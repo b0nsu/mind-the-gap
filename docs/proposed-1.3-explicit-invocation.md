@@ -1,13 +1,13 @@
 # Proposed for 1.4: explicit invocation (was 1.3; 1.3.0 shipped the §3 change instead)
 
-Status: next body change after 1.2.1. Originally drafted for 1.1.0 and held until the 1.0.0 measurements were recorded; the version number moved because 1.1.0 and 1.2.0 were used by eval-driven fixes. Not in the measured text.
+Status: proposed for 1.4, not started; 1.3.0 shipped the §3 sentence instead. Originally drafted for 1.1.0 and held until the 1.0.0 measurements were recorded; the version number moved because 1.1.0 and 1.2.0 were used by eval-driven fixes. Not in the measured text.
 
 ## Why now
 
 Measurements up to 1.2.1 (see CHANGELOG and `evals/history.json` iteration 8) leave two gaps that the silent behaviour does not close:
 
 - **Decisions inside the request.** When the reason for a choice arrives with the request ("Notion, it looks nicer", eval 15), Sonnet proceeds without naming the consequence in 5/5 runs even with the skill always on. Haiku names it in 4/5 runs, but only after the structure. Two sentence-level fixes to §5 did not move this.
-- **Decisions contradicted later.** When a user decision conflicts with what the repository says (SQLite with three writing servers, eval 28), models that read the repository name the conflict on the first turn and offer a default. The 1.3.0 assertions read only the final turn and counted this as a failure; eval set 1.4.0 fixes them, and eval 28 has not been rerun since.
+- **Decisions contradicted later.** When a user decision conflicts with what the repository says (SQLite with three writing servers, eval 28), models that read the repository name the conflict on the first turn and offer a default. The 1.3.0 assertions read only the final turn and counted this as a failure; eval set 1.4.0 fixes them. On 1.3.0 (eval set 1.5.0) eval 28 still fails in Haiku 2/3, Sonnet 2/3 and Opus 0/3 runs, mostly a build with no stated condition for switching.
 
 Both are information the person did not give and may not know is missing. An explicit call that returns the gaps as the deliverable puts that information in front of them before work starts, without relying on the model to notice mid-task.
 
@@ -54,11 +54,11 @@ One section per bucket, each a short list; empty buckets are stated as empty in 
 
 ## Bundled with this change
 
-- Move `references/anti-patterns.md` to `docs/anti-patterns.md` and delete its bullet in SKILL.md References (SKILL.md:201-202). It is maintainer documentation that the installed skill never loads; the measurement below covers the removal.
+- Move `references/anti-patterns.md` to `docs/anti-patterns.md` and delete its bullet in SKILL.md References (SKILL.md:204-205). It is maintainer documentation that the installed skill never loads; the measurement below covers the removal.
 
 ## Measurement
 
-Harness v3 (`results/raw/harness/run_behaviour3.py`), always on, eval set 1.4.0, 28 + 4 evals, 3 runs per model, 5 runs for evals 9, 13, 15, 17, 28 and 29-32. Evals 9 and 28 changed in 1.4.0, so measure them on 1.2.1 first and compare §8 against those numbers, not the 1.3.0 ones. Adopt only if evals 29, 31 and 32 pass and the existing 28 do not drop beyond 3-run noise. Overreach evals 18-26, 30 and 32 are the regression guard: the map must never appear unasked.
+Harness v3 (`results/raw/harness/run_behaviour3.py`), always on, eval set 1.5.0, 28 + 4 evals, 3 runs per model, 5 runs for evals 9, 13, 15, 17, 28 and 29-32. Compare §8 against the 1.3.0 measurement on the same eval set (`results/behaviour-*.json`), and run the two held-out sets as well. Adopt only if evals 29, 31 and 32 pass and the existing 28 do not drop beyond 3-run noise. Overreach evals 18-26, 30 and 32 are the regression guard: the map must never appear unasked.
 
 ## Trigger set
 

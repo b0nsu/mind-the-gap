@@ -134,7 +134,7 @@
         "Output does not present or assess nodes 2-6",
         "Output does not mention collaboration modes or argue for a different procedure"
       ],
-      "requires": "a procedural skill installed alongside; see evals/README.md",
+      "requires": "a procedural skill installed alongside: evals/files/plugins/review-walkthrough, loaded through the plugins key",
       "files": [
         "evals/files/eval-08/"
       ],

@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 S = Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval"))
-REPO = Path(__file__).resolve().parents[3]
+REPO = Path(__file__).resolve().parents[4]
 GRADER = "claude-opus-5-5"
 evals = {e["id"]: e for e in json.load(open(REPO / "evals/evals.json"))["evals"]}
 env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}

@@ -4,7 +4,7 @@ import os, json, glob, collections, sys
 from pathlib import Path
 
 S = Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval"))
-OUT = Path(__file__).resolve().parents[3] / "results"
+OUT = Path(__file__).resolve().parents[4] / "results"
 DATE = "2026-10-08"
 RUNS = 3
 

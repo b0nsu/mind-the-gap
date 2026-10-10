@@ -11,7 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 S = Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval"))
-REPO = Path(__file__).resolve().parents[3]
+REPO = Path(__file__).resolve().parents[4]
 SKILL = Path(os.environ.get("SKILL_SRC", REPO / "skills/mind-the-gap"))
 OUT = Path(os.environ.get("OUT", S / "beh"))
 MODELS = sys.argv[1].split(",")

@@ -68,7 +68,7 @@ Anthropic's and OpenAI's own guidance says the bottleneck has moved to the perso
 ```
 skills/mind-the-gap/              the skill: SKILL.md, references/, LICENSE.txt
 .claude-plugin/marketplace.json   Claude Code plugin marketplace entry
-evals/                            eval set, trigger sets, fixtures, iteration history
+evals/                            eval set, held-out set (evals_heldout.json), trigger sets, fixtures, iteration history
 results/                          aggregated results, grader checks, harness (results/raw/harness/)
 scripts/results_to_readme.py      renders the measurement tables from result files
 docs/                             measurements, design notes, next planned change

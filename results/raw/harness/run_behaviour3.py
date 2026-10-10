@@ -19,7 +19,7 @@ Usage: run_behaviour3.py <models,comma> <runs> <eval ids,comma|all> <cfg,cfg> [s
   skill_tag: name of a dir under $EVAL_SCRATCH/evalskills (default: current). The tag "current" is
   created from $REPO/skills/mind-the-gap when missing; other tags are snapshots you place there by hand
   (<tag>/skill = a copy of the skill folder, <tag>/plugin = a plugin wrapper around the same files).
-Env: EVAL_SCRATCH, OUT, TOOLS, WORKERS, CLAUDE_BIN.
+Env: EVAL_SCRATCH, OUT, TOOLS, WORKERS, CLAUDE_BIN, EVALS_JSON (default evals/evals.json; grade3.py takes the same variable).
 """
 import json, os, shutil, subprocess, sys, uuid
 from concurrent.futures import ThreadPoolExecutor
@@ -33,7 +33,7 @@ SKILLS = S / "evalskills"
 OUT = Path(os.environ.get("OUT", S / "beh3"))
 MODELS = sys.argv[1].split(",")
 RUNS = int(sys.argv[2])
-ALL = json.load(open(EVALS / "evals.json"))["evals"]
+ALL = json.load(open(os.environ.get("EVALS_JSON", EVALS / "evals.json")))["evals"]  # e.g. evals/evals_heldout.json
 IDS = {e["id"] for e in ALL} if sys.argv[3] == "all" else {int(x) for x in sys.argv[3].split(",")}
 CFGS = sys.argv[4].split(",")
 TAG = sys.argv[5] if len(sys.argv) > 5 else "current"

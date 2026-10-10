@@ -1,0 +1,8 @@
+:root {
+  --primary: #1d4ed8; /* blue */
+  --primary-hover: #1e40af;
+  --text: #111827;
+}
+.button { background: var(--primary); color: white; }
+.button:hover { background: var(--primary-hover); }
+a { color: var(--primary); }

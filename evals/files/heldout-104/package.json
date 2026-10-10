@@ -1,0 +1,1 @@
+{"name": "members-api", "version": "0.1.0", "dependencies": {"express": "^4.19.0", "pg": "^8.11.0"}}

@@ -1,0 +1,2 @@
+photos/: phone camera roll, exported here once a month.
+NAS backup job: last successful run 2024-03-02. Failing since (disk full on the NAS). Not fixed yet.

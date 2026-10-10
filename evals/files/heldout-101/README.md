@@ -1,0 +1,1 @@
+Billing mail-merge folder. `customers.csv` is the export of every active account (340 rows in the real file; this checkout holds a sample). `draft.md` is the message to send. Sending goes through the `sendmail-merge` CLI, which is installed on the billing host, not here.

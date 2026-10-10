@@ -57,6 +57,7 @@ def grade(f):
     p = PROMPT.format(conversation=conv, files=files, removed=r.get("files_removed") or "none", tools=tools,
                       expected=ev["expected_output"],
                       exps="\n".join(f"{i+1}. {x}" for i, x in enumerate(ev["expectations"])))
+    p = p.replace("\x00", "\\x00")  # a NUL in a workspace file or tool input cannot be passed in argv
     err = None
     for _ in range(3):
         out = subprocess.run([CLAUDE, "-p", p, "--model", GRADER, "--setting-sources", "project",

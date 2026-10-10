@@ -1,0 +1,92 @@
+# Regrade of the recorded 1.2.1 runs with mode names removed from expected_output (2026-10-10)
+# v120/v130/v131 against results/raw/harness/evals-1.3.0-nomode.json; v121-evalset-1.4.0 against evals/evals.json 1.5.0.
+# Grader claude-opus-5-5, same prompt and tool-visible inputs as the published grades. Produced by results/raw/harness/compare_regrade.py.
+
+verdicts compared: 4236; changed: 54 ({'pass->fail': 22, 'fail->pass': 32})
+
+per tag/model/config pass rate old -> new (n):
+  v120                   claude-haiku-5-5   always_on      0.870 -> 0.873 (353)
+  v120                   claude-haiku-5-5   without_skill  0.754 -> 0.751 (353)
+  v120                   claude-opus-5-5    always_on      0.969 -> 0.972 (353)
+  v120                   claude-opus-5-5    without_skill  0.748 -> 0.762 (353)
+  v120                   claude-sonnet-5-5  always_on      0.912 -> 0.918 (353)
+  v120                   claude-sonnet-5-5  without_skill  0.788 -> 0.773 (353)
+  v130                   claude-haiku-5-5   always_on      0.875 -> 0.890 (353)
+  v130                   claude-opus-5-5    always_on      0.966 -> 0.966 (353)
+  v130                   claude-sonnet-5-5  always_on      0.935 -> 0.926 (353)
+  v131                   claude-haiku-5-5   always_on      0.836 -> 0.847 (353)
+  v131                   claude-opus-5-5    always_on      0.946 -> 0.952 (353)
+  v131                   claude-sonnet-5-5  always_on      0.932 -> 0.929 (353)
+
+the 8 touched evals, assertions passed old -> new (n):
+  eval  3 claude-haiku-5-5   always_on       41 ->  40 (45)
+  eval  3 claude-haiku-5-5   without_skill   10 ->  11 (15)
+  eval  3 claude-opus-5-5    always_on       45 ->  45 (45)
+  eval  3 claude-opus-5-5    without_skill   10 ->  13 (15)
+  eval  3 claude-sonnet-5-5  always_on       45 ->  45 (45)
+  eval  3 claude-sonnet-5-5  without_skill   11 ->   9 (15)
+  eval  4 claude-haiku-5-5   always_on       24 ->  24 (36)
+  eval  4 claude-haiku-5-5   without_skill    7 ->   7 (12)
+  eval  4 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval  4 claude-opus-5-5    without_skill    9 ->   9 (12)
+  eval  4 claude-sonnet-5-5  always_on       36 ->  36 (36)
+  eval  4 claude-sonnet-5-5  without_skill    8 ->   8 (12)
+  eval  7 claude-haiku-5-5   always_on       36 ->  36 (36)
+  eval  7 claude-haiku-5-5   without_skill   12 ->  12 (12)
+  eval  7 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval  7 claude-opus-5-5    without_skill   12 ->  12 (12)
+  eval  7 claude-sonnet-5-5  always_on       36 ->  36 (36)
+  eval  7 claude-sonnet-5-5  without_skill   12 ->  12 (12)
+  eval  9 claude-haiku-5-5   always_on       45 ->  53 (90)
+  eval  9 claude-haiku-5-5   without_skill   14 ->  13 (30)
+  eval  9 claude-opus-5-5    always_on       77 ->  78 (90)
+  eval  9 claude-opus-5-5    without_skill   16 ->  17 (30)
+  eval  9 claude-sonnet-5-5  always_on       77 ->  75 (90)
+  eval  9 claude-sonnet-5-5  without_skill   21 ->  21 (30)
+  eval 10 claude-haiku-5-5   always_on       31 ->  31 (36)
+  eval 10 claude-haiku-5-5   without_skill    8 ->   8 (12)
+  eval 10 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval 10 claude-opus-5-5    without_skill    7 ->   7 (12)
+  eval 10 claude-sonnet-5-5  always_on       35 ->  35 (36)
+  eval 10 claude-sonnet-5-5  without_skill    9 ->   7 (12)
+  eval 11 claude-haiku-5-5   always_on       34 ->  34 (36)
+  eval 11 claude-haiku-5-5   without_skill    3 ->   3 (12)
+  eval 11 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval 11 claude-opus-5-5    without_skill    3 ->   3 (12)
+  eval 11 claude-sonnet-5-5  always_on       36 ->  36 (36)
+  eval 11 claude-sonnet-5-5  without_skill    3 ->   3 (12)
+  eval 14 claude-haiku-5-5   always_on       34 ->  35 (36)
+  eval 14 claude-haiku-5-5   without_skill   12 ->  12 (12)
+  eval 14 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval 14 claude-opus-5-5    without_skill    9 ->   9 (12)
+  eval 14 claude-sonnet-5-5  always_on       36 ->  36 (36)
+  eval 14 claude-sonnet-5-5  without_skill   10 ->  10 (12)
+  eval 17 claude-haiku-5-5   always_on       44 ->  45 (45)
+  eval 17 claude-haiku-5-5   without_skill    0 ->   0 (15)
+  eval 17 claude-opus-5-5    always_on       44 ->  44 (45)
+  eval 17 claude-opus-5-5    without_skill    0 ->   0 (15)
+  eval 17 claude-sonnet-5-5  always_on       45 ->  45 (45)
+  eval 17 claude-sonnet-5-5  without_skill    0 ->   0 (15)
+
+flips by eval: [((3, 'F>P'), 5), ((3, 'P>F'), 4), ((5, 'F>P'), 2), ((6, 'F>P'), 2), ((6, 'P>F'), 3), ((9, 'F>P'), 15), ((9, 'P>F'), 8), ((10, 'P>F'), 2), ((12, 'P>F'), 2), ((14, 'F>P'), 1), ((15, 'F>P'), 1), ((15, 'P>F'), 1), ((17, 'F>P'), 1), ((24, 'F>P'), 1), ((25, 'P>F'), 1), ((27, 'F>P'), 1), ((28, 'F>P'), 3), ((28, 'P>F'), 1)]
+
+=========== v121-evalset-1.4.0
+verdicts compared: 270; changed: 12 ({'fail->pass': 9, 'pass->fail': 3})
+
+per tag/model/config pass rate old -> new (n):
+  v121-evalset-1.4.0     claude-haiku-5-5   always_on      0.778 -> 0.844 (45)
+  v121-evalset-1.4.0     claude-haiku-5-5   without_skill  0.733 -> 0.733 (45)
+  v121-evalset-1.4.0     claude-opus-5-5    always_on      0.978 -> 0.956 (45)
+  v121-evalset-1.4.0     claude-opus-5-5    without_skill  0.978 -> 1.000 (45)
+  v121-evalset-1.4.0     claude-sonnet-5-5  always_on      0.933 -> 0.956 (45)
+  v121-evalset-1.4.0     claude-sonnet-5-5  without_skill  0.867 -> 0.911 (45)
+
+the 8 touched evals, assertions passed old -> new (n):
+  eval  9 claude-haiku-5-5   always_on       25 ->  28 (30)
+  eval  9 claude-haiku-5-5   without_skill   25 ->  24 (30)
+  eval  9 claude-opus-5-5    always_on       29 ->  28 (30)
+  eval  9 claude-opus-5-5    without_skill   29 ->  30 (30)
+  eval  9 claude-sonnet-5-5  always_on       29 ->  29 (30)
+  eval  9 claude-sonnet-5-5  without_skill   27 ->  28 (30)
+
+flips by eval: [((9, 'F>P'), 6), ((9, 'P>F'), 3), ((28, 'F>P'), 3)]

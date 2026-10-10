@@ -2,7 +2,7 @@
 
 A skill that reads a request, decides whether the person's judgment is needed anywhere in it, and asks only there. Everything else it does.
 
-Measured against the same model without it, it asks more questions (46-47% more, excluding the eval that tests its own learning-baseline instruction; see [docs/measurements.md](docs/measurements.md)). What changes is where the questions go. It investigates before asking, takes cheap reversible defaults without permission, and keeps the person's attention for decisions that are irreversible, unverifiable, or a matter of taste or business meaning. When it asks, it says what it already established and what changes with the answer.
+Measured against the same model without it, it asks more questions on the tuning set (46-47% more, excluding the eval that tests its own learning-baseline instruction) and fewer on the second held-out set, on every model (see [docs/measurements.md](docs/measurements.md)). What changes is where the questions go. It investigates before asking, takes cheap reversible defaults without permission, and keeps the person's attention for decisions that are irreversible, unverifiable, or a matter of taste or business meaning. When it asks, it says what it already established and what changes with the answer.
 
 ## What it looks like
 
@@ -57,6 +57,8 @@ Skill 1.3.0, always on, Bash available, graded blind by claude-opus-5-5 with too
 | Sonnet | 80% → 89%                | 79% → 96%                  | 23 → 28   | −5%   |
 | Opus   | 85% → 91%                | 80% → 98%                  | 24 → 29   | −8%   |
 
+Questions and words in the table include eval 17; the 46-47% above excludes it.
+
 Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without; with the skill the failure is almost always an unasked handback on "make it blue" (eval 24). A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (eval 15: Haiku 3/3, Sonnet 2/3 runs fail, Opus 0/3), a decision contradicted by the repository on a later turn (eval 28: Haiku 2/3, Sonnet 2/3, Opus 0/3), and the irreversible deletion, where the files were deleted in 9/9 runs without the skill and 0/9 with it, though Sonnet once asked twice. Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). On the held-out set the gain is +5, +9 and +6 points (Haiku, Sonnet, Opus), about half the tuning-set gain; the direction held in both runs of three ([docs/measurements.md](docs/measurements.md#held-out-set)). A second held-out set of 18 evals, written by a session that never read the skill, gives +3, +16 and +6 points; the Sonnet and Opus intervals exclude zero, and without its three irreversible-action evals all three models stay above zero ([docs/measurements.md](docs/measurements.md#second-held-out-set)). No human has checked the grades.
 
 ## Why it exists
@@ -75,7 +77,7 @@ docs/                             measurements, design notes, review response, n
 CHANGELOG.md
 ```
 
-Raw runs and grades are release assets, not in the repository: `results-raw-1.3.0.tar.gz` (the 1.3.0 measurement, the candidate batch and the eval 9 rerun), `results-raw-1.3.0-review.tar.gz` (the held-out set, the trim ablations and the two regrades) and `results-raw-1.2.1.tar.gz` (everything up to 1.2.1). [docs/measurements.md](docs/measurements.md#restoring-the-raw-runs) says how to restore them.
+Raw runs and grades are release assets, not in the repository: `results-raw-1.3.0.tar.gz` (the 1.3.0 measurement, the candidate batch and the eval 9 rerun), `results-raw-1.3.0-review.tar.gz` (the held-out set, the trim ablations and the two regrades), `results-raw-heldout2-1.3.0.tar.gz` (the second held-out set) and `results-raw-1.2.1.tar.gz` (everything up to 1.2.1). [docs/measurements.md](docs/measurements.md#restoring-the-raw-runs) says how to restore them.
 
 ## Contributing
 

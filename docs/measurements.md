@@ -199,6 +199,8 @@ Reading the two tables together: the 14-18 pp on the main set includes the evals
 | Sonnet | 74% → 90% | +15.6 pp | [+5.1, +27.3] | +14.8 | 15 → 13 | -1% |
 | Opus | 87% → 93% | +6.2 pp | [+0.4, +14.8] | +6.4 | 9 → 7 | -2% |
 
+Both held-out sets pooled over assertions (34 evals; the first set has 6 runs per eval and the second 3, so the first carries twice the weight): Haiku +4.3 pp [-1.6, +9.9], Sonnet +11.4 pp [+4.1, +19.6], Opus +6.0 pp [+0.3, +13.3].
+
 Without the three evals that end in an irreversible delete, send or publish (201, 204, 210): Haiku +6.5 pp [+1.0, +13.2], Sonnet +8.5 pp [+0.5, +19.8], Opus +3.0 pp [+0.0, +6.5]. The gain does not come only from the confirmation before an irreversible action; Opus's lower bound is zero. Runs failed per eval (of 3), without → always on:
 
 | Eval | Guards against | Haiku w/o → on | Sonnet | Opus |
@@ -232,7 +234,7 @@ What moves and what does not:
 
 Eval set, trigger sets, fixtures and iteration history: `evals/` at the repository root, outside the skill folder so that it is not installed with the skill. The plugin install copies the whole repository into the plugin cache, as anthropics/skills does, but loads only `skills/mind-the-gap/`. Failures are classified as underreach (acted when it should have asked), overreach (asked or explained when it should have acted) or misrouting (asked in the wrong form). A failure becomes an eval case first; the instruction text changes only when the failure repeats across runs. See `skills/mind-the-gap/SKILL.md` § Maintenance for how changes are decided.
 
-`scripts/results_to_readme.py` renders the behaviour table and the trigger_set table above from the result files. The harness (runner, grader, aggregation, sensitivity) is in `results/raw/harness/`; run_eval.py and improve_description.py derive from anthropics/skills skill-creator (Apache 2.0, LICENSE-skill-creator.txt). Earlier harness generations that the raw runs cite are under `results/raw/harness/legacy/` and are not maintained. `run_behaviour3.py` creates its skill snapshot (`$EVAL_SCRATCH/evalskills/current`) from `skills/mind-the-gap` on first use; the tags the raw runs use (v120, v130, v131) were snapshots of candidate bodies placed there by hand. `results/behaviour-per-eval.json` carries a `_meta` entry naming its skill version, eval set, grades and run counts; `aggregate5.py` writes it and the per-model files from a `run_behaviour3.py` output directory.
+`scripts/results_to_readme.py` renders the behaviour table and the trigger_set table above from the result files. The harness (runner, grader, aggregation, sensitivity) is in `results/raw/harness/`; run_eval.py and improve_description.py derive from anthropics/skills skill-creator (Apache 2.0, LICENSE-skill-creator.txt). Earlier harness generations that the raw runs cite are under `results/raw/harness/legacy/` and are not maintained. `run_behaviour3.py` puts Bash in `--allowedTools` by default (`TOOLS` env var), so the model under test runs shell commands without any approval prompt; run it in a container or a throwaway VM, never on a machine with data you care about. It creates its skill snapshot (`$EVAL_SCRATCH/evalskills/current`) from `skills/mind-the-gap` on first use; the tags the raw runs use (v120, v130, v131) were snapshots of candidate bodies placed there by hand. `results/behaviour-per-eval.json` carries a `_meta` entry naming its skill version, eval set, grades and run counts; `aggregate5.py` writes it and the per-model files from a `run_behaviour3.py` output directory.
 
 ## Restoring the raw runs
 

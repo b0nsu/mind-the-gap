@@ -64,7 +64,8 @@ def ensure_current_skill():
 
 def snapshot(d):
     return {str(p.relative_to(d)): p.read_text(errors="replace")
-            for p in sorted(d.rglob("*")) if p.is_file() and ".claude" not in p.parts and p.name != "CLAUDE.md"}
+            for p in sorted(d.rglob("*")) if p.is_file() and ".claude" not in p.parts and p.name != "CLAUDE.md"
+            and not ({"__pycache__", "node_modules", ".venv", ".git", ".pytest_cache"} & set(p.parts))}
 
 
 def one(job):

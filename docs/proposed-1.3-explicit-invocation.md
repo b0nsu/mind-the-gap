@@ -1,4 +1,4 @@
-# Proposed for 1.3.0: explicit invocation
+# Proposed for 1.4: explicit invocation (was 1.3; 1.3.0 shipped the §3 change instead)
 
 Status: next body change after 1.2.1. Originally drafted for 1.1.0 and held until the 1.0.0 measurements were recorded; the version number moved because 1.1.0 and 1.2.0 were used by eval-driven fixes. Not in the measured text.
 

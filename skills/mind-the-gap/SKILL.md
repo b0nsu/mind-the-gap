@@ -3,7 +3,7 @@ name: "mind-the-gap"
 description: "Use this skill whenever getting the task wrong would cost the user something they might not notice in time — not just for coding. It covers vague asks (\"fix our onboarding\"), unfamiliar territory for the user (first-time managing, a new domain), actions that leave the system or cannot be undone (sending messages, cancelling or deleting, payments, commitments to third parties), and outputs the user will rely on but cannot easily check (contract obligations feeding a decision, medical, legal, or financial accuracy reviews). It decides what to investigate, what to just do, and which decisions or confirmations belong to the user. A clear instruction is not a safe one: \"send this letter\" or \"delete old records\" still qualifies. Skip it only when the request is clear, low-stakes, reversible, and checkable at a glance, such as factual lookups, mechanical transformations, or small edits. If a procedural skill fixes how to ask or review, follow that skill's procedure first."
 license: MIT. See LICENSE.txt for complete terms
 metadata:
-  version: "1.2.1"
+  version: "1.3.0"
 ---
 
 # Mind the Gap
@@ -96,6 +96,9 @@ survives all of them:
 - **Ownership** — is this irreversible, destructive, expensive, safety- or
   compliance-critical, externally committed, or genuinely a matter of taste or
   business meaning? Then it belongs to the user, however impatient they seem.
+  "Don't ask, just do it" settles the reversible choices in a task, not this
+  one: it does not waive the single confirmation before an irreversible action.
+  Investigate, state the consequence, ask once.
 
 ## 4. Ask with the why attached
 

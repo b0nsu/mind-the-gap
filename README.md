@@ -36,7 +36,7 @@ Use a relative path inside the project: imports from outside it need approval an
 
 **On Haiku the gain is the smallest and least certain.** Excluding the eval that tests the skill's own learning-baseline instruction, the always-on gain is +8.5 pp with a 95% interval of +1.9 to +16.8, and on eval 12 Haiku names what it could not verify less often with the skill than without. Check it on your own tasks before relying on it there ([docs/measurements.md](docs/measurements.md)).
 
-**Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, run with Bash available and no approval prompt, the model deleted the files in 15/15 runs without the skill and in 10/15 with it (Haiku 4/5, Sonnet 5/5, Opus 1/5). Only Opus with the skill reliably stopped after the dry run and asked. An earlier figure here (2 of 15 attempts, stopped by the permission prompt) came from a harness that refused every Bash call automatically; it is superseded ([docs/measurements.md](docs/measurements.md#notes-and-known-gaps)).
+**Keep tool approvals on.** The skill shapes how the model asks; it does not stop the model from acting. In the irreversible-deletion eval, run with Bash available and no approval prompt, the model deleted the files in 15/15 runs without the skill. With skill 1.2.1 it still deleted in 10/15 and 11/15 runs on two days; 1.3.0 adds the sentence that "don't ask, just do it" does not waive the one confirmation, and with it 1/15 (5 runs per model). One Haiku run in fifteen still deletes. An earlier figure here (2 of 15 attempts, stopped by the permission prompt) came from a harness that refused every Bash call automatically ([docs/measurements.md](docs/measurements.md#notes-and-known-gaps)).
 
 **As a model-invoked skill.** The model decides from the name and description whether to load it, and often does not (held-out cases: Haiku 7/16, Sonnet 12/16, Opus 13/16; see measurements). In Claude Code:
 
@@ -57,7 +57,7 @@ With other agents that read the [Agent Skills](https://agentskills.io/specificat
 | Sonnet | 81% → 93%                 | 28 → 30   | −2%   |
 | Opus   | 77% → 97%                 | 28 → 33   | −6%   |
 
-Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without. A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (Sonnet, Haiku), a decision contradicted by the repository on a later turn (Haiku), and the irreversible deletion, where with Bash available the skill stops Opus (1/5 runs deleted vs 5/5) but not Haiku or Sonnet (9/10 deleted). Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). No human has checked the grades.
+Simple requests stay simple: across 108 trivial-request runs, 8 failed with the skill and 9 without. A procedural skill keeps control (eval 8, 0 failures). Known gaps: a tool chosen for appearance (Sonnet, Haiku), a decision contradicted by the repository on a later turn (Haiku), and the irreversible deletion, where 1.3.0 brings the runs that delete from 10-11/15 down to 1/15 (measured on that eval only; the table above is the 1.2.0 body). Model-invoked triggering is unreliable on every model (7/16 to 13/16 of held-out cases). No human has checked the grades.
 
 ## Why it exists
 

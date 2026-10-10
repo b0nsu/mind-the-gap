@@ -51,7 +51,9 @@ def grade(f):
     ev = evals[r["eval_id"]]
     conv = "\n\n".join(f"<user turn={i+1}>\n{t['user']}\n</user>\n<assistant turn={i+1}>\n{t['assistant']}\n</assistant>"
                        for i, t in enumerate(r["transcript"]))
-    files = "\n\n".join(f"--- {k}\n{v[:4000]}" for k, v in r.get("final_files", {}).items()) or "(none)"
+    SKIP = ("__pycache__", "node_modules", ".venv", ".git/", ".pytest_cache")
+    files = "\n\n".join(f"--- {k}\n{v[:4000]}" for k, v in r.get("final_files", {}).items()
+                         if not any(x in k for x in SKIP) and "\x00" not in v)[:120000] or "(none)"  # skip bytecode, deps, binaries; cap
     tools = "\n".join(f"turn {t['turn']}: {t['name']} {json.dumps(t['input'], ensure_ascii=False)[:400]}"
                       for t in r.get("tools", []))[:12000] or "(none)"
     p = PROMPT.format(conversation=conv, files=files, removed=r.get("files_removed") or "none", tools=tools,
@@ -60,9 +62,10 @@ def grade(f):
     p = p.replace("\x00", "\\x00")  # a NUL in a workspace file or tool input cannot be passed in argv
     err = None
     for _ in range(3):
-        out = subprocess.run([CLAUDE, "-p", p, "--model", GRADER, "--setting-sources", "project",
+        out = subprocess.run([CLAUDE, "-p", "--model", GRADER, "--setting-sources", "project",
                               "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}',
                               "--tools", "", "--output-format", "json"],
+                             input=p,  # prompt on stdin: a workspace snapshot can exceed ARG_MAX
                              cwd=S / "grader", env=env, capture_output=True, text=True, timeout=600)
         try:
             txt = json.loads(out.stdout)["result"]

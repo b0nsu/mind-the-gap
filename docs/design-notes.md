@@ -49,10 +49,16 @@ rather than how capable the model is. §7's handback (what was verified, what
 was not) is the review step of that loop made unavoidable.
 
 The skill does not enforce this on itself. In the irreversible-deletion eval
-(eval 9), with the skill always on, 2 of 15 runs tried the deletion without
-asking, the same count as without it. The permission prompt stopped every
-attempt. The skill shapes how the model asks; whether the model can act is
-decided by tool approvals, and the README says to keep them on.
+(eval 9), run with Bash available and no approval prompt, the model deleted
+the files in 9/9 runs without the skill and 0/9 with skill 1.3.0; skill
+1.2.1, without the sentence that "don't ask, just do it" does not waive the
+confirmation, still deleted in 10/15 and 11/15. Even on 1.3.0 an occasional
+run acts first: Haiku deleted the only copy in 2 of 8 runs of held-out eval
+201 and ran the publish-and-email script in 1 of 3 runs of eval 210. The
+skill makes the model ask far more often; whether it can act is decided by
+tool approvals, and the README says to keep them on. (An earlier version of
+this paragraph cited 2 of 15 attempts stopped by the permission prompt; that
+harness refused every Bash call automatically.)
 
 One deliberate departure: the Fable guide recommends asking the model to quiz
 you after a large change and merging only when you pass. §5 of this skill

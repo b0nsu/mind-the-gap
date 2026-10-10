@@ -1,6 +1,8 @@
 # mind-the-gap — changelog
 
 ## Unreleased
+- `evals/evals_heldout.json` 1.0.1: assertions 101#4, 107#2 and 108#2 rewritten for documented faults that favour neither configuration or the without-skill one (`revision_note`); 102#3 and 107#4 recorded but not rewritten, since that would raise the with-skill score after the fact. Evals 101/107/108 regraded under 1.0.1: 21 of 54 runs' verdicts changed, held-out gains +7.7 / +7.7 / +4.6 → +7.2 / +8.7 / +4.6 pp (`results/regrade-heldout-1.0.1-2026-10-10.txt`); the published table keeps the 1.0.0 grades.
+- Fourth grader spot check (claude-fable-5-1, separate session, blind): 61/63 agree, both disagreements the grader stricter, same items as the third check (`results/grader-spot-check-2026-10-09b-human.md`).
 - Held-out evals 102 and 107 read run by run: the Opus 3/3-vs-0/3 on 102 is a fixture-reading difference (the photos predate the last successful backup, so "may be the only copies" does not follow; the without-skill runs add that hedge, the with-skill runs do not), and the unasked advice on 107 is an Opus default present in 6/6 runs. Neither is a skill regression. Three fault candidates added to `evals/evals_heldout.json` (102#3, 107#2, 107#5); assertions unchanged. `docs/measurements.md` and `docs/review-response-2026-10-10.md` corrected.
 - Release asset `results-raw-1.3.0-review.tar.gz` added to v1.3.0: the held-out runs, the trim-ablation runs and the grade files of both regrades (`docs/measurements.md` § Restoring the raw runs).
 - `docs/review-response-2026-10-10.md`: what the outside review found, what was checked, what changed, and the conclusion.

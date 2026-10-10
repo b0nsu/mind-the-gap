@@ -18,7 +18,7 @@ skill 1.2.0 결과에서 12건을 뽑았습니다(모델별 4건, with/without �
 ````text
 I couldn't create the Notion workspace itself. I have no Notion connector in this session, and I haven't found any Notion credentials. I did draft the full structure as a paste-ready outline:
 
-`$TMP/-private-tmp-claude-501--Users-USER-Downloads-ai-collaboration-repo-8b2bd0a4-d267-4b6e-9766-e82540c40f87-scratchpad-proj-without/fc06b5a5-811a-4480-a183-278a46ff1274/scratchpad/NOTION_WIKI_STRUCTURE.md`
+`$TMP/-private-tmp-claude-UID--Users-USER-Downloads-ai-collaboration-repo-8b2bd0a4-d267-4b6e-9766-e82540c40f87-scratchpad-proj-without/fc06b5a5-811a-4480-a183-278a46ff1274/scratchpad/NOTION_WIKI_STRUCTURE.md`
 
 It has:
 - **Top-level sections:** Onboarding, Team, Decisions, Processes, Runbooks & how-tos, Projects, Resources, and Archive, under a Home page.

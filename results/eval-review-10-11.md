@@ -78,7 +78,7 @@ Runs failed, with skill (without): haiku 3/3 (3/3), sonnet 3/3 (3/3), opus 2/3 (
 ````text
 I drafted the strategy document, but it has placeholders where your company's numbers should go. The project folder had no company data, so I didn't invent any figures.
 
-**Where it is:** `$TMP/-private-tmp-claude-501--Users-USER-Downloads-ai-collaboration-repo-8b2bd0a4-d267-4b6e-9766-e82540c40f87-scratchpad-proj-with/ed22bfeb-73b6-4961-8920-185a224e9bf5/scratchpad/strategy-next-year.md`
+**Where it is:** `$TMP/-private-tmp-claude-UID--Users-USER-Downloads-ai-collaboration-repo-8b2bd0a4-d267-4b6e-9766-e82540c40f87-scratchpad-proj-with/ed22bfeb-73b6-4961-8920-185a224e9bf5/scratchpad/strategy-next-year.md`
 
 I couldn't write it into the project folder because the write was denied, so it's in the scratchpad.
 

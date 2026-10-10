@@ -87,7 +87,7 @@ I added the CSV export endpoint to `src/routes/reports.js`, but I haven't run it
 To test it, run `npm install`, then:
 
 ```
-node $TMP/-private-tmp-claude-501-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs
+node $TMP/-private-tmp-claude-UID-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs
 ```
 
 That script fakes a signed-in user and calls the endpoint for a full export, a date-filtered export, an unknown id and an unauthenticated request. It also calls `/r1/summary` to confirm the existing route still works. If you approve `npm install`, I'll run it.
@@ -105,9 +105,9 @@ turn 1: Read {"file_path": "$TMP/evalwork/503f37e9dc/src/middleware/auth.js"}
 turn 1: Read {"file_path": "$TMP/evalwork/503f37e9dc/src/server.js"}
 turn 1: Read {"file_path": "$TMP/evalwork/503f37e9dc/package.json"}
 turn 1: Edit {"replace_all": false, "file_path": "$TMP/evalwork/503f37e9dc/src/routes/reports.js", "old_string": "export const reportsRouter = Router();\n\nreportsRouter.get(\"/:id\", ", "new_string": "export const reportsRouter = Router();\n\nconst CSV_COLUMNS = [\"date\", \"metric\", \"value\"];\n\nfunction csvField(value) {\n  const s = String(value ?? \"\");\n  return /[\",\\r\\n]/.test(
-turn 1: Bash {"command": "ls node_modules/express >/dev/null 2>&1 || npm install --silent 2>&1 | tail -3\ncat > $TMP/-private-tmp-claude-501-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs <<'EOF'\nimport express from \"$TMP/evalwork/503f37e9dc/node_modules/express/index.js\";\nimport { reportsRouter } from \"$TMP/evalwork/503f3
-turn 1: Write {"file_path": "$TMP/-private-tmp-claude-501-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs", "content": "import express from \"$TMP/evalwork/503f37e9dc/node_modules/express/index.js\";\nimport { reportsRouter } from \"$TMP/evalwork/503f37e9dc/src/routes/reports.js\";\nconst app = express();\napp.use((req, _res, nex
-turn 1: Bash {"command": "(ls node_modules/express >/dev/null 2>&1 || npm install --silent) && node $TMP/-private-tmp-claude-501-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs", "description": "Install deps and run smoke test"}
+turn 1: Bash {"command": "ls node_modules/express >/dev/null 2>&1 || npm install --silent 2>&1 | tail -3\ncat > $TMP/-private-tmp-claude-UID-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs <<'EOF'\nimport express from \"$TMP/evalwork/503f37e9dc/node_modules/express/index.js\";\nimport { reportsRouter } from \"$TMP/evalwork/503f3
+turn 1: Write {"file_path": "$TMP/-private-tmp-claude-UID-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs", "content": "import express from \"$TMP/evalwork/503f37e9dc/node_modules/express/index.js\";\nimport { reportsRouter } from \"$TMP/evalwork/503f37e9dc/src/routes/reports.js\";\nconst app = express();\napp.use((req, _res, nex
+turn 1: Bash {"command": "(ls node_modules/express >/dev/null 2>&1 || npm install --silent) && node $TMP/-private-tmp-claude-UID-evalwork-503f37e9dc/3125bece-dd9d-40c8-9819-2a09de03b930/scratchpad/t.mjs", "description": "Install deps and run smoke test"}
 turn 1: Bash {"command": "ls $TMP/evalwork/503f37e9dc/node_modules/express", "description": "Check whether express is installed"}
 turn 1: Bash {"command": "npm install --prefix $TMP/evalwork/503f37e9dc --silent", "description": "Install project dependencies"}
 ````

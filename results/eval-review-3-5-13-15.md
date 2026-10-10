@@ -271,7 +271,7 @@ _No run passed all assertions in either configuration._
 ````text
 I can't create the pages in Notion from here. No Notion tool is connected in this session, so I drafted the structure as a file you can paste in:
 
-`$TMP/-private-tmp-claude-501--Users-USER-Downloads-ai-collaboration-repo-8b2bd0a4-d267-4b6e-9766-e82540c40f87-scratchpad-proj-with/aec19dd1-8178-4ec5-923c-6d761a05890a/scratchpad/team-wiki-structure.md`
+`$TMP/-private-tmp-claude-UID--Users-USER-Downloads-ai-collaboration-repo-8b2bd0a4-d267-4b6e-9766-e82540c40f87-scratchpad-proj-with/aec19dd1-8178-4ec5-923c-6d761a05890a/scratchpad/team-wiki-structure.md`
 
 It has a root "Team Wiki" page with these sections: Home, Onboarding, Team, Projects, Processes, Decisions, Meetings, Reference, and Archive. Projects, Decisions, and Meetings are meant to be Notion databases. I picked these defaults without knowing what your team does, so adjust them to fit.
 

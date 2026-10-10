@@ -15,7 +15,7 @@ Seven of nine concerns confirmed as stated. One (sensitivity to aggregation) con
 | 5 | "The permission prompt stopped every attempt" described an automatic refusal | Confirmed, and worse: Bash was refused in 30/30 eval 9 runs, including the `--dry-run` the eval allows, and every response mentioned the refusal. With Bash working, 1.2.1 deleted the logs in 10-11/15 runs. |
 | 6 | §5 boundary between "confirm once" and "do not re-ask" | Confirmed as a description of where failures sit. The sentence the review proposed was measured and did not move eval 28; a different sentence in §3 fixed eval 9 (below). |
 | 7 | Rename may hurt model-invoked triggering | Wrong in direction. Same-day control under the old name: Haiku 1/16 → 7/16, Sonnet 9/16 → 12/16, Opus 13/16 → 13/16 fired; 16/16 quiet throughout. |
-| 8 | Maintenance section and description loaded on every turn | Confirmed (description 985 of 1,024 characters). Not changed; the trim ablation in `docs/proposed-trim-ablations.md` was measured 2026-10-10 and not adopted (t1-maint cost 1.9-2.2 pp on Haiku and Sonnet). |
+| 8 | Maintenance section and description loaded on every turn | Confirmed (description 979 of 1,024 characters, 985 as written with escapes). Not changed; the trim ablation in `docs/proposed-trim-ablations.md` was measured 2026-10-10 and not adopted (t1-maint cost 1.9-2.2 pp on Haiku and Sonnet). |
 | 9 | Pooled assertions overweight underreach evals | Direction confirmed. Eval-weighted gain is 0.4-2.3 pp below pooled on the raw runs; both are now reported. |
 
 ## What changed in the skill

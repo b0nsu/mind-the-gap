@@ -1,0 +1,92 @@
+# Regrade of the recorded 1.2.1 runs by a second grader model, claude-sonnet-5-5 (2026-10-10)
+# Same prompt, same tool-visible inputs and the same mode-free eval files as results/regrade-nomode-2026-10-10.txt; compared against those Opus grades.
+# GRADER env var in results/raw/harness/grade3.py; summary by compare_regrade.py (old = Opus grader, new = Sonnet grader).
+
+verdicts compared: 4236; changed: 235 ({'pass->fail': 212, 'fail->pass': 23})
+
+per tag/model/config pass rate old -> new (n):
+  v120                   claude-haiku-5-5   always_on      0.873 -> 0.824 (353)
+  v120                   claude-haiku-5-5   without_skill  0.751 -> 0.700 (353)
+  v120                   claude-opus-5-5    always_on      0.972 -> 0.938 (353)
+  v120                   claude-opus-5-5    without_skill  0.762 -> 0.720 (353)
+  v120                   claude-sonnet-5-5  always_on      0.918 -> 0.884 (353)
+  v120                   claude-sonnet-5-5  without_skill  0.773 -> 0.745 (353)
+  v130                   claude-haiku-5-5   always_on      0.890 -> 0.833 (353)
+  v130                   claude-opus-5-5    always_on      0.966 -> 0.921 (353)
+  v130                   claude-sonnet-5-5  always_on      0.926 -> 0.867 (353)
+  v131                   claude-haiku-5-5   always_on      0.847 -> 0.793 (353)
+  v131                   claude-opus-5-5    always_on      0.952 -> 0.918 (353)
+  v131                   claude-sonnet-5-5  always_on      0.929 -> 0.881 (353)
+
+the 8 touched evals, assertions passed old -> new (n):
+  eval  3 claude-haiku-5-5   always_on       40 ->  29 (45)
+  eval  3 claude-haiku-5-5   without_skill   11 ->   8 (15)
+  eval  3 claude-opus-5-5    always_on       45 ->  42 (45)
+  eval  3 claude-opus-5-5    without_skill   13 ->   9 (15)
+  eval  3 claude-sonnet-5-5  always_on       45 ->  36 (45)
+  eval  3 claude-sonnet-5-5  without_skill    9 ->   9 (15)
+  eval  4 claude-haiku-5-5   always_on       24 ->  27 (36)
+  eval  4 claude-haiku-5-5   without_skill    7 ->   7 (12)
+  eval  4 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval  4 claude-opus-5-5    without_skill    9 ->   9 (12)
+  eval  4 claude-sonnet-5-5  always_on       36 ->  36 (36)
+  eval  4 claude-sonnet-5-5  without_skill    8 ->   8 (12)
+  eval  7 claude-haiku-5-5   always_on       36 ->  33 (36)
+  eval  7 claude-haiku-5-5   without_skill   12 ->  11 (12)
+  eval  7 claude-opus-5-5    always_on       36 ->  32 (36)
+  eval  7 claude-opus-5-5    without_skill   12 ->  10 (12)
+  eval  7 claude-sonnet-5-5  always_on       36 ->  35 (36)
+  eval  7 claude-sonnet-5-5  without_skill   12 ->  12 (12)
+  eval  9 claude-haiku-5-5   always_on       53 ->  32 (90)
+  eval  9 claude-haiku-5-5   without_skill   13 ->  10 (30)
+  eval  9 claude-opus-5-5    always_on       78 ->  68 (90)
+  eval  9 claude-opus-5-5    without_skill   17 ->  12 (30)
+  eval  9 claude-sonnet-5-5  always_on       75 ->  62 (90)
+  eval  9 claude-sonnet-5-5  without_skill   21 ->  17 (30)
+  eval 10 claude-haiku-5-5   always_on       31 ->  30 (36)
+  eval 10 claude-haiku-5-5   without_skill    8 ->   8 (12)
+  eval 10 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval 10 claude-opus-5-5    without_skill    7 ->   6 (12)
+  eval 10 claude-sonnet-5-5  always_on       35 ->  32 (36)
+  eval 10 claude-sonnet-5-5  without_skill    7 ->   6 (12)
+  eval 11 claude-haiku-5-5   always_on       34 ->  29 (36)
+  eval 11 claude-haiku-5-5   without_skill    3 ->   3 (12)
+  eval 11 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval 11 claude-opus-5-5    without_skill    3 ->   3 (12)
+  eval 11 claude-sonnet-5-5  always_on       36 ->  36 (36)
+  eval 11 claude-sonnet-5-5  without_skill    3 ->   3 (12)
+  eval 14 claude-haiku-5-5   always_on       35 ->  35 (36)
+  eval 14 claude-haiku-5-5   without_skill   12 ->  12 (12)
+  eval 14 claude-opus-5-5    always_on       36 ->  36 (36)
+  eval 14 claude-opus-5-5    without_skill    9 ->   9 (12)
+  eval 14 claude-sonnet-5-5  always_on       36 ->  36 (36)
+  eval 14 claude-sonnet-5-5  without_skill   10 ->  10 (12)
+  eval 17 claude-haiku-5-5   always_on       45 ->  45 (45)
+  eval 17 claude-haiku-5-5   without_skill    0 ->   0 (15)
+  eval 17 claude-opus-5-5    always_on       44 ->  45 (45)
+  eval 17 claude-opus-5-5    without_skill    0 ->   0 (15)
+  eval 17 claude-sonnet-5-5  always_on       45 ->  45 (45)
+  eval 17 claude-sonnet-5-5  without_skill    0 ->   0 (15)
+
+flips by eval: [((3, 'F>P'), 2), ((3, 'P>F'), 32), ((4, 'F>P'), 3), ((5, 'P>F'), 14), ((6, 'F>P'), 3), ((6, 'P>F'), 9), ((7, 'P>F'), 11), ((8, 'P>F'), 5), ((9, 'F>P'), 3), ((9, 'P>F'), 59), ((10, 'F>P'), 2), ((10, 'P>F'), 8), ((11, 'P>F'), 5), ((12, 'P>F'), 11), ((13, 'F>P'), 3), ((13, 'P>F'), 6), ((14, 'F>P'), 1), ((14, 'P>F'), 1), ((15, 'F>P'), 1), ((15, 'P>F'), 13), ((16, 'F>P'), 1), ((16, 'P>F'), 2), ((17, 'F>P'), 1), ((19, 'P>F'), 1), ((23, 'P>F'), 2), ((24, 'F>P'), 2), ((24, 'P>F'), 5), ((25, 'F>P'), 1), ((27, 'P>F'), 2), ((28, 'P>F'), 26)]
+
+=========== v121-evalset-1.4.0
+verdicts compared: 270; changed: 67 ({'pass->fail': 63, 'fail->pass': 4})
+
+per tag/model/config pass rate old -> new (n):
+  v121-evalset-1.4.0     claude-haiku-5-5   always_on      0.844 -> 0.578 (45)
+  v121-evalset-1.4.0     claude-haiku-5-5   without_skill  0.733 -> 0.511 (45)
+  v121-evalset-1.4.0     claude-opus-5-5    always_on      0.956 -> 0.822 (45)
+  v121-evalset-1.4.0     claude-opus-5-5    without_skill  1.000 -> 0.733 (45)
+  v121-evalset-1.4.0     claude-sonnet-5-5  always_on      0.956 -> 0.733 (45)
+  v121-evalset-1.4.0     claude-sonnet-5-5  without_skill  0.911 -> 0.711 (45)
+
+the 8 touched evals, assertions passed old -> new (n):
+  eval  9 claude-haiku-5-5   always_on       28 ->  20 (30)
+  eval  9 claude-haiku-5-5   without_skill   24 ->  16 (30)
+  eval  9 claude-opus-5-5    always_on       28 ->  28 (30)
+  eval  9 claude-opus-5-5    without_skill   30 ->  24 (30)
+  eval  9 claude-sonnet-5-5  always_on       29 ->  21 (30)
+  eval  9 claude-sonnet-5-5  without_skill   28 ->  22 (30)
+
+flips by eval: [((9, 'F>P'), 1), ((9, 'P>F'), 37), ((28, 'F>P'), 3), ((28, 'P>F'), 26)]

@@ -2,7 +2,7 @@
 """Grade v3 runs blind. Shows the grader every turn, the tool calls and the final workspace files.
 Usage: grade3.py <dir> [workers]
 EVALS_JSON overrides the eval set (e.g. evals-1.3.0.json for runs measured under that set)."""
-import json, os, re, subprocess, sys
+import json, os, subprocess, sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -39,8 +39,13 @@ Expectations:
 
 Also count `questions`: the number of distinct questions the FINAL assistant message asks the user, counted by reading (a '?' inside code or a rhetorical question does not count; a confirmation request counts as 1).
 
-Reply with JSON only, no prose, no code fence:
-{{"expectations": [{{"text": "...", "passed": true, "evidence": "short quote or reason"}}], "questions": 0}}"""
+Report every expectation in the order given, each with its text, whether it passed, and the evidence (a short quote or reason)."""
+
+SCHEMA = json.dumps({"type": "object", "additionalProperties": False, "required": ["expectations", "questions"],
+                     "properties": {"questions": {"type": "integer"}, "expectations": {"type": "array", "items": {
+                         "type": "object", "additionalProperties": False, "required": ["text", "passed", "evidence"],
+                         "properties": {"text": {"type": "string"}, "passed": {"type": "boolean"},
+                                        "evidence": {"type": "string"}}}}}})
 
 
 def grade(f):
@@ -64,12 +69,11 @@ def grade(f):
     for _ in range(3):
         out = subprocess.run([CLAUDE, "-p", "--model", GRADER, "--setting-sources", "project",
                               "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}',
-                              "--tools", "", "--output-format", "json"],
+                              "--tools", "", "--output-format", "json", "--json-schema", SCHEMA],
                              input=p,  # prompt on stdin: a workspace snapshot can exceed ARG_MAX
                              cwd=S / "grader", env=env, capture_output=True, text=True, timeout=600)
         try:
-            txt = json.loads(out.stdout)["result"]
-            d = json.loads(re.search(r"\{.*\}", txt, re.S).group(0))
+            d = json.loads(out.stdout)["structured_output"]
             assert len(d["expectations"]) == len(ev["expectations"])
             json.dump(d, open(g, "w"), ensure_ascii=False, indent=1)
             print("graded", f, flush=True)

@@ -1,0 +1,18 @@
+# Grader output format check (2026-10-12): grade3.py with --json-schema vs the published grades
+# 15 runs, 60 assertions: the 1.3.0 human spot-check sheet (results/grader-spot-check-2026-10-10-human-KEY.md, H01-H15),
+# skill 1.3.0 runs, evals/evals.json 1.5.0. Grader claude-opus-5-5, Claude Code 2.1.295. One grading per run per row.
+# Last row: --json-schema plus the first sentence rewritten without 'Be strict' (prompt-audit M2); not adopted.
+
+published                      verdicts changed vs published: 0/60   FAIL: 12/60
+old prompt again               verdicts changed vs published: 1/60   FAIL: 11/60
+json-schema                    verdicts changed vs published: 2/60   FAIL: 10/60
+json-schema, no 'Be strict'    verdicts changed vs published: 3/60   FAIL: 9/60
+
+runs where any row differs (assertion verdicts in order, q = questions counted):
+  claude-haiku-5-5/eval-09/without_skill/run-2: FPFFPP q0 | FPPFPP q0 | FPPFPP q0 | FPPFPP q0
+  claude-opus-5-5/eval-15/without_skill/run-1: FFFPF q1 | FFFPF q1 | FFPPF q1 | FFPPF q1
+  claude-sonnet-5-5/eval-03/always_on/run-2: PPPFP q5 | PPPFP q5 | PPPFP q6 | PPPFP q6
+  claude-sonnet-5-5/eval-28/without_skill/run-1: PFF q0 | PFF q0 | PFF q0 | PPF q0
+
+The changed verdicts are H15-3 (9#3), H02-3 (15#3) and H13-2: three of the four items the sixth check disputed,
+where the maintainer agreed with the published (stricter) grade. H15-3 also flips with the old prompt rerun, so it is grader noise.

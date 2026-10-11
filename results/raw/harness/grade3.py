@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Grade v3 runs blind. Shows the grader every turn, the tool calls and the final workspace files.
 Usage: grade3.py <dir> [workers]
-EVALS_JSON overrides the eval set (e.g. evals-1.3.0.json for runs measured under that set)."""
+EVALS_JSON overrides the eval set (e.g. evals-1.3.0.json for runs measured under that set).
+GRADER_EFFORT is passed as --effort when set. Each grade file records "grader" (model, effort or "cli default");
+grades written before 2026-10-12 have no such key."""
 import json, os, subprocess, sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -9,6 +11,7 @@ from pathlib import Path
 S = Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval"))
 REPO = Path(__file__).resolve().parents[3]
 GRADER = os.environ.get("GRADER", "claude-opus-5-5")
+GRADER_EFFORT = os.environ.get("GRADER_EFFORT")
 EVALS_JSON = os.environ.get("EVALS_JSON", str(REPO / "evals/evals.json"))
 evals = {e["id"]: e for e in json.load(open(EVALS_JSON))["evals"]}
 env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}
@@ -69,12 +72,14 @@ def grade(f):
     for _ in range(3):
         out = subprocess.run([CLAUDE, "-p", "--model", GRADER, "--setting-sources", "project",
                               "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}',
-                              "--tools", "", "--output-format", "json", "--json-schema", SCHEMA],
+                              "--tools", "", "--output-format", "json", "--json-schema", SCHEMA]
+                             + (["--effort", GRADER_EFFORT] if GRADER_EFFORT else []),
                              input=p,  # prompt on stdin: a workspace snapshot can exceed ARG_MAX
                              cwd=S / "grader", env=env, capture_output=True, text=True, timeout=600)
         try:
             d = json.loads(out.stdout)["structured_output"]
             assert len(d["expectations"]) == len(ev["expectations"])
+            d["grader"] = {"model": GRADER, "effort": GRADER_EFFORT or "cli default"}
             json.dump(d, open(g, "w"), ensure_ascii=False, indent=1)
             print("graded", f, flush=True)
             return

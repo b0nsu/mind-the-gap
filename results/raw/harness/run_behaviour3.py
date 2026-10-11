@@ -20,7 +20,9 @@ Usage: run_behaviour3.py <models,comma> <runs> <eval ids,comma|all> <cfg,cfg> [s
   skill_tag: name of a dir under $EVAL_SCRATCH/evalskills (default: current). The tag "current" is
   created from $REPO/skills/mind-the-gap when missing; other tags are snapshots you place there by hand
   (<tag>/skill = a copy of the skill folder, <tag>/plugin = a plugin wrapper around the same files).
-Env: EVAL_SCRATCH, OUT, TOOLS, WORKERS, CLAUDE_BIN, EVALS_JSON (default evals/evals.json; grade3.py takes the same variable).
+Env: EVAL_SCRATCH, OUT, TOOLS, WORKERS, CLAUDE_BIN, EVALS_JSON (default evals/evals.json; grade3.py takes the same variable),
+  EFFORT (passed as --effort when set; unset leaves the CLI default, which the init event does not report). Each run
+  records "effort" (the value, or "cli default") and "claude_code_version"; runs recorded before 2026-10-12 have neither.
 """
 import json, os, shutil, subprocess, sys, uuid
 from concurrent.futures import ThreadPoolExecutor
@@ -49,6 +51,7 @@ FORCE = ("The {name} skill is installed for this session. Before you respond, "
 evals = [e for e in ALL if e["id"] in IDS]
 env = {k: v for k, v in os.environ.items() if k != "CLAUDECODE"}
 CLAUDE = os.environ.get("CLAUDE_BIN", "claude")  # absolute path when PATH has another claude first
+EFFORT = os.environ.get("EFFORT")
 
 
 def ensure_current_skill():
@@ -89,6 +92,8 @@ def one(job):
     before = snapshot(wd)
     base = ["--model", model, "--setting-sources", "project", "--output-format", "stream-json", "--verbose",
             "--allowedTools", TOOLS, "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}']
+    if EFFORT:
+        base += ["--effort", EFFORT]
     for pl in ev.get("plugins", []):
         base += ["--plugin-dir", str(REPO / pl)]
     sysp = []
@@ -101,7 +106,7 @@ def one(job):
         base += ["--append-system-prompt", " ".join(sysp)]
     sid = str(uuid.uuid4())
     prompts = [ev["prompt"]] + ev.get("turns", [])
-    transcript, tools, real_model = [], [], None
+    transcript, tools, real_model, cc_version = [], [], None, None
     for i, prompt in enumerate(prompts):
         cmd = [CLAUDE, "-p", prompt] + base + (["--session-id", sid] if i == 0 else ["--resume", sid])
         try:
@@ -115,7 +120,7 @@ def one(job):
             except json.JSONDecodeError:
                 continue
             if e.get("type") == "system" and e.get("subtype") == "init":
-                real_model = e.get("model")
+                real_model, cc_version = e.get("model"), e.get("claude_code_version")
             elif e.get("type") == "assistant":
                 for c in e["message"].get("content", []):
                     if c.get("type") == "tool_use":
@@ -131,6 +136,7 @@ def one(job):
     changed = {k: v for k, v in after.items() if before.get(k) != v}
     removed = [k for k in before if k not in after]
     json.dump({"eval_id": ev["id"], "config": cfg, "run": run, "model": real_model, "skill_tag": TAG,
+               "effort": EFFORT or "cli default", "claude_code_version": cc_version,
                "prompt": ev["prompt"], "allowed_tools": TOOLS, "transcript": transcript, "tools": tools,
                "response": transcript[-1]["assistant"], "files_changed": changed, "files_removed": removed,
                "final_files": {k: v for k, v in after.items() if k in {*changed, *before}},

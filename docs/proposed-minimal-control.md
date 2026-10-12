@@ -127,10 +127,11 @@ as predicted on 111, 217 and 115 (control 3/3 failed → 0/3 on every model wher
 and 209 moved against: `t5` asks which draft is closest without saying why the choice is the user's
 (assertion 5, 6 of 9 runs), which the 63-word control never did because it never asked.
 
-Secondary, read after the primary. Where the body still beats `t5` (216, 213, 207, 104, 206, 204, 101)
-the failed assertion is of one kind: the reply states as settled something it did not check, instead of
-saying what it has not verified. That is §7's "what remains unverified" line, absent from both controls.
-114 (a haiku) is the taste sentence over-applied: `t5` offered three drafts on Sonnet and Opus. Where `t5`
+Secondary, read after the primary. Where the body still beats `t5`, two things. 114 (a haiku) and 207 (an
+out-of-office reply) are the taste sentence over-applied: `t5` offered three versions and asked which
+is closest where one short piece was asked for (7 and 6 of 9 runs). On 216, 213, 104, 206, 204 and 101 the
+failed assertion is of one kind: the reply states as settled something it did not check, instead of
+saying what it has not verified. That is §7's "what remains unverified" line, absent from both controls. Where `t5`
 beats the body (106, 107, 209) the body asks more.
 
 Not measured here: `t5` plus one sentence on saying what was not verified, and a narrower taste

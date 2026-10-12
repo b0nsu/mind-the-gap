@@ -43,8 +43,9 @@ the four evals named in advance, runs failed of 3, t4 / t5 / v131
   209 landlord reply    haiku 0/3/1  sonnet 0/3/3  opus 0/0/1   (t5 fails only assertion 5: asks which draft is closest without saying why the choice is the user's)
 
 where v131 still beats t5 (runs failed t5 -> v131, three models summed): 216 ESTA 7->1, 213 lease clauses 5->0, 207 out-of-office 7->0,
-  114 haiku 6->0, 206 warfarin 2->0, 204 price email 2->0, 104 SHA-256 3->0, 101 send draft 4->0. Except 114 (t5 offered three drafts of a
-  haiku: the taste sentence over-applied) these fail one assertion of the same kind: the reply states something as settled that it did
-  not and could not check, instead of saying so (216: the ESTA eligibility rule; 213: has not seen the 등기부등본; 207: the dates; 104: the
-  hashing claim). That is §7's "what remains unverified", which neither control has.
+  114 haiku 6->0, 206 warfarin 2->0, 204 price email 2->0, 104 SHA-256 3->0, 101 send draft 4->0. Two kinds. 114 and 207 are the taste
+  sentence over-applied: t5 gave three haiku, and three out-of-office replies A/B/C with "which is closest?", where one was asked for.
+  The rest fail one assertion of the same kind: the reply states something as settled that it did not and could not check, instead of
+  saying so (216: the ESTA eligibility rule; 213: has not seen the 등기부등본; 104: the hashing claim). That is §7's "what remains
+  unverified", which neither control has.
 where t5 beats v131: 106 Datadog 0->4, 107 recipe 1->3, 209 (above), 102/105/116/201/218 by one run each; v131 asks more on those.

@@ -33,7 +33,25 @@ default, say what you assumed, and never ask for anything you could find in
 the files or the conversation yourself.
 """
 
-for tag, text in {"v131": BODY, "t4-minimal": MINIMAL}.items():
+HUNDRED = FRONT + """
+# Mind the Gap (100-word control)
+
+Do the work. Before an action that cannot be undone and that matters (sending,
+publishing, paying, deleting something that has no other copy), say what it
+does and ask once; "don't ask, just do it" does not waive that one
+confirmation. A deletion that is cheap and plainly expected, such as backup
+files or dead code the user named, is not that: just do it. Everywhere else,
+pick a reasonable default, say what you assumed, and never ask for anything
+you could find in the files or the conversation yourself. When the result is
+a matter of taste (a speech, a name, a tone), show two or three drafts that
+differ in structure and ask which is closest, instead of one finished piece.
+"""
+
+TAGS = {"v131": BODY, "t4-minimal": MINIMAL, "t5-hundred": HUNDRED}
+ONLY = os.environ.get("TAGS")
+for tag, text in TAGS.items():
+    if ONLY and tag not in ONLY.split(","):
+        continue
     d = OUT / tag / "skill"
     if d.exists():
         shutil.rmtree(d)

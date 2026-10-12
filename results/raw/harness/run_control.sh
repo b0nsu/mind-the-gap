@@ -13,7 +13,7 @@ mkdir -p "$EVAL_SCRATCH"; cd "$EVAL_SCRATCH"
 for SET in heldout heldout2; do
   export EVALS_JSON="$REPO/evals/evals_${SET}.json"
   OUT="$EVAL_SCRATCH/control-$SET"; export OUT
-  for T in v131 t4-minimal; do
+  for T in $(echo "${TAGS:-v131 t4-minimal}" | tr , " "); do
     python3 -I "$H/run_behaviour3.py" "$M" "$RUNS" all always_on "$T" > "control_${SET}_${T}.log" 2>&1
   done
   python3 -I "$H/grade3.py" "$OUT" 4 > "control_${SET}_grade.log" 2>&1

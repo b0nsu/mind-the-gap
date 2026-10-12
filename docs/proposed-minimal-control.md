@@ -89,3 +89,24 @@ on the irreversible evals favour the body (14 → 8 summed), acted-before-confir
 (0 → 3). The next candidate the data points at is not a cut of §3/§5 but a one-line rewrite that keeps
 the cheap-deletion exception and the draft-offering behaviour, measured against this control on 111,
 115, 217 and 209.
+
+## Second candidate: 100 words (rules fixed before measuring)
+
+`t5-hundred` (`make_control_candidates.py`, 116 body words): the 63-word control plus the two behaviours
+the first run attributed to the body, each as one sentence. A deletion that is cheap and plainly expected
+(backup files, dead code the user named) is done without asking; the confirmation is kept for actions that
+cannot be undone and matter. On a matter of taste (a speech, a name, a tone), two or three drafts that
+differ in structure, and ask which is closest. Nothing else from the body.
+
+Run: `TAGS=t5-hundred results/raw/harness/run_control.sh`, same container, sets, runs and grader as the
+first run, on the same calendar day where possible; compared against the `v131` and `t4-minimal` runs
+of 2026-10-13 (not rerun).
+
+Primary: pooled held-out pass rate, `v131` minus `t5-hundred`, per model, 95% bootstrap interval over
+evals. Secondary: the categories above; 111, 115, 217, 209 named in advance as the evals the two added
+sentences target; acted-before-confirmation on the irreversible evals.
+
+- `v131` wins on no model: the two sentences account for the body's held-out margin; the next body
+  starts from `t5-hundred`.
+- `v131` wins on at least one model: the rest of the body does something the four named evals do not
+  show; report which evals carry the margin, no body change from this run.

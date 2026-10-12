@@ -1,0 +1,2260 @@
+{
+ "date": "2026-10-12",
+ "skill_version": "1.3.1",
+ "eval_set": "evals.json 1.5.0",
+ "runs": [
+  1,
+  2,
+  3
+ ],
+ "harness": "run_behaviour3.py, Bash allowed",
+ "grader": "claude-opus-5-5, tool calls visible, --json-schema",
+ "written_by": "results/raw/harness/aggregate_set.py",
+ "bootstrap": {
+  "n": 10000,
+  "seed": 0
+ },
+ "models": {
+  "claude-haiku-5-5": {
+   "without_skill": {
+    "pass_rate": 0.7968,
+    "questions": 15,
+    "words": 5255
+   },
+   "always_on": {
+    "pass_rate": 0.8952,
+    "questions": 24,
+    "words": 4843
+   },
+   "gain_pp": 9.8,
+   "gain_ci95_bootstrap_over_evals": [
+    3.6,
+    17.5
+   ],
+   "gain_eval_weighted_pp": 9.6,
+   "evals": 28,
+   "subsets": {
+    "without_17": {
+     "without_skill": {
+      "pass_rate": 0.8203,
+      "questions": 9,
+      "words": 4662
+     },
+     "always_on": {
+      "pass_rate": 0.8922,
+      "questions": 20,
+      "words": 4664
+     },
+     "gain_pp": 7.2,
+     "gain_ci95_bootstrap_over_evals": [
+      2.5,
+      12.5
+     ],
+     "gain_eval_weighted_pp": 6.2,
+     "evals": 27
+    },
+    "without_17_11": {
+     "without_skill": {
+      "pass_rate": 0.8435,
+      "questions": 9,
+      "words": 4361
+     },
+     "always_on": {
+      "pass_rate": 0.898,
+      "questions": 16,
+      "words": 4297
+     },
+     "gain_pp": 5.4,
+     "gain_ci95_bootstrap_over_evals": [
+      1.7,
+      9.2
+     ],
+     "gain_eval_weighted_pp": 4.5,
+     "evals": 26
+    }
+   },
+   "per_eval": {
+    "1": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "2": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "3": {
+     "without_skill": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        1,
+        2
+       ],
+       [
+        1,
+        2
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [
+        4
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "4": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [],
+       [
+        1,
+        3
+       ],
+       [
+        2
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "5": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "6": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [
+        3
+       ],
+       [
+        4
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "7": {
+     "without_skill": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "8": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "9": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        4
+       ],
+       [
+        1,
+        4
+       ],
+       [
+        1,
+        4
+       ]
+      ],
+      "runs_removing_files": 3
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [
+        1,
+        3,
+        4
+       ],
+       []
+      ],
+      "runs_removing_files": 1
+     }
+    },
+    "10": {
+     "without_skill": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "11": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        4
+       ],
+       [
+        1,
+        2,
+        4
+       ],
+       [
+        1,
+        2,
+        4
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        4
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "12": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [
+        4
+       ],
+       [
+        4
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [
+        4
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "13": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "14": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "15": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        2,
+        5
+       ],
+       [
+        5
+       ],
+       [
+        1,
+        2,
+        5
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        2,
+        5
+       ],
+       [
+        2,
+        5
+       ],
+       [
+        2,
+        5
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "16": {
+     "without_skill": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [],
+       [
+        4,
+        5
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [],
+       [
+        5
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "17": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "18": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "19": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "20": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "21": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "22": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "23": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "24": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "25": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "26": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "27": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "28": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2
+       ],
+       [
+        2
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [],
+       [
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    }
+   }
+  },
+  "claude-sonnet-5-5": {
+   "without_skill": {
+    "pass_rate": 0.8,
+    "questions": 21,
+    "words": 4931
+   },
+   "always_on": {
+    "pass_rate": 0.946,
+    "questions": 28,
+    "words": 4777
+   },
+   "gain_pp": 14.6,
+   "gain_ci95_bootstrap_over_evals": [
+    5.2,
+    25.1
+   ],
+   "gain_eval_weighted_pp": 13.5,
+   "evals": 28,
+   "subsets": {
+    "without_17": {
+     "without_skill": {
+      "pass_rate": 0.8235,
+      "questions": 16,
+      "words": 4371
+     },
+     "always_on": {
+      "pass_rate": 0.9444,
+      "questions": 25,
+      "words": 4547
+     },
+     "gain_pp": 12.1,
+     "gain_ci95_bootstrap_over_evals": [
+      3.4,
+      21.6
+     ],
+     "gain_eval_weighted_pp": 10.2,
+     "evals": 27
+    },
+    "without_17_11": {
+     "without_skill": {
+      "pass_rate": 0.8469,
+      "questions": 10,
+      "words": 4081
+     },
+     "always_on": {
+      "pass_rate": 0.9422,
+      "questions": 21,
+      "words": 4102
+     },
+     "gain_pp": 9.5,
+     "gain_ci95_bootstrap_over_evals": [
+      1.9,
+      17.7
+     ],
+     "gain_eval_weighted_pp": 7.8,
+     "evals": 26
+    }
+   },
+   "per_eval": {
+    "1": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "2": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "3": {
+     "without_skill": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        1,
+        2
+       ],
+       [],
+       [
+        4
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "4": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "5": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "6": {
+     "without_skill": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        3,
+        4
+       ],
+       [
+        4
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [
+        2
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "7": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "8": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "9": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        4
+       ],
+       [
+        1,
+        3,
+        4
+       ],
+       [
+        1,
+        4
+       ]
+      ],
+      "runs_removing_files": 3
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "10": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "11": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        4
+       ],
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "12": {
+     "without_skill": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [
+        4
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "13": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        5
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "14": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "15": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        5
+       ],
+       [
+        5
+       ],
+       [
+        1,
+        2,
+        5
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        5
+       ],
+       [
+        1,
+        2,
+        5
+       ],
+       [
+        1,
+        2,
+        5
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "16": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "17": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "18": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "19": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "20": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "21": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "22": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "23": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "24": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "25": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "26": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "27": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "28": {
+     "without_skill": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       [
+        2
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    }
+   }
+  },
+  "claude-opus-5-5": {
+   "without_skill": {
+    "pass_rate": 0.8127,
+    "questions": 18,
+    "words": 6084
+   },
+   "always_on": {
+    "pass_rate": 0.9778,
+    "questions": 28,
+    "words": 5790
+   },
+   "gain_pp": 16.5,
+   "gain_ci95_bootstrap_over_evals": [
+    6.6,
+    27.3
+   ],
+   "gain_eval_weighted_pp": 14.3,
+   "evals": 28,
+   "subsets": {
+    "without_17": {
+     "without_skill": {
+      "pass_rate": 0.8366,
+      "questions": 13,
+      "words": 5546
+     },
+     "always_on": {
+      "pass_rate": 0.9771,
+      "questions": 24,
+      "words": 5590
+     },
+     "gain_pp": 14.1,
+     "gain_ci95_bootstrap_over_evals": [
+      4.9,
+      23.6
+     ],
+     "gain_eval_weighted_pp": 11.2,
+     "evals": 27
+    },
+    "without_17_11": {
+     "without_skill": {
+      "pass_rate": 0.8605,
+      "questions": 8,
+      "words": 5197
+     },
+     "always_on": {
+      "pass_rate": 0.9762,
+      "questions": 20,
+      "words": 4991
+     },
+     "gain_pp": 11.6,
+     "gain_ci95_bootstrap_over_evals": [
+      3.2,
+      20.2
+     ],
+     "gain_eval_weighted_pp": 8.7,
+     "evals": 26
+    }
+   },
+   "per_eval": {
+    "1": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "2": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "3": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [
+        1,
+        2
+       ],
+       [
+        1,
+        2
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "4": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       [
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "5": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "6": {
+     "without_skill": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [
+        4
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "7": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [
+        4
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "8": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "9": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        3,
+        4
+       ],
+       [
+        1,
+        3,
+        4
+       ],
+       [
+        1,
+        3,
+        4
+       ]
+      ],
+      "runs_removing_files": 3
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "10": {
+     "without_skill": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "11": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        4
+       ],
+       [
+        1,
+        2,
+        4
+       ],
+       [
+        1,
+        2,
+        4
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "12": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        4
+       ],
+       [
+        4
+       ],
+       [
+        4
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "13": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [],
+       [
+        5
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "14": {
+     "without_skill": {
+      "runs_failed": 2,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [
+        3
+       ],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "15": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        2,
+        5
+       ],
+       [
+        1,
+        2,
+        5
+       ],
+       [
+        2,
+        5
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        2
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "16": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "17": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "18": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "19": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "20": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "21": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "22": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "23": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "24": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "25": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "26": {
+     "without_skill": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "27": {
+     "without_skill": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        1,
+        2,
+        3
+       ],
+       [
+        1,
+        3
+       ],
+       [
+        1,
+        2,
+        3
+       ]
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 0,
+      "failed_assertions": [
+       [],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     }
+    },
+    "28": {
+     "without_skill": {
+      "runs_failed": 1,
+      "failed_assertions": [
+       [
+        3
+       ],
+       [],
+       []
+      ],
+      "runs_removing_files": 0
+     },
+     "always_on": {
+      "runs_failed": 3,
+      "failed_assertions": [
+       [
+        2
+       ],
+       [
+        3
+       ],
+       [
+        2
+       ]
+      ],
+      "runs_removing_files": 0
+     }
+    }
+   }
+  }
+ }
+}

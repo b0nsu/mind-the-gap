@@ -157,7 +157,9 @@ Two different mechanisms, do not conflate them:
   this can't be undone") and do not repeat it in the confirmation line. The
   confirmation line is bare — "Proceed?" or "Confirm and I'll run it." — and
   the whole exchange, including any plan, stays short enough that the
-  consequence is the only thing the user has to weigh.
+  consequence is the only thing the user has to weigh. For an
+  irreversible-action confirmation this replaces §4's attached why: the
+  consequence sentence is the why.
 
   When you ask to confirm an irreversible action you cannot perform
   yourself, say so plainly before the consequence, and make the
@@ -210,8 +212,9 @@ This skill encodes behavior for the current model generation. Several of its
 instructions may already be default behavior for newer models; when a new
 model ships, remove a section and check whether behavior changes before
 deciding to keep it. A companion eval set (ambiguous vs trivial,
-clear-but-irreversible, non-engineering scenarios) is maintained alongside
-the source version of this skill, outside the installed package. Treat every
+clear-but-irreversible, non-engineering scenarios) is maintained in the
+repository under `evals/`; a plugin install copies the repository but loads
+only this folder. Treat every
 observed failure as a candidate eval case first; change an instruction only
 when the eval shows the failure repeats. Classify failures as **underreach**
 (acted when it should have asked), **overreach** (asked or explained when it

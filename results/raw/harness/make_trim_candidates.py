@@ -5,7 +5,8 @@ Each tag differs from the 1.2.1 body (git tag v1.2.1) by exactly one change, so 
 an eval can be attributed to that change. Writes $EVAL_SCRATCH/evalskills/<tag>/skill/
 (SKILL.md, references/, LICENSE.txt), the layout run_behaviour3.py reads for always_on.
 No plugin/ wrapper is built, so these tags cannot run the with_skill config.
-references/ and LICENSE.txt are copied from the working tree; only SKILL.md changed between 1.2.1 and 1.3.0.
+Every file of the skill folder (SKILL.md, references/, LICENSE.txt) is read from the v1.2.1 tag, so later edits to
+references/ do not leak into the baseline.
 
 Usage: make_trim_candidates.py
 """
@@ -13,10 +14,12 @@ import os, shutil, subprocess
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
-SRC = REPO / "skills/mind-the-gap"
 OUT = Path(os.environ.get("EVAL_SCRATCH", "/tmp/mind-the-gap-eval")) / "evalskills"
 BODY = subprocess.run(["git", "-C", str(REPO), "show", "v1.2.1:skills/mind-the-gap/SKILL.md"],
                       check=True, stdout=subprocess.PIPE, text=True).stdout  # stderr passes through, so a missing tag is visible
+FILES = subprocess.run(["git", "-C", str(REPO), "ls-tree", "-r", "--name-only", "v1.2.1", "--", "skills/mind-the-gap/"],
+                       check=True, stdout=subprocess.PIPE, text=True).stdout.split()
+FILES = [f.removeprefix("skills/mind-the-gap/") for f in FILES]
 
 
 def cut_from(text, marker):
@@ -69,7 +72,10 @@ for tag, text in CANDIDATES.items():
     d = OUT / tag / "skill"
     if d.exists():
         shutil.rmtree(d)
-    shutil.copytree(SRC, d)
+    for rel in FILES:
+        (d / rel).parent.mkdir(parents=True, exist_ok=True)
+        (d / rel).write_text(subprocess.run(["git", "-C", str(REPO), "show", f"v1.2.1:skills/mind-the-gap/{rel}"],
+                                            check=True, stdout=subprocess.PIPE, text=True).stdout)
     (d / "SKILL.md").write_text(text)
     w = len(text.split())
     print(f"{tag:10s} {w:5d} words ({w - base_words:+d})  {d}")

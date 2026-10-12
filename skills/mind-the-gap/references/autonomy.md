@@ -34,5 +34,5 @@ and do not make them approve every implementation detail either.
 
 Execution itself produces information. A task that looked low-risk can expose
 an irreversible step partway through; when it does, the irreversible-action
-rule in SKILL.md §5 applies from that point, regardless of the mode you
-started in.
+rule (SKILL.md §3, ownership filter; placement in §5) applies from that
+point, regardless of the mode you started in.

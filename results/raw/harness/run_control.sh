@@ -10,8 +10,8 @@ M=${MODELS:-claude-haiku-5-5,claude-sonnet-5-5,claude-opus-5-5}
 RUNS=${RUNS:-3}
 python3 -I "$H/make_control_candidates.py" || exit 1
 mkdir -p "$EVAL_SCRATCH"; cd "$EVAL_SCRATCH"
-for SET in heldout heldout2; do
-  export EVALS_JSON="$REPO/evals/evals_${SET}.json"
+for SET in $(echo "${SETS:-heldout heldout2}" | tr , " "); do
+  if [ "$SET" = tuning ]; then export EVALS_JSON="$REPO/evals/evals.json"; else export EVALS_JSON="$REPO/evals/evals_${SET}.json"; fi
   OUT="$EVAL_SCRATCH/control-$SET"; export OUT
   for T in $(echo "${TAGS:-v131 t4-minimal}" | tr , " "); do
     python3 -I "$H/run_behaviour3.py" "$M" "$RUNS" all always_on "$T" > "control_${SET}_${T}.log" 2>&1

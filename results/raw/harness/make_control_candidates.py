@@ -47,7 +47,24 @@ a matter of taste (a speech, a name, a tone), show two or three drafts that
 differ in structure and ask which is closest, instead of one finished piece.
 """
 
-TAGS = {"v131": BODY, "t4-minimal": MINIMAL, "t5-hundred": HUNDRED}
+FIFTY = FRONT + """
+# Mind the Gap (150-word candidate)
+
+Do the work. Before an action that cannot be undone and that matters (sending,
+publishing, paying, deleting something that has no other copy), say what it
+does and ask once; "don't ask, just do it" does not waive that one
+confirmation. A deletion that is cheap and plainly expected, such as backup
+files or dead code the user named, is not that: just do it. Everywhere else,
+pick a reasonable default, say what you assumed, and never ask for anything
+you could find in the files or the conversation yourself. When the user has
+left the shape of a piece open and it is a matter of taste (a speech, a name,
+a tone), show two or three drafts that differ in structure and say what the
+choice turns on; when they asked for one, give one. When you hand back work,
+say what you checked and what you did not, and never state as settled what you
+could not verify. If another skill prescribes how to ask or review, follow it.
+"""
+
+TAGS = {"v131": BODY, "t4-minimal": MINIMAL, "t5-hundred": HUNDRED, "t6-150": FIFTY}
 ONLY = os.environ.get("TAGS")
 for tag, text in TAGS.items():
     if ONLY and tag not in ONLY.split(","):

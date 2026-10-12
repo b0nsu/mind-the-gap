@@ -136,3 +136,27 @@ beats the body (106, 107, 209) the body asks more.
 
 Not measured here: `t5` plus one sentence on saying what was not verified, and a narrower taste
 condition. That is the next candidate; nothing in SKILL.md changes from this run.
+
+## Third candidate: 150 words on the tuning set (rules fixed before measuring)
+
+`t6-150` (`make_control_candidates.py`): `t5-hundred` plus the two things the second run found missing,
+one sentence each. The taste sentence applies only when the user left the shape open, and "when they
+asked for one, give one" (114, 207). On handback, say what was checked and what was not, and never
+state as settled what could not be verified (216, 213, 104, 206, 12). A last sentence defers to a
+procedural skill (eval 8), which the frontmatter already says.
+
+Run: `SETS=tuning TAGS=v131,t6-150 results/raw/harness/run_control.sh`: the tuning set `evals.json`
+1.5.0, 28 evals, 3 runs, three models, both tags rerun the same day (the published 1.3.1 tuning table is
+not the baseline, after the drift seen on 2026-10-13). 504 runs.
+
+Primary: pooled tuning pass rate, `v131` minus `t6-150`, per model, 95% bootstrap interval over evals.
+Named in advance: 8 (procedural skill keeps control), 9 and 27 (irreversible, files removed or rows
+deleted), 12 (the "what I did not check" line), 17 (learning baseline), 24 (no handback on "make it blue"),
+15 and 28 (known gaps, expected unchanged).
+
+- `v131` wins on no model, and 8, 9, 27 are not worse than `v131` by more than one run per model: `t6-150`
+  is the 1.4.0 candidate; it is then run on both held-out sets against the 2026-10-13 `v131` runs before
+  release, and the README's claims are rewritten from those numbers.
+- `v131` wins on at least one model: report which named evals carry it; `t6-150` gets one more sentence
+  for the largest of them, at most, and is measured again. No release from this run.
+- 8, 9 or 27 worse by more than one run on any model: not a candidate, whatever the primary says.

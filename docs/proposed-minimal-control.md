@@ -92,7 +92,7 @@ the cheap-deletion exception and the draft-offering behaviour, measured against 
 
 ## Second candidate: 100 words (rules fixed before measuring)
 
-`t5-hundred` (`make_control_candidates.py`, 116 body words): the 63-word control plus the two behaviours
+`t5-hundred` (`make_control_candidates.py`, 129 body words): the 63-word control plus the two behaviours
 the first run attributed to the body, each as one sentence. A deletion that is cheap and plainly expected
 (backup files, dead code the user named) is done without asking; the confirmation is kept for actions that
 cannot be undone and matter. On a matter of taste (a speech, a name, a tone), two or three drafts that

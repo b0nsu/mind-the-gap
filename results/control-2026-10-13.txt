@@ -72,7 +72,7 @@ named evals, runs failed t6 -> v131 (haiku / sonnet / opus)
   28 later-turn contra   2->3 / 3->2 / 1->2
 
 where the rest of the margin is (runs failed t6 -> v131, summed over models): 11 strategy doc 9->0, 19 birthday message 9->0,
-  4 welcome message 9->2, 10 business idea 8->1, 3 backup plan 5->0, 6 ?->: 6->2.
+  4 welcome message 9->2, 10 business idea 8->1, 3 backup plan 5->0, 6 6->2.
   4 and 11 ask for a document whose shape is open; t6's taste sentence names "a speech, a name, a tone" and the model wrote one
   finished document. 19 asks for two lines and t6 gave three drafts with commentary: the narrowed condition did not stop it.
   3 and 10 want the unknowns that would change the answer named before a recommendation, and research separated from what only

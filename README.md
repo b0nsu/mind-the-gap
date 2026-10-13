@@ -22,11 +22,13 @@ An approval prompt would have shown the command. This shows what the command doe
 | Sonnet | 16/21         | 0/21       |
 | Opus   | 9/21          | 0/21       |
 
+This confirmation is not what the body's length buys. A 63-word instruction ("before an action that cannot be undone, say what it does and ask once") confirms as often on both held-out sets, and on Haiku let fewer runs through (0 of 15 against 3). What the body adds is elsewhere: it does not ask before a cheap, expected deletion (a `.bak` file, dead code the person named), where the one-sentence rule asks in 15 of 18 runs, and on a document whose shape is open it offers drafts that differ in structure instead of one finished piece ([docs/proposed-minimal-control.md](docs/proposed-minimal-control.md)).
+
 Both quotes are from run 1 of 3 on claude-opus-5-5, shortened. The full runs are in the release asset `results-raw-1.3.1.tar.gz` under `results/raw/behaviour-1.3.1/claude-opus-5-5/eval-12/` and `eval-09/`; the working directory for eval 9 is a test checkout with six log files, a purge script and a README that says nothing else keeps a copy.
 
 ## What it does
 
-It investigates before asking and does not hand the person research it could run itself. It takes cheap, reversible defaults without asking. It keeps its questions for decisions that are irreversible, unverifiable, or a matter of taste or business meaning, and when it asks, it says what it already established and what changes with the answer. It says what it did not check.
+It investigates before asking and does not hand the person research it could run itself. It takes cheap, reversible defaults without asking. Before recommending, it names the unknowns that would change the recommendation and separates what it can look up from what only the person knows. When the shape of a piece is open and the choice is a matter of taste, it offers two or three drafts that differ in structure rather than one finished piece; when one short piece was asked for, it gives one. It says what it did not check. It keeps its questions for decisions that are irreversible, unverifiable, or a matter of taste or business meaning, and when it asks, it says what it already established and what changes with the answer.
 
 It activates when a request is ambiguous, in territory the person does not know, consequential or irreversible, or produces work that is hard to verify. It stays out of requests that are clear **and** low-risk **and** reversible **and** easy to verify. The condition is a conjunction on purpose: "delete all records before 2025" is perfectly clear and still activates it. If a procedural skill is also active (one that fixes how or when to ask, or prescribes a review or report sequence), that skill's procedure wins.
 
@@ -35,6 +37,8 @@ It activates when a request is ambiguous, in territory the person does not know,
 Keep tool approvals on. The skill changes what the model says before it acts; the approval prompt is what stops it. With the skill, Haiku still deleted, sent or published without asking in 5 of 21 irreversible-action runs, and in 7 and 8 of 25 in a same-day rerun of 1.3.0 and 1.3.1 ([docs/measurements.md](docs/measurements.md#irreversible-actions)).
 
 The gain is smaller on requests the skill was not tuned on. On the two held-out sets pooled (34 evals, 3 runs each) the pass-rate gain is Haiku +3.7 pp [−0.9, +8.7], Sonnet +11.2 [+4.0, +18.9], Opus +6.8 [+1.8, +13.0]. The Haiku interval includes zero; check it on your own tasks before relying on it there.
+
+The two eval sets disagree about the body. On the two held-out sets a 129-word body matches the full one (gap −1.1, −0.7 and +2.3 pp for Haiku, Sonnet and Opus, every interval including zero). On the tuning set, whose evals were written one per section of the body, a 178-word body loses by +4.8 [−3.9, +15.0], +12.7 [+4.7, +22.3] and +10.5 [+3.4, +19.5] pp, on drafts for an open-shaped document, unknowns named before a recommendation, no drafts for a two-line message, and the learning baseline. Those behaviours have not been measured on requests the skill was not tuned on ([docs/proposed-minimal-control.md](docs/proposed-minimal-control.md)).
 
 Install it always on. As a model-invoked skill the model often does not load it: 7/16 (Haiku), 12/16 (Sonnet) and 13/16 (Opus) of the 16 held-out trigger queries.
 

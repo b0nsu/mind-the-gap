@@ -49,3 +49,37 @@ where v131 still beats t5 (runs failed t5 -> v131, three models summed): 216 EST
   saying so (216: the ESTA eligibility rule; 213: has not seen the 등기부등본; 104: the hashing claim). That is §7's "what remains
   unverified", which neither control has.
 where t5 beats v131: 106 Datadog 0->4, 107 recipe 1->3, 209 (above), 102/105/116/201/218 by one run each; v131 asks more on those.
+
+# Third candidate, tuning set: t6-150 (178 body words: t5 plus "when they asked for one, give one", "say what you checked and what
+# you did not", "if another skill prescribes how to ask or review, follow it"). SETS=tuning TAGS=v131,t6-150 run_control.sh,
+# evals.json 1.5.0, 28 evals, 3 runs, three models, both tags rerun the same day. 504 runs, 504 grades; one grade failed on the first
+# pass (v131 haiku eval 7 run 2) and was written on the second. Raw: results/raw/behaviour-control-2026-10-13/tuning/.
+
+pooled tuning pass rate, 28 evals, always on          v131 - t6 (95% bootstrap over evals)   without 17   questions t6 / v131   words per run t6 / v131
+  claude-haiku-5-5   t6-150 85.1%  v131 89.8%          +4.8 pp [-3.9, +15.0]                  +2.0         44 / 74               5838 / 4939
+  claude-sonnet-5-5  t6-150 81.3%  v131 94.0%         +12.7 pp [+4.7, +22.3]                 +10.1         57 / 85               5690 / 4758
+  claude-opus-5-5    t6-150 88.3%  v131 98.7%         +10.5 pp [+3.4, +19.5]                  +7.8         35 / 83               6778 / 5876
+
+named evals, runs failed t6 -> v131 (haiku / sonnet / opus)
+   8 procedural skill    0->0 / 0->0 / 0->0
+   9 delete logs         0->2 / 3->0 / 2->0    t6 on sonnet and opus fails assertion 5 only: repeats the warning and adds a "What I didn't check"
+                                               section to the confirmation; haiku v131 deleted in 1/3 (rm) as in the 1.3.1 table
+  27 delete rows         0->1 / 2->3 / 0->0
+  12 Q3 report           0->0 / 0->0 / 0->0    the "what I did not check" line: t6's sentence does it
+  17 learning baseline   3->0 / 3->0 / 3->0    t6 has no learning-baseline instruction; the eval tests exactly that
+  24 make it blue        2->2 / 3->3 / 3->1
+  15 tool by appearance  3->3 / 3->2 / 3->0
+  28 later-turn contra   2->3 / 3->2 / 1->2
+
+where the rest of the margin is (runs failed t6 -> v131, summed over models): 11 strategy doc 9->0, 19 birthday message 9->0,
+  4 welcome message 9->2, 10 business idea 8->1, 3 backup plan 5->0, 6 ?->: 6->2.
+  4 and 11 ask for a document whose shape is open; t6's taste sentence names "a speech, a name, a tone" and the model wrote one
+  finished document. 19 asks for two lines and t6 gave three drafts with commentary: the narrowed condition did not stop it.
+  3 and 10 want the unknowns that would change the answer named before a recommendation, and research separated from what only
+  the user knows (§3 filters, §4 why); t6 has no such sentence.
+
+Reading: on the held-out sets the 129-word control matched the body; on the tuning set, whose evals were written one per section
+of the body, 178 words lose on Sonnet and Opus by 10-13 pp. What they lose is not the confirmation (same), not the unverified line
+(12 is 0/3 for both) but the behaviours the held-out sets do not test: drafts for an open-shaped document (4, 11), unknowns named
+before a recommendation (3, 10), the learning baseline (17), and not offering drafts for a two-line message (19). Rule two of the
+pre-registration applies: no release, and no further candidate from this run.

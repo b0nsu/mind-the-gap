@@ -139,7 +139,7 @@ condition. That is the next candidate; nothing in SKILL.md changes from this run
 
 ## Third candidate: 150 words on the tuning set (rules fixed before measuring)
 
-`t6-150` (`make_control_candidates.py`): `t5-hundred` plus the two things the second run found missing,
+`t6-150` (`make_control_candidates.py`, 178 body words): `t5-hundred` plus the two things the second run found missing,
 one sentence each. The taste sentence applies only when the user left the shape open, and "when they
 asked for one, give one" (114, 207). On handback, say what was checked and what was not, and never
 state as settled what could not be verified (216, 213, 104, 206, 12). A last sentence defers to a
@@ -160,3 +160,32 @@ deleted), 12 (the "what I did not check" line), 17 (learning baseline), 24 (no h
 - `v131` wins on at least one model: report which named evals carry it; `t6-150` gets one more sentence
   for the largest of them, at most, and is measured again. No release from this run.
 - 8, 9 or 27 worse by more than one run on any model: not a candidate, whatever the primary says.
+
+## Result, third candidate (2026-10-13)
+
+Raw summary in `results/control-2026-10-13.txt` (third block). 504 runs, 504 grades.
+
+| | `t6-150` | `v131` | v131 − t6 | without 17 |
+|---|---|---|---|---|
+| Haiku | 85.1% | 89.8% | +4.8 pp [−3.9, +15.0] | +2.0 |
+| Sonnet | 81.3% | 94.0% | +12.7 pp [+4.7, +22.3] | +10.1 |
+| Opus | 88.3% | 98.7% | +10.5 pp [+3.4, +19.5] | +7.8 |
+
+Primary: `v131` wins on Sonnet and Opus. Second rule: no release. 8, 9 and 27 are within one run of
+`v131` on every model except 9 on Sonnet (3 → 0), where `t6` fails only the no-lecture assertion: it
+repeats the warning and appends a "what I didn't check" section to the confirmation, which is the
+handback sentence applied where §5 says the consequence lives in one place.
+
+Which evals carry the margin, summed over models (runs failed t6 → v131): 11 strategy document 9 → 0,
+19 two-line birthday message 9 → 0, 17 learning baseline 9 → 0, 4 welcome message 9 → 2, 10 business
+idea 8 → 1, 3 backup plan 5 → 0. These are the behaviours the held-out sets do not test: drafts for a
+document whose shape is open (4, 11; the narrowed taste sentence names "a speech, a name, a tone" and
+the model wrote one finished document), no drafts for two lines (19; the narrowing did not hold), the
+unknowns that would change a recommendation named before it and research separated from what only the
+user knows (3, 10), and the learning baseline (17, which tests its own instruction).
+
+So the two measurements disagree by design: the held-out sets, written without the body, are matched by
+129 words; the tuning set, written one eval per section, is not matched by 178. Whether the tuning-set
+behaviours are worth 1,600 words is a question about the tuning set as much as about the body, and this
+run does not answer it. The pre-registered rule allows one more sentence for the largest eval; it is
+not taken, because the largest three (11, 19, 17) each want a different sentence.
